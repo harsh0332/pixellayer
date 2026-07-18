@@ -1,0 +1,70 @@
+/*
+ * PixelLayerr design tokens — pixel-layer-studio skin (deep blue-black + lime).
+ * Theme-switchable architecture: :root defaults to dark; a future light theme
+ * only needs a :root[data-theme="light"] block overriding these variables.
+ *
+ * All text/bg pairings verified WCAG AA (script-checked):
+ *   text ≥ 16.7 · muted ≥ 6.7 · lime-as-text ≥ 15.9 · ink-on-lime = 15.9
+ */
+
+:root,
+:root[data-theme="dark"] {
+  /* ---- Canvas: deep blue-black, never #000 ---- */
+  --bg-deep: #07090e;
+  --bg-base: #0b0f16;
+  --bg-elevated: #0e121b;
+
+  /* ---- Elevation: surface steps + hairlines, not heavy shadows ---- */
+  --surface: rgba(255, 255, 255, 0.04);
+  --surface-hover: rgba(255, 255, 255, 0.07);
+  --border: rgba(255, 255, 255, 0.13);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --shadow-soft:
+    0 2px 8px rgba(0, 0, 0, 0.24),
+    0 12px 32px rgba(0, 0, 0, 0.32);
+
+  /* ---- Text: warm off-white ---- */
+  --text: #f4f2eb;
+  --text-muted: #969ba5;
+
+  /* ---- Accent: lime — the signature. Light enough to be fill AND text,
+     so the indigo-era role split collapses onto one hue. ---- */
+  --accent: #c6ff5a;
+  --accent-fill: #c6ff5a;
+  --accent-fill-hover: #d3ff77;
+  --accent-text: #c6ff5a;
+  --accent-glow: rgba(198, 255, 90, 0.25);
+  --text-on-accent: #10130b;
+
+  /* accent-2 lives ONLY inside ambient gradients/glows, never flat fills */
+  --accent-2: #87c2ff;
+
+  /* ---- Feedback (AA ≥ 9.9 on all surfaces) ---- */
+  --success: #7ee2a8;
+  --warn: #e2b457;
+
+  /* ---- Focus ring ---- */
+  --focus: #c6ff5a;
+
+  /* ---- Layout rhythm ---- */
+  --container-max: 1240px;
+  --container-px: clamp(1.5rem, 5vw, 4rem);
+  --section-y: clamp(6rem, 12vw, 10rem); /* 96–160px */
+  --section-y-compact: clamp(4rem, 8vw, 6rem); /* 64–96px */
+
+  /* ---- Radii ---- */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* ---- Motion (locked): expo-out, 200–600ms, no bounce ---- */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+  --duration-ambient: 12s;
+
+  /* ---- Noise/grain overlay (feTurbulence, tiled) ---- */
+  --noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}

@@ -1,0 +1,243 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Wipe Tailwind's default palette — semantic tokens only */
+@theme {
+  --color-*: initial;
+}
+
+@theme inline {
+  /* Canvas + elevation */
+  --color-deep: var(--bg-deep);
+  --color-base: var(--bg-base);
+  --color-elevated: var(--bg-elevated);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-hairline: var(--border);
+  --color-hairline-strong: var(--border-strong);
+
+  /* Text */
+  --color-text: var(--text);
+  --color-muted: var(--text-muted);
+  --color-on-accent: var(--text-on-accent);
+
+  /* Accent roles */
+  --color-accent: var(--accent);
+  --color-accent-fill: var(--accent-fill);
+  --color-accent-fill-hover: var(--accent-fill-hover);
+  --color-accent-text: var(--accent-text);
+  --color-accent-glow: var(--accent-glow);
+  --color-accent-2: var(--accent-2);
+
+  /* Feedback + focus */
+  --color-success: var(--success);
+  --color-warn: var(--warn);
+  --color-focus: var(--focus);
+
+  /* Typography — DM Sans (display + body) · DM Mono (labels) · Instrument
+     Serif (italic accent words in display headlines) */
+  --font-display: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-mono-face), ui-monospace, SFMono-Regular, monospace;
+  --font-serif: var(--font-serif-face), Georgia, serif;
+
+  /* Type scale — modular clamp() scale, restrained sizes */
+  --text-display-xl: clamp(2.75rem, 1.5rem + 5vw, 5rem);
+  --text-display-xl--line-height: 1.02;
+  --text-display-xl--letter-spacing: -0.03em;
+  --text-display-lg: clamp(2.25rem, 1.35rem + 3.5vw, 3.5rem);
+  --text-display-lg--line-height: 1.06;
+  --text-display-lg--letter-spacing: -0.025em;
+  --text-heading: clamp(1.75rem, 1.3rem + 1.8vw, 2.5rem);
+  --text-heading--line-height: 1.12;
+  --text-heading--letter-spacing: -0.02em;
+  --text-title: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-title--line-height: 1.3;
+  --text-title--letter-spacing: -0.01em;
+  --text-body-lg: 1.125rem;
+  --text-body-lg--line-height: 1.65;
+  --text-body: 1rem;
+  --text-body--line-height: 1.65;
+  --text-small: 0.875rem;
+  --text-small--line-height: 1.55;
+  --text-micro: 0.75rem;
+  --text-micro--line-height: 1.4;
+  --text-micro--letter-spacing: 0.08em;
+
+  /* Elevation shadow (floating elements only) */
+  --shadow-soft: var(--shadow-soft);
+
+  /* Radii */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Motion */
+  --ease-out-expo: var(--ease-out-expo);
+}
+
+/* Centered 1240px container with responsive side padding */
+@utility container-site {
+  width: 100%;
+  margin-inline: auto;
+  max-width: calc(var(--container-max) + 2 * var(--container-px));
+  padding-inline: var(--container-px);
+}
+
+/* Large vertical section rhythm */
+@utility section-y {
+  padding-block: var(--section-y);
+}
+
+@utility section-y-compact {
+  padding-block: var(--section-y-compact);
+}
+
+/* Grain overlay for a full-bleed element */
+@utility bg-noise {
+  background-image: var(--noise);
+  background-repeat: repeat;
+  background-size: 160px 160px;
+}
+
+html {
+  background: var(--bg-base);
+}
+
+body {
+  background: var(--bg-base);
+  color: var(--text);
+  font-family: var(--font-sans-face), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--accent-glow);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Balanced headlines — no orphans/widows on display type */
+h1,
+h2 {
+  text-wrap: balance;
+}
+
+/* pixel-layer-studio signature: serif-italic accent words in display type */
+h1 em,
+h2 em {
+  font-family: var(--font-serif-face), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+}
+
+/* Hero entrance — CSS-only so the LCP headline needs no JS to appear.
+   Timings mirror the motion tokens: 600ms/500ms expo-out. */
+.hero-line {
+  animation: hero-mask-rise 600ms var(--ease-out-expo) both;
+}
+
+.hero-rise {
+  animation: hero-rise 500ms var(--ease-out-expo) both;
+}
+
+@keyframes hero-mask-rise {
+  from {
+    transform: translateY(110%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-line,
+  .hero-rise {
+    animation: none;
+  }
+}
+
+/* Animated link underline — hover AND keyboard focus parity */
+@utility link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size var(--duration-fast) var(--ease-out-expo);
+
+  &:hover,
+  &:focus-visible {
+    background-size: 100% 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .link-underline {
+    transition: none;
+  }
+}
+
+/* Ambient glow blobs — slow breathing; scale/opacity only (compositor-safe),
+   `scale` property so the utility-class translate is untouched.
+   --ambient-play is toggled by AmbientGlow's IntersectionObserver so
+   offscreen glows don't animate. */
+.ambient-blob {
+  filter: blur(72px);
+  animation: ambient-breathe var(--duration-ambient) ease-in-out infinite
+    alternate;
+  animation-play-state: var(--ambient-play, running);
+  will-change: opacity;
+}
+
+@keyframes ambient-breathe {
+  from {
+    scale: 1;
+    opacity: 0.7;
+  }
+  to {
+    scale: 1.1;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-blob {
+    animation: none;
+  }
+}
+
+/* Lenis smooth-scroll base styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
