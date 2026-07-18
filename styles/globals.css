@@ -138,17 +138,21 @@ h2 em {
   letter-spacing: -0.04em;
 }
 
-/* Hero entrance — CSS-only so the LCP headline needs no JS to appear.
-   Timings mirror the motion tokens: 600ms/500ms expo-out. */
-.hero-line {
-  animation: hero-mask-rise 600ms var(--ease-out-expo) both;
+/* ── PixelLayerr OS intro ─────────────────────────────────────────────
+   The wordmark (LCP element) resolves via CSS keyframes so it needs no JS.
+   Boot lines self-run and are time-compressed to protect LCP. */
+.os-line {
+  animation: os-mask-rise 600ms var(--ease-out-expo) both;
+}
+.os-rise {
+  animation: os-rise 500ms var(--ease-out-expo) both;
+}
+.os-boot-line {
+  opacity: 0;
+  animation: os-boot-in 240ms var(--ease-out-expo) forwards;
 }
 
-.hero-rise {
-  animation: hero-rise 500ms var(--ease-out-expo) both;
-}
-
-@keyframes hero-mask-rise {
+@keyframes os-mask-rise {
   from {
     transform: translateY(110%);
   }
@@ -156,8 +160,7 @@ h2 em {
     transform: translateY(0);
   }
 }
-
-@keyframes hero-rise {
+@keyframes os-rise {
   from {
     opacity: 0;
     transform: translateY(12px);
@@ -167,11 +170,62 @@ h2 em {
     transform: translateY(0);
   }
 }
+@keyframes os-boot-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reference keyframes, ported verbatim */
+@keyframes os-caret {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes os-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+@keyframes os-beam {
+  0% {
+    top: 6%;
+    opacity: 0.9;
+  }
+  100% {
+    top: 92%;
+    opacity: 0;
+  }
+}
+@keyframes os-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 -6px rgba(198, 255, 90, 0);
+  }
+  50% {
+    box-shadow: 0 0 30px -6px rgba(198, 255, 90, 0.55);
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-line,
-  .hero-rise {
-    animation: none;
+  .os-line,
+  .os-rise,
+  .os-boot-line,
+  .os-caret,
+  .os-pulse,
+  .os-cta-glow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 

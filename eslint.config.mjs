@@ -17,6 +17,7 @@ const eslintConfig = defineConfig([
     // Vendored PixelLayerr motion-library components (ported as-is; the
     // integration brief forbids changing their animation logic):
     "components/motion/animkit/*.jsx",
+    "components/motion/*.jsx",
   ]),
 ]);
 

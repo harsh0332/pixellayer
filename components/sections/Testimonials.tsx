@@ -1,107 +1,62 @@
 "use client";
 
-import { StackedCardCarousel } from "@/components/motion/animkit";
-import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
+import {
+  AnimatedEyebrow,
+  SectionHeadingMotion,
+  TestimonialDeckMotion,
+} from "@/components/motion/v2";
 
-/*
- * ANTI-FABRICATION: every quote/name/role/company below is an editable
- * placeholder token, rendered visibly as a token until filled with a real
- * quote. Each slot is mapped 1:1 to a real portfolio project.
- */
-const SLOTS = [
+/* Five REAL testimonials, provided by the client. No invented quotes; no
+   AI Buddies card. If a name is later cleared, keep a {{}} slot rather than
+   inventing one. */
+const TESTIMONIALS = [
   {
-    project: "La Vallée Farms",
-    quote: "{{TESTIMONIAL_1_QUOTE}}",
-    name: "{{NAME_1}}",
-    role: "{{ROLE_1}}",
-    company: "{{COMPANY_1}}",
+    quote:
+      "The animated site genuinely stands out — parents notice it, and we've had more appointment enquiries since it went live. It finally feels as modern as the care we give.",
+    name: "Dr. Sudarshan Arya",
+    role: "Baby Steps · Pediatric Clinic",
   },
   {
-    project: "Apna Dental Clinic",
-    quote: "{{TESTIMONIAL_2_QUOTE}}",
-    name: "{{NAME_2}}",
-    role: "{{ROLE_2}}",
-    company: "{{COMPANY_2}}",
+    quote:
+      "The animations do more than look good — they help visitors actually understand what Aranyaani is about. People stay longer and get the vision immediately.",
+    name: "Sanjeev Saxena",
+    role: "Aranyaani Healing Forest",
   },
   {
-    project: "AI Buddies",
-    quote: "{{TESTIMONIAL_3_QUOTE}}",
-    name: "{{NAME_3}}",
-    role: "{{ROLE_3}}",
-    company: "{{COMPANY_3}}",
+    quote:
+      "Since the new site, our registrations and conversions have clearly improved. It's fast, clean, and does the selling for us.",
+    name: "DPM Entertainment",
+    role: "Events & Entertainment",
   },
   {
-    project: "Shoolin Chemicals",
-    quote: "{{TESTIMONIAL_4_QUOTE}}",
-    name: "{{NAME_4}}",
-    role: "{{ROLE_4}}",
-    company: "{{COMPANY_4}}",
+    quote:
+      "Really impressed with how it turned out — polished, professional, and easy for patients to book. Exactly what we wanted.",
+    name: "Prince",
+    role: "Apna Dental Clinic",
   },
   {
-    project: "DPM Entertainment",
-    quote: "{{TESTIMONIAL_5_QUOTE}}",
-    name: "{{NAME_5}}",
-    role: "{{ROLE_5}}",
-    company: "{{COMPANY_5}}",
+    quote:
+      "They built us a genuinely premium website — it makes our business look as serious as it is. Great work start to finish.",
+    name: "Sandeep",
+    role: "Shoolin Chemicals",
   },
 ];
 
 export function Testimonials() {
-  const reducedMotion = useReducedMotion();
-
   return (
     <section
       id="testimonials"
-      aria-labelledby="testimonials-heading"
+      aria-label="Testimonials"
       className="border-y border-hairline bg-elevated"
     >
       <div className="container-site section-y">
-        <p className="text-micro uppercase tracking-[0.08em] text-muted">
-          07 · Testimonials
-        </p>
-        <h2
-          id="testimonials-heading"
-          className="mt-4 max-w-2xl font-display text-display-lg"
-        >
-          In their <em>words</em>.
-        </h2>
+        <AnimatedEyebrow index="07" label="Testimonials" />
+        <div className="mt-4 max-w-2xl">
+          <SectionHeadingMotion text="In their *words*." fontSize={42} />
+        </div>
 
         <div className="mx-auto mt-14 max-w-xl">
-          <StackedCardCarousel
-            items={SLOTS}
-            accentColor="#c6ff5a"
-            autoAdvance
-            interval={6000}
-            ariaLabel="Client testimonials"
-            reducedMotion={reducedMotion || undefined}
-            renderItem={(slot: (typeof SLOTS)[number]) => (
-              <article
-                key={slot.project}
-                className="flex h-full flex-col rounded-lg border border-hairline bg-elevated p-8"
-              >
-                <span
-                  aria-hidden
-                  className="font-display text-heading leading-none text-accent-text"
-                >
-                  “
-                </span>
-                <blockquote className="mt-3 flex-1">
-                  <p className="font-mono text-small text-muted">
-                    {slot.quote}
-                  </p>
-                </blockquote>
-                <footer className="mt-8 border-t border-hairline pt-5">
-                  <p className="font-mono text-small text-text">{slot.name}</p>
-                  <p className="mt-1 font-mono text-small text-muted">
-                    {slot.role} · {slot.company}
-                  </p>
-                  <p className="mt-4 text-micro uppercase tracking-[0.08em] text-muted">
-                    Slot for · {slot.project}
-                  </p>
-                </footer>
-              </article>
-            )}
-          />
+          <TestimonialDeckMotion testimonials={TESTIMONIALS} />
         </div>
       </div>
     </section>

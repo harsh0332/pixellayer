@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&amp;family=DM+Mono:wght@400;500&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<style>
+html, body { margin: 0; padding: 0; background: #07090e; }
+body { font-family: 'DM Sans', system-ui, sans-serif; color: #f4f2eb; -webkit-font-smoothing: antialiased; }
+a { color: #f4f2eb; } a:hover { color: #c6ff5a; }
+::selection { background: rgba(198,255,90,.25); }
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #07090e; padding: 72px 28px 140px;">
+  <div style="max-width: 1140px; margin: 0 auto; display: flex; flex-direction: column; gap: 26px;">
+    <header style="position: relative; border: 1px solid rgba(255,255,255,.11); border-radius: 24px; background: #090c13; overflow: hidden; padding: 68px 52px 60px;">
+      <x-import component="AmbientGlow" from="./components/AmbientGlow.jsx" colors="{{ glowColors }}" opacity="0.09" size="760" x="18%" y="30%" style="position: absolute; inset: 0;" hint-size="100%,100%"></x-import>
+      <div style="position: relative; display: flex; flex-direction: column; gap: 26px;">
+        <div style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: #969ba5;">PIXELLAYERR · MOTION LIBRARY · v2</div>
+        <x-import component="AnimatedLogo" from="./components/AnimatedLogo.jsx" variant="lockup" size="52" accent-color="{{ accent }}" speed="{{ speed }}" hint-size="560px,76px"></x-import>
+        <p style="margin: 0; max-width: 580px; font-size: 15px; line-height: 1.65; color: #969ba5; text-wrap: pretty;">Eight portable, prop-driven motion components for the existing PixelLayerr site — quiet at rest, alive on interaction. Every file is <span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #f4f2eb;">"use client"</span>, SSR-safe, self-contained, and respects reduced motion + touch. Peer deps and the Next.js mount note are commented at the top of each file.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #f4f2eb; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 13px;">8 COMPONENTS</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #f4f2eb; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 13px;">REACT-ONLY</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #f4f2eb; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 6px 13px;">60 FPS · TRANSFORMS + OPACITY</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: #c6ff5a; border: 1px solid rgba(198,255,90,.35); border-radius: 999px; padding: 6px 13px;">REDUCED-MOTION SAFE</span>
+        </div>
+      </div>
+    </header>
+
+    <section data-screen-label="01 AnimatedLogo" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">01</span>
+          <span style="font-size: 17px; font-weight: 600;">AnimatedLogo</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/AnimatedLogo.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · direct client import</span>
+      </div>
+      <div style="padding: 52px 32px; display: flex; flex-wrap: wrap; gap: 60px; align-items: center; justify-content: center;">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="AnimatedLogo" from="./components/AnimatedLogo.jsx" variant="lockup" size="34" accent-color="{{ accent }}" speed="{{ speed }}" hint-size="340px,52px"></x-import>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #969ba5;">LOCKUP · SEQUENCED ASSEMBLE</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="AnimatedLogo" from="./components/AnimatedLogo.jsx" variant="wordmark" size="38" accent-color="{{ accent }}" speed="{{ speed }}" hint-size="320px,56px"></x-import>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #969ba5;">WORDMARK · HOVER TO RIPPLE</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 14px;">
+          <x-import component="AnimatedLogo" from="./components/AnimatedLogo.jsx" variant="mark" size="56" accent-color="{{ accent }}" speed="{{ speed }}" hint-size="72px,72px"></x-import>
+          <span style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.16em; color: #969ba5;">MARK · ISOMETRIC LAYERS · HOVER TO SPREAD</span>
+        </div>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: accentColor · textColor · size · variant "wordmark" | "mark" | "lockup" · animate · speed · text — letters cascade-resolve (rise + blur→sharp) over a drawing lime baseline, "Layerr" in Instrument Serif italic; at rest a faint wave breathes through the letters and a lime scan sweeps every ~9s; hover ripples the letters; the mark is an isometric 3-plane layers glyph; reduced-motion → static resolved logo</div>
+    </section>
+
+    <section data-screen-label="02 ServiceCardMotion" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">02</span>
+          <span style="font-size: 17px; font-weight: 600;">ServiceCardMotion</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/ServiceCardMotion.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · pass `cards` to lift onto live markup</span>
+      </div>
+      <div style="padding: 44px 30px;">
+        <x-import component="ServiceCardMotion" from="./components/ServiceCardMotion.jsx" accent-color="{{ accent }}" hint-size="100%,420px"></x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: cards · accentColor · surfaceColor · borderColor · textColor · mutedColor — staggered optical rise, stroke-draw icons, tick draw-ins; hover: cursor spotlight + ≤5° tilt + one-pass border shine + parallax pop (hover-pointer only)</div>
+    </section>
+
+    <section data-screen-label="03 IndustrySelectorMotion" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">03</span>
+          <span style="font-size: 17px; font-weight: 600;">IndustrySelectorMotion</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/IndustrySelectorMotion.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · pass `industries` for live content</span>
+      </div>
+      <div style="padding: 44px 30px;">
+        <x-import component="IndustrySelectorMotion" from="./components/IndustrySelectorMotion.jsx" accent-color="{{ accent }}" hint-size="100%,320px"></x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: industries · accentColor · surfaceColor · borderColor · textColor · mutedColor — sliding lime indicator (shared-layout), crossfade + staggered rise on switch, underline-draw links, ambient glow drifts per vertical; ↑/↓ keyboard nav</div>
+    </section>
+
+    <section data-screen-label="04 TestimonialDeckMotion" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">04</span>
+          <span style="font-size: 17px; font-weight: 600;">TestimonialDeckMotion</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/TestimonialDeckMotion.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · drag / click the front card, or use dots</span>
+      </div>
+      <div style="padding: 44px 30px 48px; display: flex; justify-content: center;">
+        <x-import component="TestimonialDeckMotion" from="./components/TestimonialDeckMotion.jsx" accent-color="{{ accent }}" style="width: 100%; max-width: 560px;" hint-size="560px,400px"></x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: testimonials · accentColor · surfaceColor · borderColor · textColor · mutedColor · height — real 3D depth + slight tilt on back cards, expo-out advance, sheen sweep on change, lime pill dot; «TESTIMONIAL» slot strings render as intentional placeholder chips</div>
+    </section>
+
+    <section data-screen-label="05 ContactStepperMotion" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">05</span>
+          <span style="font-size: 17px; font-weight: 600;">ContactStepperMotion</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/ContactStepperMotion.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · pick a pill, Continue is magnetic</span>
+      </div>
+      <div style="padding: 44px 30px;">
+        <x-import component="ContactStepperMotion" from="./components/ContactStepperMotion.jsx" accent-color="{{ accent }}" hint-size="100%,380px"></x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: steps · contact · heading · headingAccent · accentColor · surfaceColor · borderColor · textColor · mutedColor — heading optical-resolve, step slide/crossfade, lime progress fill, pill glow + lift + lime-selected, magnetic Continue, glow intensifies per step</div>
+    </section>
+
+    <div style="display: flex; align-items: baseline; gap: 14px; padding: 26px 2px 4px;">
+      <span style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #969ba5;">SHARED PRIMITIVES</span>
+      <span style="flex: 1; height: 1px; background: rgba(255,255,255,.1);"></span>
+    </div>
+
+    <section data-screen-label="06 SectionReveal" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">06</span>
+          <span style="font-size: 17px; font-weight: 600;">SectionReveal</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/SectionReveal.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · wrapper — wrap any block or list</span>
+      </div>
+      <div style="padding: 44px 30px;">
+        <x-import component="SectionReveal" from="./components/SectionReveal.jsx" stagger="130" hint-size="100%,220px">
+          <div style="border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: #0e121b; padding: 20px 22px; margin-bottom: 12px;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #969ba5; margin-bottom: 8px;">CHILD 01</div>
+            <div style="font-size: 15px;">Any block wrapped in SectionReveal gets the optical resolve — clip-path opens, blur sharpens, content rises ≤12px.</div>
+          </div>
+          <div style="border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: #0e121b; padding: 20px 22px; margin-bottom: 12px;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #969ba5; margin-bottom: 8px;">CHILD 02</div>
+            <div style="font-size: 15px;">With <span style="font-family: 'DM Mono', monospace; font-size: 13px; color: #c6ff5a;">stagger</span> set, direct children cascade — this demo uses 130ms.</div>
+          </div>
+          <div style="border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: #0e121b; padding: 20px 22px;">
+            <div style="font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: #969ba5; margin-bottom: 8px;">CHILD 03</div>
+            <div style="font-size: 15px;">Reduced motion renders everything resolved instantly — no opacity-only fade anywhere.</div>
+          </div>
+        </x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: as · delay · duration · y · stagger · once · style · className — used by every section component above; reload the page to replay scroll reveals</div>
+    </section>
+
+    <section data-screen-label="07 AmbientGlow" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">07</span>
+          <span style="font-size: 17px; font-weight: 600;">AmbientGlow</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/AmbientGlow.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · parent needs position: relative</span>
+      </div>
+      <div style="margin: 30px; position: relative; height: 240px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: #090c13; overflow: hidden; display: grid; place-items: center;">
+        <x-import component="AmbientGlow" from="./components/AmbientGlow.jsx" accent-color="{{ accent }}" style="position: absolute; inset: 0;" hint-size="100%,240px"></x-import>
+        <span style="position: relative; font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.18em; color: #969ba5;">SLOW-BREATHING BACKDROP · PAUSES OFFSCREEN</span>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: colors[] · opacity · size · x · y · speed · blur — lime/blue radial blobs, ~9–12s breathe cycle, IntersectionObserver pause, reduced-motion → static glow</div>
+    </section>
+
+    <section data-screen-label="08 AnimatedEyebrow" style="border: 1px solid rgba(255,255,255,.13); border-radius: 20px; background: rgba(255,255,255,.015); overflow: hidden;">
+      <div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: baseline; justify-content: space-between; padding: 20px 26px; border-bottom: 1px solid rgba(255,255,255,.07);">
+        <div style="display: flex; gap: 14px; align-items: baseline; flex-wrap: wrap;">
+          <span style="font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.14em; color: #c6ff5a;">08</span>
+          <span style="font-size: 17px; font-weight: 600;">AnimatedEyebrow</span>
+          <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">components/AnimatedEyebrow.jsx</span>
+        </div>
+        <span style="font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5;">react only · direct client import</span>
+      </div>
+      <div style="padding: 48px 32px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center; justify-content: center;">
+        <x-import component="AnimatedEyebrow" from="./components/AnimatedEyebrow.jsx" index="04" label="SERVICES" accent-color="{{ accent }}" hint-size="160px,20px"></x-import>
+        <x-import component="AnimatedEyebrow" from="./components/AnimatedEyebrow.jsx" index="05" label="INDUSTRIES" accent-color="{{ accent }}" delay="150" hint-size="170px,20px"></x-import>
+        <x-import component="AnimatedEyebrow" from="./components/AnimatedEyebrow.jsx" index="07" label="CONTACT" accent-color="{{ accent }}" delay="300" hint-size="160px,20px"></x-import>
+      </div>
+      <div style="padding: 14px 26px 16px; border-top: 1px solid rgba(255,255,255,.07); font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 1.8;">props: index · label · accentColor · color · fontSize · delay — lime tick scales in from the left, label wipes in with a soft blur; in-view triggered, reduced-motion → static</div>
+    </section>
+
+    <footer style="padding: 30px 2px 0; font-family: 'DM Mono', monospace; font-size: 11px; color: #969ba5; line-height: 2;">
+      INTEGRATION — every file: "use client" · react-only peer deps · no global CSS · colors accept CSS-var strings (accentColor="var(--accent)") · swap the preview React shim line for `import React from "react"` and the module.exports line for `export default` (both marked in-file) · all fine under next/dynamic ssr:false · easing cubic-bezier(.16,.66,.2,1), durations 200–800ms, prefers-reduced-motion + touch fallbacks throughout
+    </footer>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;default&quot;:&quot;#c6ff5a&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;options&quot;:[&quot;#c6ff5a&quot;,&quot;#7ce7ff&quot;,&quot;#ffb454&quot;,&quot;#c4b5fd&quot;],&quot;section&quot;:&quot;Brand&quot;},&quot;speed&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:1,&quot;min&quot;:0.5,&quot;max&quot;:2,&quot;step&quot;:0.1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      accent: this.props.accentColor ?? "#c6ff5a",
+      speed: this.props.speed ?? 1,
+      glowColors: [this.props.accentColor ?? "#c6ff5a", "#5a8dff"],
+    };
+  }
+}
+</script>
+</body>
+</html>

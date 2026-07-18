@@ -7,6 +7,7 @@ import Image from "next/image";
 
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
 import { useReveal } from "@/components/motion/useReveal";
+import { AnimatedEyebrow, SectionHeadingMotion } from "@/components/motion/v2";
 import { Button } from "@/components/ui/Button";
 import { FEATURED, PROJECTS } from "@/lib/work";
 
@@ -20,7 +21,7 @@ const ScrollFanPortfolio = dynamic(
   { ssr: false },
 );
 
-/* All 11 real projects → fan items: real names, real categories, real
+/* All real projects → fan items: real names, real categories, real
    screenshots, live URLs. No placeholder cards ever render. */
 const FAN_ITEMS = [
   {
@@ -50,17 +51,15 @@ export function SelectedWork() {
   const reveal = useReveal();
 
   return (
-    <section id="work" aria-labelledby="work-heading" className="bg-elevated">
+    <section id="work" aria-label="Selected work" className="bg-elevated">
       <div className="container-site section-y">
-        <p className="text-micro uppercase tracking-[0.08em] text-muted">
-          04 · Selected work
-        </p>
-        <h2
-          id="work-heading"
-          className="mt-4 max-w-2xl font-display text-display-lg"
-        >
-          Eleven products, <em>live</em> in production.
-        </h2>
+        <AnimatedEyebrow index="04" label="Selected work" />
+        <div className="mt-4 max-w-2xl">
+          <SectionHeadingMotion
+            text="Real products, *live* in production."
+            fontSize={42}
+          />
+        </div>
         <p className="mt-6 max-w-xl text-body-lg text-muted">
           Every project below is real and running — open any of them.
         </p>
@@ -132,7 +131,7 @@ export function SelectedWork() {
         </motion.div>
       </div>
 
-      {/* ---- The wheel: all 11 projects, scroll-driven ---- */}
+      {/* ---- The wheel: all projects, scroll-driven ---- */}
       <ScrollFanPortfolio
         items={FAN_ITEMS}
         accentColor="#c6ff5a"

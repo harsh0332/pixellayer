@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { AmbientGlow } from "@/components/motion/AmbientGlow";
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
+import { AnimatedEyebrow, SectionHeadingMotion } from "@/components/motion/v2";
 import { Button } from "@/components/ui/Button";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
 import { cn } from "@/lib/utils";
@@ -225,7 +226,7 @@ export function ContactCta() {
   return (
     <section
       id="contact"
-      aria-labelledby="contact-heading"
+      aria-label="Contact"
       className="relative overflow-hidden"
     >
       <AmbientGlow intensity={0.6} />
@@ -233,15 +234,13 @@ export function ContactCta() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           {/* ---- Left rail ---- */}
           <div className="lg:col-span-5">
-            <p className="text-micro uppercase tracking-[0.08em] text-muted">
-              08 · Contact
-            </p>
-            <h2
-              id="contact-heading"
-              className="mt-4 font-display text-display-lg"
-            >
-              Tell us what you’re <em>building</em>.
-            </h2>
+            <AnimatedEyebrow index="08" label="Contact" />
+            <div className="mt-4">
+              <SectionHeadingMotion
+                text="Tell us what you're *building*."
+                fontSize={40}
+              />
+            </div>
             <p className="mt-6 max-w-md text-body-lg text-muted">
               Four short steps — we’ll reply with a clear next step.
             </p>
