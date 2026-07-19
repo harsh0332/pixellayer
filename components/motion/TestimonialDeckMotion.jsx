@@ -23,8 +23,8 @@ const PLX_TD_DEFAULT = [
 
 const plxIsSlot = (s) => typeof s === "string" && /^\{\{.*\}\}$/.test(s);
 
-function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", height = 300 }) {
-  height = +height || 300;
+function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", height = 380, maxWidth = 760 }) {
+  height = +height || 380; maxWidth = +maxWidth || 760;
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxtd${uid}`;
   const n = testimonials.length;
@@ -48,17 +48,29 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
   }, []);
   const on = shown || reduced;
   const advance = React.useCallback(() => setActive((a) => (a + 1) % n), [n]);
+  // Drag with horizontal-intent detection: vertical swipes are ignored so the
+  // page scrolls normally (touch-action: pan-y); we only capture the pointer
+  // and move the card once a deliberate horizontal drag is confirmed.
   const down = (e) => {
     if (n < 2) return;
     const el = frontRef.current;
     if (!el) return;
-    drag.current = { x0: e.clientX, dx: 0 };
-    el.setPointerCapture && el.setPointerCapture(e.pointerId);
+    drag.current = { x0: e.clientX, y0: e.clientY, dx: 0, dy: 0, horiz: false, pid: e.pointerId };
   };
   const moveP = (e) => {
     const dg = drag.current, el = frontRef.current;
     if (!dg || !el) return;
     dg.dx = e.clientX - dg.x0;
+    dg.dy = e.clientY - dg.y0;
+    if (!dg.horiz) {
+      // Vertical intent → hand the gesture back to the browser (page scroll).
+      if (Math.abs(dg.dy) > 12 && Math.abs(dg.dy) > Math.abs(dg.dx)) { drag.current = null; return; }
+      // Horizontal intent → start dragging the card.
+      if (Math.abs(dg.dx) > 12 && Math.abs(dg.dx) > Math.abs(dg.dy)) {
+        dg.horiz = true;
+        el.setPointerCapture && el.setPointerCapture(dg.pid);
+      } else return;
+    }
     if (!reduced) {
       el.style.transition = "none";
       el.style.transform = `translateX(${dg.dx * 0.65}px) rotate(${(dg.dx * 0.028).toFixed(2)}deg)`;
@@ -69,7 +81,10 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
     drag.current = null;
     if (!el || !dg) return;
     el.style.transition = ""; el.style.transform = "";
-    if (Math.abs(dg.dx) > 70 || Math.abs(dg.dx) < 5) advance();
+    // Advance on a deliberate horizontal drag, or on a true tap (no movement
+    // on EITHER axis) — never on a vertical swipe.
+    const tap = Math.abs(dg.dx) < 5 && Math.abs(dg.dy) < 5;
+    if ((dg.horiz && Math.abs(dg.dx) > 70) || tap) advance();
   };
   const css = `
 @keyframes ${cls}-sheen{from{background-position:210% 0}to{background-position:-110% 0}}
@@ -85,19 +100,19 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
     transition: `clip-path .85s ${PLX_TD_EASE}, transform .85s ${PLX_TD_EASE}, filter .85s ${PLX_TD_EASE}, opacity .5s linear`,
   };
   return (
-    <div ref={rootRef} className={cls} style={{ fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor, maxWidth: 560, ...entrance }}>
+    <div ref={rootRef} className={cls} style={{ fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor, maxWidth, touchAction: "pan-y", ...entrance }}>
       <style>{css}</style>
-      <div style={{ position: "relative", height, perspective: 1300, marginTop: 44 }}>
+      <div style={{ position: "relative", height, perspective: 1300, marginTop: 56 }}>
         {testimonials.map((t, i) => {
           const depth = (i - active + n) % n;
           const front = depth === 0;
           const style = {
             position: "absolute", inset: 0, display: "flex", flexDirection: "column",
             background: surfaceColor, border: `1px solid ${front ? `color-mix(in oklab, ${accentColor} 16%, ${borderColor})` : borderColor}`,
-            borderRadius: 20, padding: "26px 30px", overflow: "hidden",
+            borderRadius: 20, padding: "32px 38px", overflow: "hidden",
             boxShadow: front ? "0 30px 60px rgba(0,0,0,.5)" : "0 12px 30px rgba(0,0,0,.35)",
             zIndex: n - depth,
-            transform: reduced ? (front ? "none" : "translateY(-14px) scale(.96)") : `translateY(${-24 * depth}px) translateZ(${-85 * depth}px) rotate(${front ? 0 : (i % 2 ? 1.7 : -1.7)}deg)`,
+            transform: reduced ? (front ? "none" : "translateY(-18px) scale(.96)") : `translateY(${-34 * depth}px) translateZ(${-110 * depth}px) rotate(${front ? 0 : (i % 2 ? 1.7 : -1.7)}deg)`,
             opacity: depth > 2 ? 0.001 : 1 - depth * 0.16,
             filter: `blur(${depth * 0.6}px)`,
             transition: reduced ? "none" : `transform .7s ${PLX_TD_EASE}, opacity .55s linear, filter .7s ${PLX_TD_EASE}, border-color .4s`,
@@ -119,7 +134,7 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
               {plxIsSlot(t.quote) ? (
                 <span style={{ alignSelf: "flex-start", fontFamily: "'DM Mono', ui-monospace, monospace", fontSize: 13, letterSpacing: "0.06em", color: mutedColor, border: "1px dashed rgba(255,255,255,0.2)", borderRadius: 8, padding: "10px 14px" }}>{t.quote}</span>
               ) : (
-                <blockquote style={{ margin: 0, fontSize: 17, lineHeight: 1.6, color: textColor }}>{t.quote}</blockquote>
+                <blockquote style={{ margin: 0, fontSize: 18.5, lineHeight: 1.65, color: textColor }}>{t.quote}</blockquote>
               )}
               <figcaption style={{ marginTop: "auto", paddingTop: 20, display: "flex", alignItems: "baseline", gap: 12, borderTop: `1px solid rgba(255,255,255,0.08)` }}>
                 {plxIsSlot(t.name)

@@ -7,6 +7,7 @@ import { mkdir, readFile, writeFile } from "node:fs/promises";
 import puppeteer from "puppeteer";
 
 const PROJECTS = [
+  { slug: "the-sugar-story", url: "https://thesugarstory.co.in" },
   { slug: "baby-steps", url: "https://drclinicbhopal-three.vercel.app" },
   { slug: "aranyaani", url: "https://aranyaani-brown.vercel.app" },
   { slug: "la-vallee-farms", url: "https://lavalleefarms.vercel.app" },

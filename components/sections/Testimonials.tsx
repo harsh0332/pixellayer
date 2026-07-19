@@ -55,8 +55,12 @@ export function Testimonials() {
           <SectionHeadingMotion text="In their *words*." fontSize={42} />
         </div>
 
-        <div className="mx-auto mt-14 max-w-xl">
-          <TestimonialDeckMotion testimonials={TESTIMONIALS} />
+        <div className="mx-auto mt-14 max-w-3xl">
+          <TestimonialDeckMotion
+            testimonials={TESTIMONIALS}
+            maxWidth={760}
+            height={400}
+          />
         </div>
       </div>
     </section>
