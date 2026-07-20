@@ -41,7 +41,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 const DESCRIPTION =
-  "PixelLayerr is a digital product engineering studio in Indore, India. We build sales systems that convert — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
+  "PixelLayerr is a digital product engineering studio in Indore, India. We engineer systems that sell — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PixelLayerr — Digital Product Engineering Studio",
     description:
-      "Design, engineering, AI and automation — websites, web apps, SaaS, Shopify e-commerce, and business systems, built to turn visitors into customers.",
+      "We engineer systems that sell — websites, web apps, SaaS, Shopify e-commerce, AI automation, and business systems.",
     siteName: "PixelLayerr",
     type: "website",
     url: "/",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PixelLayerr — Digital Product Engineering Studio",
     description:
-      "Design, engineering, AI and automation — websites, web apps, SaaS, Shopify e-commerce, and business systems, built to turn visitors into customers.",
+      "We engineer systems that sell — websites, web apps, SaaS, Shopify e-commerce, AI automation, and business systems.",
   },
 };
 

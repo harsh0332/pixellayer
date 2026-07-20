@@ -94,8 +94,7 @@ export function Hero() {
         </h1>
 
         <p className="os-rise [animation-delay:350ms] mt-8 max-w-2xl text-body-lg text-text">
-          We don&rsquo;t just build websites &mdash; we build{" "}
-          <em className="font-serif italic">sales systems</em> that convert.
+          We engineer <em className="font-serif italic">systems that sell</em>.
         </p>
         <p className="os-rise [animation-delay:400ms] mt-3 max-w-xl text-body text-muted">
           Design, engineering, AI and automation &mdash; built to turn visitors

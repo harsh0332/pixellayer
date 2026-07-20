@@ -17,10 +17,10 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          backgroundColor: "#0E1014",
+          backgroundColor: "#07090E",
           backgroundImage:
-            "radial-gradient(800px 500px at 20% -10%, rgba(91,114,242,0.28), transparent 65%), radial-gradient(600px 400px at 75% 0%, rgba(34,211,238,0.12), transparent 65%)",
-          color: "#EDEDEF",
+            "radial-gradient(800px 500px at 20% -10%, rgba(198,255,90,0.16), transparent 65%), radial-gradient(600px 400px at 75% 0%, rgba(135,194,255,0.10), transparent 65%)",
+          color: "#F4F2EB",
           fontFamily: "sans-serif",
         }}
       >
@@ -46,11 +46,12 @@ export default function OpengraphImage() {
               display: "flex",
               marginTop: 28,
               fontSize: 27,
-              color: "#8A8F98",
+              color: "#969BA5",
               letterSpacing: "0.01em",
             }}
           >
-            Digital Product Engineering Studio
+            We engineer systems that sell. — Digital Product Engineering
+            Studio, Indore
           </div>
         </div>
       </div>

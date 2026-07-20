@@ -6,7 +6,7 @@ import {
   AnimatedEyebrow,
   SectionHeadingMotion,
   SectionReveal,
-  ServiceCardMotion,
+  ServiceAccordionMotion,
 } from "@/components/motion/v2";
 import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
 import { Button } from "@/components/ui/Button";
@@ -33,73 +33,68 @@ const ECOM_PILLARS = [
   },
 ];
 
-/* The 5 real service categories — real desc + items, one featured. */
-const CARDS = [
+/* The six services, numbered — real copy from the spec, nothing invented. */
+const SERVICES = [
   {
-    icon: "frame",
-    title: "Websites & Web Apps",
-    desc: "Premium sites that feel engineered, not templated.",
-    items: [
-      "Next.js + React builds",
-      "Design systems",
-      "Headless CMS",
-      "Core Web Vitals performance",
+    title: "Web Development & Design",
+    desc: "Fast, scalable sites and web apps that convert — from storefronts to complex platforms, every line purposeful.",
+    deliverables: [
+      "Custom websites & landing pages",
+      "E-commerce & Shopify builds",
+      "SaaS & web-app development",
+      "Performance & Core Web Vitals",
+      "SEO/GEO/AEO",
     ],
-    cta: "Discuss your build",
-    href: "#contact",
   },
   {
-    icon: "layers",
     title: "SaaS & Product Engineering",
     desc: "From first wireframe to production, as one team.",
-    items: [
+    deliverables: [
       "MVP to scale",
       "Architecture & multi-tenancy",
       "Auth + billing",
       "APIs & integrations",
     ],
-    cta: "Discuss your build",
-    href: "#contact",
-    featured: true,
   },
   {
-    icon: "motion",
-    title: "AI — Agents, Chatbots & Automation",
-    desc: "Working AI in your product and your operations.",
-    items: [
-      "Custom agents",
-      "Chatbots",
-      "Workflow automation",
-      "LLM integration & RAG",
+    title: "AI Automation",
+    desc: "Intelligent automation across your product and operations — eliminate bottlenecks, free your team.",
+    deliverables: [
+      "Custom AI agents",
+      "CRM & workflow automation",
+      "Lead qualification pipelines",
+      "Data processing & reporting",
     ],
-    cta: "Discuss your build",
-    href: "#contact",
   },
   {
-    icon: "layers",
+    title: "AI Chatbots",
+    desc: "Chatbots that understand and respond — from FAQs to complex conversational flows.",
+    deliverables: [
+      "Conversational AI chatbots",
+      "WhatsApp & voice-enabled bots",
+      "Context-aware conversation design",
+      "Intelligent intent routing",
+    ],
+  },
+  {
     title: "Business Systems",
     desc: "Software your business actually runs on.",
-    items: [
+    deliverables: [
       "CRMs & ERPs",
       "Dashboards & reporting",
       "Industry-specific software",
       "Internal tools",
     ],
-    cta: "Discuss your build",
-    href: "#contact",
   },
   {
-    icon: "frame",
-    title: "Growth & Platform",
-    desc: "Built to be found, fast, and secure.",
-    items: [
-      "SEO / GEO / AEO",
-      "Performance",
-      "Security",
-      "Cloud & deployment",
+    title: "E-commerce & Growth",
+    desc: "Stores that convert, wired for revenue.",
+    deliverables: [
+      "Conversion-first Shopify stores",
+      "Abandoned-cart recovery",
+      "Omnichannel automation (call/email/WhatsApp)",
+      "Security & cloud deploy",
     ],
-    cta: "Discuss your build",
-    href: "#contact",
   },
 ];
 
@@ -115,8 +110,8 @@ export function WhatWeDo() {
           />
         </div>
         <p className="mt-5 max-w-xl text-body text-muted">
-          Every layer here exists to sell — design, engineering, AI and
-          automation working as one system.
+          We engineer systems that sell — design, engineering, AI and
+          automation working as one.
         </p>
 
         {/* ---- Featured offering: E-commerce & Shopify (Part B) ---- */}
@@ -187,8 +182,8 @@ export function WhatWeDo() {
           </div>
         </SectionReveal>
 
-        <div className="mt-6">
-          <ServiceCardMotion cards={CARDS} bento />
+        <div className="mt-10">
+          <ServiceAccordionMotion items={SERVICES} accentColor="#c6ff5a" />
         </div>
       </div>
     </section>

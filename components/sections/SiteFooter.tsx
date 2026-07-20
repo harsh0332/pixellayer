@@ -25,8 +25,8 @@ export function SiteFooter() {
           <div className="max-w-md">
             <AnimatedLogo variant="wordmark" size={30} />
             <p className="mt-5 text-small text-muted">
-              Digital product engineering studio. Design, engineering, AI and
-              automation — built to turn visitors into customers.
+              We engineer systems that sell. Design, engineering, AI and
+              automation — one studio, end to end.
             </p>
           </div>
           <Button
