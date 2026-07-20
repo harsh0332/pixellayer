@@ -19,6 +19,8 @@ export const FEATURED = {
   imageSlug: "la-vallee-masterplan",
   category: "Real Estate",
   url: "https://lavalleefarms.vercel.app",
+  /* CTA lands directly on the interactive masterplan, not the homepage. */
+  masterplanUrl: "https://lavalleefarms.vercel.app/#masterplan",
   line: "Premium gated farmhouse plots near Bhopal — with an interactive masterplan as the heart of the buying journey.",
   alt: "Interactive masterplan of La Vallée Farms showing numbered plots color-coded by availability, with search and filter controls",
   /* Feature specifics observed on the live masterplan */
@@ -110,6 +112,30 @@ export const PROJECTS: WorkProject[] = [
     url: "https://harshtraders.lovable.app",
     line: "Building materials dealer site — brands, delivery, and WhatsApp-first quote requests.",
     alt: "Homepage of Harsh Traders cement and building materials, Binaganj",
+  },
+  {
+    name: "HUED",
+    slug: "hued",
+    category: "Architecture & Interiors",
+    url: "https://hued-tau.vercel.app",
+    line: "Cinematic site for a multidisciplinary architecture and interior design studio in Indore — emotion, materiality, timeless craft.",
+    alt: "Homepage of HUED design and architecture studio with a serif headline over a modern residence",
+  },
+  {
+    name: "The Fitness Headquarters",
+    slug: "tfhq",
+    category: "Fitness",
+    url: "https://thefitnessheadquator.vercel.app",
+    line: "Site for Bhopal's premium luxury gym — 15,000+ sq ft floor, world-class equipment, and certified coaches.",
+    alt: "Homepage of The Fitness Headquarters gym in Bhopal",
+  },
+  {
+    name: "The Unofficial Studios",
+    slug: "unofficial-studios",
+    category: "Media & Podcasts",
+    url: "https://unofficialhimanshuu.vercel.app",
+    line: "Site for Indore's premium broadcast and podcast production company — celebrity interviews, campaigns, video portfolios.",
+    alt: "Homepage of The Unofficial Studios cinematic media production company",
   },
   {
     name: "Ivy Estate",

@@ -49,6 +49,9 @@ function subscribeSmall(onChange: () => void) {
   return () => m.removeEventListener("change", onChange);
 }
 
+/* The Sugar Story pairs with the masterplan in the live-proof block. */
+const SUGAR = PROJECTS.find((p) => p.slug === "the-sugar-story");
+
 function CategoryChip({ label }: { label: string }) {
   return (
     <span className="rounded-full border border-hairline bg-deep/85 px-3 py-1 text-micro uppercase tracking-[0.08em] text-text">
@@ -80,71 +83,109 @@ export function SelectedWork() {
           Every project below is real and running — open any of them.
         </p>
 
-        {/* ---- Featured case: La Vallée Farms masterplan ---- */}
+        {/* ---- Live proof: masterplan + Sugar Story, one coherent block ---- */}
         <motion.div
           {...reveal(0)}
           onMouseMove={spotlightMove}
           className="group relative mt-12 overflow-hidden rounded-xl border border-hairline bg-surface transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong"
         >
           <SpotlightOverlay />
-          <div className="relative grid lg:grid-cols-12">
-            <a
-              href={FEATURED.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visit live site: ${FEATURED.name} (opens in new tab)`}
-              className="group relative block aspect-[16/10] overflow-hidden lg:col-span-7 lg:aspect-auto lg:min-h-full"
-            >
-              <Image
-                src={`/work/${FEATURED.imageSlug}.webp`}
-                alt={FEATURED.alt}
-                fill
-                sizes="(min-width: 1024px) 44rem, 100vw"
-                className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover:scale-[1.02]"
-              />
-            </a>
-            <div className="flex flex-col p-7 sm:p-8 lg:col-span-5">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-accent-fill px-3 py-1 text-micro uppercase tracking-[0.08em] text-on-accent">
-                  Featured
-                </span>
-                <CategoryChip label={FEATURED.category} />
-              </div>
-              <h3 className="mt-6 font-display text-heading">
-                {FEATURED.name}
-              </h3>
-              <p className="mt-3 text-body text-muted">{FEATURED.line}</p>
-
-              <p className="mt-6 text-micro uppercase tracking-[0.08em] text-muted">
-                The interactive masterplan
-              </p>
-              <ul className="mt-3 flex flex-col gap-2">
-                {FEATURED.masterplan.map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-baseline gap-3 text-small text-muted"
+          <div className="relative grid lg:grid-cols-2">
+            {/* La Vallée Farms — interactive masterplan */}
+            <div className="flex flex-col border-b border-hairline lg:border-r lg:border-b-0">
+              <a
+                href={FEATURED.masterplanUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open the live interactive masterplan of ${FEATURED.name} (opens in new tab)`}
+                className="group/img relative block aspect-[16/9] overflow-hidden"
+              >
+                <Image
+                  src={`/work/${FEATURED.imageSlug}.webp`}
+                  alt={FEATURED.alt}
+                  fill
+                  sizes="(min-width: 1024px) 38rem, 100vw"
+                  className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover/img:scale-[1.02]"
+                />
+              </a>
+              <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex flex-wrap items-center gap-3">
+                  <span className="rounded-full bg-accent-fill px-3 py-1 text-micro uppercase tracking-[0.08em] text-on-accent">
+                    Featured
+                  </span>
+                  <CategoryChip label={FEATURED.category} />
+                </div>
+                <h3 className="mt-4 font-display text-title">{FEATURED.name}</h3>
+                <p className="mt-2 text-small text-muted">{FEATURED.line}</p>
+                <ul className="mt-4 flex flex-col gap-1.5">
+                  {FEATURED.masterplan.slice(0, 3).map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-baseline gap-3 text-small text-muted"
+                    >
+                      <span
+                        aria-hidden
+                        className="h-px w-3 shrink-0 translate-y-[-3px] bg-hairline-strong"
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-6">
+                  <Button
+                    href={FEATURED.masterplanUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="secondary"
                   >
-                    <span
-                      aria-hidden
-                      className="h-px w-3 shrink-0 translate-y-[-3px] bg-hairline-strong"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-8">
-                <Button
-                  href={FEATURED.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  variant="secondary"
-                >
-                  Explore the live masterplan
-                  <span aria-hidden>↗</span>
-                </Button>
+                    Explore the live masterplan
+                    <span aria-hidden>↗</span>
+                  </Button>
+                </div>
               </div>
             </div>
+
+            {/* The Sugar Story — live storefront */}
+            {SUGAR && (
+              <div className="flex flex-col">
+                <a
+                  href={SUGAR.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Live proof: ${SUGAR.name} — visit the live store (opens in new tab)`}
+                  className="group/img relative block aspect-[16/9] overflow-hidden"
+                >
+                  <Image
+                    src={`/work/${SUGAR.slug}.webp`}
+                    alt={SUGAR.alt}
+                    fill
+                    sizes="(min-width: 1024px) 38rem, 100vw"
+                    className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover/img:scale-[1.02]"
+                  />
+                </a>
+                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="rounded-full border border-hairline bg-deep/85 px-3 py-1 text-micro uppercase tracking-[0.08em] text-text">
+                      Live store
+                    </span>
+                    <CategoryChip label={SUGAR.category} />
+                  </div>
+                  <h3 className="mt-4 font-display text-title">{SUGAR.name}</h3>
+                  <p className="mt-2 text-small text-muted">{SUGAR.line}</p>
+                  <div className="mt-auto pt-6">
+                    <Button
+                      href={SUGAR.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      variant="secondary"
+                    >
+                      Visit the live store
+                      <span aria-hidden>↗</span>
+                    </Button>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </div>
@@ -156,7 +197,8 @@ export function SelectedWork() {
         secondaryColor="#87c2ff"
         cardWidth={small ? 280 : 320}
         cardHeight={small ? 360 : 400}
-        vhPerCard={45}
+        vhPerCard={40}
+        leadIn={0.85}
         reducedMotion={reducedMotion || undefined}
       />
     </section>

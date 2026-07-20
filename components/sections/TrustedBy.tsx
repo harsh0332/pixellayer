@@ -1,20 +1,15 @@
 "use client";
 
-import {
-  AnimatedEyebrow,
-  LogoMarqueeMotion,
-  StatCounterMotion,
-} from "@/components/motion/v2";
+import { AnimatedEyebrow, LogoMarqueeMotion } from "@/components/motion/v2";
 import { FEATURED, PROJECTS } from "@/lib/work";
 
-/* All 11 real project names — no invented clients. */
+/* All real project names — no invented clients. */
 const NAMES = [FEATURED.name, ...PROJECTS.map((p) => p.name)];
 
-/* Honest, NON-capping stats only. No total-projects count (that would wrongly
-   cap perception). */
-const STATS = [
-  { value: 6, label: "Industries served" },
-  { value: 100, suffix: "%", label: "Code ownership" },
+/* Word-stats only — the spec bans numeric counts anywhere. */
+const WORD_STATS = [
+  { label: "Reach", line: "Across multiple industries" },
+  { label: "Ownership", line: "Your code, fully yours" },
 ];
 
 export function TrustedBy() {
@@ -31,7 +26,25 @@ export function TrustedBy() {
           <div className="min-w-0">
             <LogoMarqueeMotion items={NAMES} />
           </div>
-          <StatCounterMotion stats={STATS} numberSize={36} />
+          <dl className="flex shrink-0 items-center gap-10">
+            {WORD_STATS.map((stat, i) => (
+              <div
+                key={stat.label}
+                className={
+                  i > 0
+                    ? "border-l border-hairline pl-10"
+                    : undefined
+                }
+              >
+                <dt className="font-mono text-micro uppercase tracking-[0.08em] text-muted">
+                  {stat.label}
+                </dt>
+                <dd className="mt-1.5 ml-0 font-display text-title text-text">
+                  {stat.line}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

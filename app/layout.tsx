@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { DM_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 
 import { ReducedMotionProvider } from "@/components/motion/ReducedMotionProvider";
+import { FEATURED, PROJECTS } from "@/lib/work";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 
 import "@/styles/globals.css";
@@ -34,7 +35,7 @@ const serif = Instrument_Serif({
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 const DESCRIPTION =
-  "PixelLayerr is a digital product engineering studio. We design and build premium websites, web apps, SaaS, AI agents, and industry software.";
+  "PixelLayerr is a digital product engineering studio in Indore, India. We build sales systems that convert — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "PixelLayerr — Digital Product Engineering Studio",
     description:
-      "We design and build premium websites, web apps, SaaS, AI agents, and industry software.",
+      "Design, engineering, AI and automation — websites, web apps, SaaS, Shopify e-commerce, and business systems, built to turn visitors into customers.",
     siteName: "PixelLayerr",
     type: "website",
     url: "/",
@@ -56,17 +57,46 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PixelLayerr — Digital Product Engineering Studio",
     description:
-      "We design and build premium websites, web apps, SaaS, AI agents, and industry software.",
+      "Design, engineering, AI and automation — websites, web apps, SaaS, Shopify e-commerce, and business systems, built to turn visitors into customers.",
   },
 };
 
-/* Real data only: the studio, its site, and its actual five services. */
+/* Real data only: the studio, its site, and its actual services. */
 const SERVICES = [
   "Websites & Web Apps",
   "SaaS & Product Engineering",
   "AI Agents, Chatbots & Automation",
+  "E-commerce & Shopify — AI cart recovery, omnichannel automation",
   "Business Systems — CRM, ERP & Dashboards",
   "Growth & Platform",
+];
+
+/* Real client words only — no invented ratings, so no AggregateRating. */
+const REVIEWS = [
+  {
+    author: "La Vallée Farms",
+    body: "The interactive masterplan does the selling — buyers explore plots themselves and reach out already convinced. The site feels premium and actually drives enquiries.",
+  },
+  {
+    author: "Dr. Sudarshan Arya, Baby Steps Pediatric Clinic",
+    body: "The animated site genuinely stands out — parents notice it, and we've had more appointment enquiries since it went live. It finally feels as modern as the care we give.",
+  },
+  {
+    author: "Sanjeev Saxena, Aranyaani Healing Forest",
+    body: "The animations do more than look good — they help visitors actually understand what Aranyaani is about. People stay longer and get the vision immediately.",
+  },
+  {
+    author: "DPM Entertainment",
+    body: "Since the new site, our registrations and conversions have clearly improved. It's fast, clean, and does the selling for us.",
+  },
+  {
+    author: "Prince, Apna Dental Clinic",
+    body: "Really impressed with how it turned out — polished, professional, and easy for patients to book. Exactly what we wanted.",
+  },
+  {
+    author: "Sandeep, Shoolin Chemicals",
+    body: "They built us a genuinely premium website — it makes our business look as serious as it is. Great work start to finish.",
+  },
 ];
 
 const jsonLd = {
@@ -85,6 +115,23 @@ const jsonLd = {
         addressRegion: "Madhya Pradesh",
         addressCountry: "IN",
       },
+      review: REVIEWS.map((review) => ({
+        "@type": "Review",
+        reviewBody: review.body,
+        author: { "@type": "Organization", name: review.author },
+        itemReviewed: { "@id": `${SITE_URL}/#organization` },
+      })),
+    },
+    {
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Home",
+          item: SITE_URL,
+        },
+      ],
     },
     {
       "@type": "WebSite",
@@ -97,7 +144,25 @@ const jsonLd = {
       "@type": "Service",
       name,
       serviceType: name,
+      areaServed: "Worldwide",
       provider: { "@id": `${SITE_URL}/#organization` },
+    })),
+    /* Every portfolio item is a real, live product. */
+    ...[
+      { name: FEATURED.name, url: FEATURED.url, line: FEATURED.line, slug: FEATURED.slug },
+      ...PROJECTS.map((project) => ({
+        name: project.name,
+        url: project.url,
+        line: project.line,
+        slug: project.slug,
+      })),
+    ].map((work) => ({
+      "@type": "CreativeWork",
+      name: work.name,
+      url: work.url,
+      description: work.line,
+      image: `${SITE_URL}/work/${work.slug}.webp`,
+      creator: { "@id": `${SITE_URL}/#organization` },
     })),
   ],
 };

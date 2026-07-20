@@ -62,6 +62,16 @@ export function Hero() {
         aria-hidden
         className="absolute inset-0 bg-linear-to-r from-deep/85 via-deep/40 to-transparent"
       />
+      {/* Focal glow: pulls the eye to the text column; part of the SAME
+          background, not a second one. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute top-1/2 left-[8%] h-[70vh] w-[52rem] max-w-full -translate-y-1/2 rounded-full opacity-60"
+        style={{
+          background:
+            "radial-gradient(closest-side, rgba(198,255,90,0.10), rgba(135,194,255,0.05) 55%, transparent 75%)",
+        }}
+      />
       <div className="container-site section-y relative z-10 w-full pt-28 pb-20">
         <p className="os-rise [animation-delay:100ms] font-mono text-micro uppercase tracking-[0.08em] text-muted">
           Digital Product Engineering Studio
@@ -69,7 +79,7 @@ export function Hero() {
 
         <h1
           id="hero-heading"
-          className="mt-6 font-display text-display-xl text-text"
+          className="mt-4 font-display text-display-xl text-text"
         >
           {HEADLINE_LINES.map((line, index) => (
             <span key={index} className="block overflow-hidden">
@@ -83,9 +93,13 @@ export function Hero() {
           ))}
         </h1>
 
-        <p className="os-rise [animation-delay:350ms] mt-8 max-w-xl text-body-lg text-muted">
-          PixelLayerr designs and builds premium websites, web apps, SaaS, AI
-          agents, and industry software — end to end.
+        <p className="os-rise [animation-delay:350ms] mt-8 max-w-2xl text-body-lg text-text">
+          We don&rsquo;t just build websites &mdash; we build{" "}
+          <em className="font-serif italic">sales systems</em> that convert.
+        </p>
+        <p className="os-rise [animation-delay:400ms] mt-3 max-w-xl text-body text-muted">
+          Design, engineering, AI and automation &mdash; built to turn visitors
+          into customers.
         </p>
 
         <div className="os-rise [animation-delay:450ms] mt-12 flex flex-wrap items-center gap-4">

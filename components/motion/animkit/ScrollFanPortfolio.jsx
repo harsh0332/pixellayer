@@ -32,6 +32,7 @@ function ScrollFanPortfolio({
   cardHeight = 380,
   stepAngle = 15,
   vhPerCard = 70,
+  leadIn = 0,
   reducedMotion,
   style,
   className,
@@ -59,7 +60,7 @@ function ScrollFanPortfolio({
 
   const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 
-  const layout = React.useCallback((p) => {
+  const layout = React.useCallback((p, entry = 1) => {
     // adapt wheel geometry to viewport: focused card center sits ~60% down the stage,
     // pivot 0.34*vh below the stage bottom, cards scaled down on short viewports
     const vh = (typeof window !== "undefined" && window.innerHeight) || 800;
@@ -67,8 +68,14 @@ function ScrollFanPortfolio({
     const rad = Math.max(vh + pivotOff - vh * 0.6, 320);
     const fit = clamp(((vh + pivotOff - rad) - 40) / (cardHeight / 2 + 40), 0.45, 1) * clamp((vh * 0.72) / cardHeight, 0.45, 1);
     const cScale = Math.min(1, Math.max(0.55, fit));
-    const fan = 1 - Math.pow(1 - clamp(p / 0.16, 0, 1), 3);
-    const wp = clamp((p - 0.16) / 0.8, 0, 1) * (n - 1);
+    // leadIn mode: the fan-in is driven by the section ENTERING the viewport
+    // (entry 0->1 while approaching), so the wheel is already fanned when the
+    // stage pins; the wheel walk then uses the whole pinned region.
+    const fanRaw = leadIn
+      ? Math.max(clamp(p / 0.05, 0, 1), entry)
+      : clamp(p / 0.16, 0, 1);
+    const fan = 1 - Math.pow(1 - fanRaw, 3);
+    const wp = (leadIn ? clamp(p / 0.92, 0, 1) : clamp((p - 0.16) / 0.8, 0, 1)) * (n - 1);
     for (let i = 0; i < n; i++) {
       const el = cardEls.current[i];
       if (!el) continue;
@@ -76,7 +83,7 @@ function ScrollFanPortfolio({
       const d = i - wp;
       const ang = fan * d * stepAngle + (1 - fan) * ((i - (n - 1) / 2) * 2);
       const focus = clamp(1 - Math.abs(d), 0, 1) * fan;
-      el.style.transform = "rotate(" + ang.toFixed(2) + "deg) translateY(" + (-(rad + focus * 24 * cScale)).toFixed(1) + "px) scale(" + (cScale * (0.94 + 0.1 * focus)).toFixed(3) + ")";
+      el.style.transform = "rotate(" + ang.toFixed(2) + "deg) translateY(" + (-(rad + focus * 24 * cScale) + (1 - fan) * 60).toFixed(1) + "px) scale(" + (cScale * (0.94 + 0.1 * focus)).toFixed(3) + ")";
       el.style.zIndex = String(200 - Math.round(Math.abs(d) * 10));
       el.style.filter = "brightness(" + (0.7 + 0.4 * focus).toFixed(3) + ")";
       el.style.borderColor = "color-mix(in srgb, " + accentColor + " " + Math.round(focus * 70) + "%, rgba(255,255,255,0.1))";
@@ -87,15 +94,15 @@ function ScrollFanPortfolio({
     const idx = clamp(Math.round(wp), 0, n - 1);
     if (titleRef.current) titleRef.current.textContent = data[idx].title;
     if (tagRef.current) tagRef.current.textContent = data[idx].tag;
-    if (counterRef.current) counterRef.current.textContent = "0" + (idx + 1) + " / 0" + n;
+    if (counterRef.current) counterRef.current.textContent = String(idx + 1).padStart(2, "0");
     if (headRef.current) headRef.current.style.opacity =
       (fan * (1 - clamp((Math.abs(wp - idx) - 0.12) * 2.6, 0, 0.75))).toFixed(3);
     if (hintRef.current) hintRef.current.style.opacity = (1 - clamp(p * 6, 0, 1)).toFixed(3);
     if (progRef.current) progRef.current.style.width = (p * 100).toFixed(2) + "%";
-  }, [n, data, stepAngle, cardHeight, accentColor]);
+  }, [n, data, stepAngle, cardHeight, accentColor, leadIn]);
 
   React.useEffect(() => {
-        if (isStatic) { layout(0.62); return; }
+        if (isStatic) { layout(0.62, 1); return; }
     let ticking = false;
     const update = () => {
       ticking = false;
@@ -104,7 +111,8 @@ function ScrollFanPortfolio({
       const vh = window.innerHeight || 1;
       const r = wrap.getBoundingClientRect();
       const total = Math.max(r.height - vh, 1);
-      layout(clamp(-r.top / total, 0, 1));
+      const entry = leadIn ? clamp((vh * leadIn - r.top) / (vh * 0.6), 0, 1) : 1;
+      layout(clamp(-r.top / total, 0, 1), entry);
     };
     const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -128,7 +136,7 @@ function ScrollFanPortfolio({
           <div ref={titleRef} style={{ fontSize: "clamp(26px, 5vh, 46px)", fontWeight: 600, letterSpacing: "-0.025em", color: "#E7E9EE" }}>&#160;</div>
           <div style={{ display: "flex", gap: 18, alignItems: "baseline" }}>
             <span ref={tagRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: accentColor }}>&#160;</span>
-            <span ref={counterRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#565B66" }}>&#160;</span>
+            <span ref={counterRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#8A909C" }}>&#160;</span>
           </div>
         </div>
         {data.map((it, i) => (
@@ -184,7 +192,7 @@ function ScrollFanPortfolio({
         ))}
         <div ref={hintRef} style={{
           position: "absolute", left: 0, right: 0, bottom: 26, textAlign: "center",
-          fontFamily: mono, fontSize: 10, letterSpacing: "0.24em", color: "#565B66",
+          fontFamily: mono, fontSize: 10, letterSpacing: "0.24em", color: "#8A909C",
         }}>SCROLL ↓</div>
         <div style={{ position: "absolute", left: "20%", right: "20%", bottom: 14, height: 2, borderRadius: 99, background: "rgba(255,255,255,0.07)" }}>
           <div ref={progRef} style={{ height: "100%", width: "0%", borderRadius: 99, background: "linear-gradient(90deg, " + accentColor + ", " + secondaryColor + ")" }} />

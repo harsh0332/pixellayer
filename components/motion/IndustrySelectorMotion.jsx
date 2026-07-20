@@ -94,6 +94,11 @@ function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#
 .${cls} .${cls}-link:hover,.${cls} .${cls}-link:focus-visible{background-size:100% 1px;outline:none}
 .${cls} .${cls}-link .${cls}-arr{display:inline-block;transition:transform .3s ${PLX_IND_EASE};color:${mutedColor}}
 .${cls} .${cls}-link:hover .${cls}-arr,.${cls} .${cls}-link:focus-visible .${cls}-arr{transform:translate(2px,-2px);color:${accentColor}}
+@keyframes ${cls}-thumbin{from{opacity:0;filter:blur(8px);transform:translateY(-46%) rotate(2.5deg)}to{opacity:1;filter:blur(0px);transform:translateY(-50%) rotate(1.2deg)}}
+.${cls}-thumb{position:absolute;right:26px;top:50%;width:250px;aspect-ratio:16/10;border-radius:12px;border:1px solid ${borderColor};overflow:hidden;box-shadow:0 18px 44px rgba(0,0,0,.4);transform:translateY(-50%) rotate(1.2deg);animation:${cls}-thumbin .6s ${PLX_IND_EASE} .12s both;transition:transform .5s ${PLX_IND_EASE};pointer-events:none}
+.${cls} [role=tabpanel]:hover .${cls}-thumb{transform:translateY(-52%) rotate(0.6deg)}
+.${cls}-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
+@media (max-width:1023px){.${cls}-thumb{display:none}}
 @media (prefers-reduced-motion:reduce){.${cls} *{animation:none!important;transition:none!important}}`;
   return (
     <div ref={rootRef} className={cls} onKeyDown={onKey} style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 1fr", gap: 40, fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor }}>
@@ -129,6 +134,12 @@ function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#
             </div>
           </div>
         </div>
+        {d.image && (
+          <div key={`t${displayed}`} className={`${cls}-thumb`} aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={d.image} alt="" />
+          </div>
+        )}
       </div>
     </div>
   );

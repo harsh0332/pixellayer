@@ -23,7 +23,7 @@ const PLX_TD_DEFAULT = [
 
 const plxIsSlot = (s) => typeof s === "string" && /^\{\{.*\}\}$/.test(s);
 
-function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", height = 380, maxWidth = 760 }) {
+function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", height = 380, maxWidth = 760, activeIndex, onActiveChange }) {
   height = +height || 380; maxWidth = +maxWidth || 760;
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxtd${uid}`;
@@ -47,7 +47,21 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
     return () => { m.removeEventListener("change", f); io && io.disconnect(); };
   }, []);
   const on = shown || reduced;
-  const advance = React.useCallback(() => setActive((a) => (a + 1) % n), [n]);
+  // Optional controlled mode: an external rail can drive the deck.
+  React.useEffect(() => {
+    if (typeof activeIndex === "number") setActive(((activeIndex % n) + n) % n);
+  }, [activeIndex, n]);
+  const goTo = React.useCallback((i) => {
+    setActive(i);
+    onActiveChange && onActiveChange(i);
+  }, [onActiveChange]);
+  const advance = React.useCallback(() => {
+    setActive((a) => {
+      const next = (a + 1) % n;
+      onActiveChange && onActiveChange(next);
+      return next;
+    });
+  }, [n, onActiveChange]);
   // Drag with horizontal-intent detection: vertical swipes are ignored so the
   // page scrolls normally (touch-action: pan-y); we only capture the pointer
   // and move the card once a deliberate horizontal drag is confirmed.
@@ -134,7 +148,7 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
               {plxIsSlot(t.quote) ? (
                 <span style={{ alignSelf: "flex-start", fontFamily: "'DM Mono', ui-monospace, monospace", fontSize: 13, letterSpacing: "0.06em", color: mutedColor, border: "1px dashed rgba(255,255,255,0.2)", borderRadius: 8, padding: "10px 14px" }}>{t.quote}</span>
               ) : (
-                <blockquote style={{ margin: 0, fontSize: 18.5, lineHeight: 1.65, color: textColor }}>{t.quote}</blockquote>
+                <blockquote style={{ margin: 0, fontSize: 19, lineHeight: 1.62, color: textColor }}>{t.quote}</blockquote>
               )}
               <figcaption style={{ marginTop: "auto", paddingTop: 20, display: "flex", alignItems: "baseline", gap: 12, borderTop: `1px solid rgba(255,255,255,0.08)` }}>
                 {plxIsSlot(t.name)
@@ -150,7 +164,7 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
       </div>
       <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 26 }}>
         {testimonials.map((_, i) => (
-          <button key={i} className={`${cls}-dot`} aria-label={`Testimonial ${i + 1}`} onClick={() => setActive(i)}
+          <button key={i} className={`${cls}-dot`} aria-label={`Testimonial ${i + 1}`} onClick={() => goTo(i)}
             style={{ width: i === active ? 42 : 26, backgroundColor: i === active ? accentColor : "rgba(255,255,255,0.22)", boxShadow: i === active ? `0 0 10px color-mix(in oklab, ${accentColor} 40%, transparent)` : "none" }} />
         ))}
       </div>

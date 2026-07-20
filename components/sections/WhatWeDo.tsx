@@ -21,15 +21,15 @@ const SUGAR_STORY_URL = "https://thesugarstory.co.in";
 const ECOM_PILLARS = [
   {
     title: "Shopify storefronts, conversion-first",
-    line: "Clean PDPs, fast checkout, storefronts that sell — engineered, never template-feeling.",
+    line: "clean PDPs, fast checkout, never template-feeling.",
   },
   {
-    title: "An AI layer that wins back lost sales",
-    line: "Abandoned-cart recovery and cart-recovery flows working around the clock.",
+    title: "AI that wins back lost sales",
+    line: "abandoned-cart recovery working around the clock.",
   },
   {
     title: "Omnichannel automation wired in",
-    line: "Calling, email and WhatsApp — automated follow-ups, order and nurture flows.",
+    line: "calling, email and WhatsApp follow-ups.",
   },
 ];
 
@@ -114,41 +114,47 @@ export function WhatWeDo() {
             fontSize="clamp(28px, 6.5vw, 42px)"
           />
         </div>
+        <p className="mt-5 max-w-xl text-body text-muted">
+          Every layer here exists to sell — design, engineering, AI and
+          automation working as one system.
+        </p>
 
         {/* ---- Featured offering: E-commerce & Shopify (Part B) ---- */}
         <SectionReveal>
           <div
             onMouseMove={spotlightMove}
-            className="group relative mt-10 overflow-hidden rounded-2xl border border-hairline bg-surface transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong"
+            className="group relative mt-8 overflow-hidden rounded-2xl border border-hairline bg-surface transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong"
           >
             <SpotlightOverlay />
             <div className="relative grid lg:grid-cols-12">
-              <div className="flex flex-col p-6 sm:p-8 lg:col-span-7">
+              <div className="flex flex-col p-5 sm:p-6 lg:col-span-7">
                 <span className="w-fit rounded-full bg-accent-fill px-3 py-1 font-mono text-micro uppercase tracking-[0.08em] text-on-accent">
                   Featured · E-commerce &amp; Shopify
                 </span>
-                <h3 className="mt-5 font-display text-heading text-text">
+                <h3 className="mt-4 font-display text-title text-text">
                   Stores that turn products into <em>sales</em>.
                 </h3>
-                <ul className="mt-6 flex flex-col gap-4">
+                <p className="mt-2 text-small text-muted">
+                  PixelLayerr builds Shopify stores with AI abandoned-cart
+                  recovery and WhatsApp automation, from Indore, India.
+                </p>
+                <ul className="mt-4 flex flex-col gap-2.5">
                   {ECOM_PILLARS.map((pillar) => (
-                    <li key={pillar.title} className="flex items-baseline gap-4">
+                    <li key={pillar.title} className="flex items-baseline gap-3">
                       <span
                         aria-hidden
                         className="h-0.5 w-4 shrink-0 translate-y-[-4px] bg-accent"
                       />
-                      <div>
-                        <p className="text-body font-medium text-text">
+                      <p className="text-small">
+                        <span className="font-medium text-text">
                           {pillar.title}
-                        </p>
-                        <p className="mt-1 text-small text-muted">
-                          {pillar.line}
-                        </p>
-                      </div>
+                        </span>{" "}
+                        <span className="text-muted">— {pillar.line}</span>
+                      </p>
                     </li>
                   ))}
                 </ul>
-                <div className="mt-8 flex flex-wrap items-center gap-6">
+                <div className="mt-6">
                   <Button
                     href={BOOKING_URL}
                     target="_blank"
@@ -157,21 +163,13 @@ export function WhatWeDo() {
                   >
                     Book a call
                   </Button>
-                  <a
-                    href={SUGAR_STORY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-underline text-small text-accent-text transition-colors duration-200 ease-out-expo hover:text-text"
-                  >
-                    Live proof: The Sugar Story <span aria-hidden>↗</span>
-                  </a>
                 </div>
               </div>
               <a
                 href={SUGAR_STORY_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Visit live store: The Sugar Story (opens in new tab)"
+                aria-label="Live proof: The Sugar Story — visit the live store (opens in new tab)"
                 className="group relative block aspect-[16/10] overflow-hidden border-t border-hairline lg:col-span-5 lg:aspect-auto lg:min-h-full lg:border-t-0 lg:border-l"
               >
                 <Image
@@ -181,13 +179,16 @@ export function WhatWeDo() {
                   sizes="(min-width: 1024px) 32rem, 100vw"
                   className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover:scale-[1.02]"
                 />
+                <span className="absolute bottom-3 left-3 rounded-full border border-hairline bg-deep/85 px-3 py-1.5 font-mono text-micro uppercase tracking-[0.08em] text-text backdrop-blur-sm">
+                  Live proof: The Sugar Story <span aria-hidden>↗</span>
+                </span>
               </a>
             </div>
           </div>
         </SectionReveal>
 
         <div className="mt-6">
-          <ServiceCardMotion cards={CARDS} />
+          <ServiceCardMotion cards={CARDS} bento />
         </div>
       </div>
     </section>

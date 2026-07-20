@@ -1,5 +1,9 @@
+import type { Metadata } from "next";
+
 import { NotFoundScene } from "@/components/motion/animkit/NotFoundScene";
 import { Button } from "@/components/ui/Button";
+
+export const metadata: Metadata = { title: "Page not found" };
 
 export default function NotFound() {
   return (

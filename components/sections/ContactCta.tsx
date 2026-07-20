@@ -5,6 +5,8 @@ import { useEffect, useRef, useState } from "react";
 
 import { AmbientGlow } from "@/components/motion/AmbientGlow";
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
+import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
+import { useReveal } from "@/components/motion/useReveal";
 import { AnimatedEyebrow, SectionHeadingMotion } from "@/components/motion/v2";
 import { Button } from "@/components/ui/Button";
 import { DURATION, EASE_OUT_EXPO } from "@/lib/motion";
@@ -152,6 +154,7 @@ function FieldError({ id, message }: { id: string; message?: string }) {
 
 export function ContactCta() {
   const reducedMotion = useReducedMotion();
+  const reveal = useReveal();
   const [step, setStep] = useState(0);
   const [fields, setFields] = useState<Fields>(EMPTY);
   const [errors, setErrors] = useState<Partial<Fields>>({});
@@ -241,11 +244,14 @@ export function ContactCta() {
                 fontSize="clamp(27px, 6.5vw, 40px)"
               />
             </div>
-            <p className="mt-6 max-w-md text-body-lg text-muted">
+            <motion.p {...reveal(0.05)} className="mt-6 max-w-md text-body-lg text-muted">
               Four short steps — we’ll reply with a clear next step.
-            </p>
+            </motion.p>
 
-            <div className="mt-10 flex flex-col gap-2 border-t border-hairline pt-8">
+            <motion.div
+              {...reveal(0.15)}
+              className="mt-10 flex flex-col gap-2 border-t border-hairline pt-8"
+            >
               <a
                 href={PHONE_TEL}
                 className="link-underline w-fit text-body text-text"
@@ -253,10 +259,23 @@ export function ContactCta() {
                 {PHONE_DISPLAY}
               </a>
               <p className="text-small text-muted">{ADDRESS}</p>
-            </div>
+            </motion.div>
 
             {(whatsappHref || BOOKING) && (
-              <div className="mt-8">
+              <motion.div
+                {...reveal(0.25)}
+                className="mt-8 flex flex-wrap items-center gap-4"
+              >
+                {BOOKING && (
+                  <Button
+                    href={BOOKING}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Book a call
+                    <span aria-hidden>↗</span>
+                  </Button>
+                )}
                 {whatsappHref && (
                   <Button
                     href={whatsappHref}
@@ -268,26 +287,27 @@ export function ContactCta() {
                     <span aria-hidden>↗</span>
                   </Button>
                 )}
-                {BOOKING && (
-                  <div className={cn(whatsappHref && "mt-8")}>
-                    <p className="text-small font-medium text-text">
-                      Prefer to talk?
-                    </p>
-                    <iframe
-                      src={BOOKING}
-                      title="Book a call"
-                      loading="lazy"
-                      className="mt-4 h-105 w-full rounded-lg border border-hairline bg-surface"
-                    />
-                  </div>
-                )}
-              </div>
+              </motion.div>
             )}
           </div>
 
           {/* ---- Form card ---- */}
-          <div className="lg:col-span-7">
-            <div className="rounded-lg border border-hairline bg-surface p-6 sm:p-10">
+          <div className="relative lg:col-span-7">
+            {/* Soft focal glow behind the form — ambient only, no flat fill */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -inset-10 rounded-[2rem] opacity-70"
+              style={{
+                background:
+                  "radial-gradient(60% 55% at 60% 20%, rgba(198,255,90,0.06), rgba(135,194,255,0.04) 55%, transparent 75%)",
+              }}
+            />
+            <motion.div
+              {...reveal(0.1)}
+              onMouseMove={spotlightMove}
+              className="group relative rounded-lg border border-hairline bg-surface p-6 transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong sm:p-10"
+            >
+              <SpotlightOverlay />
               {status === "success" ? (
                 <motion.div
                   {...(reducedMotion
@@ -368,11 +388,17 @@ export function ContactCta() {
                       {STEP_LEGENDS.map((legend, i) => (
                         <span
                           key={legend}
-                          className={cn(
-                            "h-1 w-8 rounded-full transition-colors duration-300 ease-out-expo",
-                            i <= step ? "bg-accent" : "bg-surface-hover",
-                          )}
-                        />
+                          className="h-1 w-8 overflow-hidden rounded-full bg-surface-hover"
+                        >
+                          <span
+                            className={cn(
+                              "block h-full origin-left rounded-full bg-accent",
+                              "transition-transform duration-500 ease-out-expo",
+                              i <= step ? "scale-x-100" : "scale-x-0",
+                            )}
+                            style={{ transitionDelay: `${i * 60}ms` }}
+                          />
+                        </span>
                       ))}
                     </div>
                   </div>
@@ -630,7 +656,7 @@ export function ContactCta() {
                   </div>
                 </form>
               )}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>

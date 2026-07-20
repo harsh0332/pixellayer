@@ -1,6 +1,8 @@
 "use client";
 
 import gsap from "gsap";
+import Image from "next/image";
+
 import { useEffect, useRef } from "react";
 
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
@@ -86,9 +88,9 @@ function projectBySlug(slug: string) {
   return p ? { name: p.name, url: p.url, cat: p.category } : null;
 }
 const WORK = [
-  { ...projectBySlug("la-vallee-farms")!, hue: "91,114,242" },
-  { ...projectBySlug("ai-buddies")!, hue: "180,92,255" },
-  { ...projectBySlug("baby-steps")!, hue: "34,211,238" },
+  { ...projectBySlug("la-vallee-farms")!, slug: "la-vallee-farms", hue: "91,114,242" },
+  { ...projectBySlug("ai-buddies")!, slug: "ai-buddies", hue: "180,92,255" },
+  { ...projectBySlug("baby-steps")!, slug: "baby-steps", hue: "34,211,238" },
 ];
 
 const PROCESS = [
@@ -776,6 +778,8 @@ export function PixelLayerrOS() {
                       className="relative h-80 w-[290px] max-w-full"
                       style={{ transformStyle: "preserve-3d" }}
                     >
+                      {/* Base layer: the project's REAL screenshot (captured
+                          from the live site) under the frame chrome. */}
                       <div
                         data-sl="0"
                         className="absolute inset-0 overflow-hidden rounded-2xl border border-hairline"
@@ -783,17 +787,23 @@ export function PixelLayerrOS() {
                           background: "linear-gradient(170deg,#12141B,#0C0E13)",
                         }}
                       >
-                        <div className="flex gap-[5px] p-3.5">
+                        <div className="relative z-10 flex items-center gap-[5px] border-b border-white/[0.06] bg-[#0e1016]/90 p-3.5">
                           <span className="h-[7px] w-[7px] rounded-full bg-white/30" />
                           <span className="h-[7px] w-[7px] rounded-full bg-white/[0.18]" />
                           <span className="h-[7px] w-[7px] rounded-full bg-white/10" />
+                          <span
+                            className="ml-auto h-[9px] w-14 rounded-full"
+                            style={{ background: `rgba(${w.hue},0.22)` }}
+                          />
                         </div>
-                        <div
-                          className="absolute inset-0 grid place-items-center text-[10px] tracking-[0.2em] text-white/30"
-                          style={{ fontFamily: MONO }}
-                        >
-                          SURFACE / UI
-                        </div>
+                        <Image
+                          src={`/work/${w.slug}.webp`}
+                          alt=""
+                          aria-hidden
+                          fill
+                          sizes="290px"
+                          className="object-cover object-top pt-[34px]"
+                        />
                       </div>
                       <div
                         data-sl="1"

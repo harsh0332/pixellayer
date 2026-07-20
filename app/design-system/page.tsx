@@ -10,6 +10,8 @@ import { MotionDemo } from "./MotionDemo";
 
 export const metadata: Metadata = {
   title: "Design System",
+  description:
+    "Internal design-system reference for the PixelLayerr site — tokens, type scale, and motion.",
   robots: { index: false, follow: false },
 };
 

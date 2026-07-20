@@ -42,7 +42,7 @@
   --font-serif: var(--font-serif-face), Georgia, serif;
 
   /* Type scale — modular clamp() scale, restrained sizes */
-  --text-display-xl: clamp(2.75rem, 1.5rem + 5vw, 5rem);
+  --text-display-xl: clamp(2.75rem, 1.5rem + 5vw, 5.5rem);
   --text-display-xl--line-height: 1.02;
   --text-display-xl--letter-spacing: -0.03em;
   --text-display-lg: clamp(2.25rem, 1.35rem + 3.5vw, 3.5rem);
