@@ -70,7 +70,7 @@ function ServiceCardMotion({ cards = PLX_SVC_DEFAULT, accentColor = "#c6ff5a", s
 @media (prefers-reduced-motion:reduce){.${cls} *{animation:none!important;transition:none!important}}
 ${bento ? `
 .${cls}{grid-template-columns:1fr}
-@media (min-width:640px){.${cls}{grid-template-columns:repeat(2,minmax(0,1fr))}.${cls} .${cls}-card-featured{grid-column:span 2}}
+@media (min-width:640px){.${cls}{grid-template-columns:repeat(2,minmax(0,1fr))}.${cls} .${cls}-card-featured{grid-column:span 2}.${cls} .${cls}-card-featured ul.${cls}-body{display:grid!important;grid-template-columns:1fr 1fr;column-gap:20px;row-gap:9px}}
 @media (min-width:1024px){.${cls}{grid-template-columns:repeat(3,minmax(0,1fr))}}
 ` : ""}`;
 
@@ -94,7 +94,7 @@ ${bento ? `
     transition: `clip-path .8s ${PLX_SVC_EASE} ${i * 120}ms, filter .8s ${PLX_SVC_EASE} ${i * 120}ms, opacity .5s linear ${i * 120}ms, transform .45s ${PLX_SVC_EASE}, border-color .3s`,
   };
   return (
-    <div ref={rootRef} className={cls} style={{ display: "grid", ...(bento ? {} : { gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }), gap: 18, fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor }}>
+    <div ref={rootRef} className={cls} style={{ display: "grid", ...(bento ? {} : { gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))" }), gap: 14, fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor }}>
       <style>{css}</style>
       {cards.map((c, i) => (
         <article key={i} className={`${cls}-card${c.featured ? ` ${cls}-card-featured` : ""}`} onMouseMove={move(i)} onMouseLeave={leave}

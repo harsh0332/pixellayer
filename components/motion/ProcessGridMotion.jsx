@@ -23,6 +23,8 @@ const PLX_PG_DEFAULT = [
 
 function ProcessGridMotion({ items = PLX_PG_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", minColumnWidth = 200 }) {
   minColumnWidth = +minColumnWidth || 200;
+  const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
+  const cls = `plxpg${uid}`;
   const [reduced, setReduced] = React.useState(false);
   const [hoverOk, setHoverOk] = React.useState(false);
   const [inView, setInView] = React.useState(false);
@@ -43,9 +45,13 @@ function ProcessGridMotion({ items = PLX_PG_DEFAULT, accentColor = "#c6ff5a", su
     return () => io.disconnect();
   }, []);
   const shown = inView || reduced;
+  const css = `
+@keyframes ${cls}-idx{0%{color:${mutedColor}}30%{color:${accentColor}}100%{color:${mutedColor}}}
+@media (prefers-reduced-motion:reduce){.${cls} *{animation:none!important;transition:none!important}}`;
   return (
-    <div ref={ref} style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-      <div aria-hidden="true" style={{ height: 1, background: `linear-gradient(90deg, ${borderColor}, transparent)`, transformOrigin: "left center",
+    <div ref={ref} className={cls} style={{ display: "flex", flexDirection: "column", gap: 22 }}>
+      <style>{css}</style>
+      <div aria-hidden="true" style={{ height: 1, background: `linear-gradient(90deg, color-mix(in oklab, ${accentColor} 65%, transparent), color-mix(in oklab, ${accentColor} 22%, ${borderColor}) 45%, transparent)`, transformOrigin: "left center",
         transform: shown ? "scaleX(1)" : "scaleX(0)",
         transition: reduced ? "none" : `transform 900ms ${PLX_PG_EASE}` }} />
       <div style={{ display: "grid", gridTemplateColumns: `repeat(auto-fit, minmax(${minColumnWidth}px, 1fr))`, gap: 14 }}>
@@ -56,17 +62,19 @@ function ProcessGridMotion({ items = PLX_PG_DEFAULT, accentColor = "#c6ff5a", su
             <div key={i}
               onMouseEnter={hoverOk ? () => setHovered(i) : undefined}
               onMouseLeave={hoverOk ? () => setHovered(-1) : undefined}
-              style={{ border: `1px solid ${h ? "rgba(255,255,255,0.22)" : borderColor}`, borderRadius: 16,
+              style={{ border: `1px solid ${h ? `color-mix(in oklab, ${accentColor} 32%, ${borderColor})` : borderColor}`, borderRadius: 16,
+                boxShadow: h ? `0 8px 28px -14px color-mix(in oklab, ${accentColor} 45%, transparent)` : "none",
                 background: h ? "color-mix(in oklab, #ffffff 3.5%, " + surfaceColor + ")" : surfaceColor,
                 padding: "22px 22px 24px", display: "flex", flexDirection: "column", gap: 10,
                 clipPath: shown ? "inset(-8% -4% -8% -4% round 16px)" : "inset(0 0 100% 0 round 16px)",
                 transform: shown ? (h ? "translateY(-3px)" : "translateY(0)") : "translateY(14px)",
                 filter: shown ? "blur(0px)" : "blur(6px)",
                 opacity: shown ? 1 : 0.001,
-                transition: reduced ? "none" : `clip-path 680ms ${PLX_PG_EASE} ${shown && hovered >= 0 ? 0 : d}ms, transform ${h || hovered >= 0 ? 320 : 680}ms ${PLX_PG_EASE} ${shown && hovered >= 0 ? 0 : d}ms, filter 680ms ${PLX_PG_EASE} ${d}ms, opacity 400ms linear ${d}ms, border-color .35s, background .35s`,
+                transition: reduced ? "none" : `clip-path 680ms ${PLX_PG_EASE} ${shown && hovered >= 0 ? 0 : d}ms, transform ${h || hovered >= 0 ? 320 : 680}ms ${PLX_PG_EASE} ${shown && hovered >= 0 ? 0 : d}ms, filter 680ms ${PLX_PG_EASE} ${d}ms, opacity 400ms linear ${d}ms, border-color .35s, background .35s, box-shadow .35s`,
               }}>
               <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
-                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.16em", color: h ? accentColor : mutedColor, transition: "color .35s" }}>{String(i + 1).padStart(2, "0")}</span>
+                <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, letterSpacing: "0.16em", color: h ? accentColor : mutedColor, transition: "color .35s",
+                  animation: shown && !reduced ? `${cls}-idx 900ms ${PLX_PG_EASE} ${d + 320}ms both` : "none" }}>{String(i + 1).padStart(2, "0")}</span>
                 <span aria-hidden="true" style={{ width: h ? 30 : 18, height: 2, borderRadius: 2, background: accentColor, transformOrigin: "left center",
                   transform: shown ? "scaleX(1)" : "scaleX(0)", opacity: h ? 1 : 0.6,
                   transition: reduced ? "none" : `transform 480ms ${PLX_PG_EASE} ${d + 260}ms, width 320ms ${PLX_PG_EASE}, opacity .35s` }} />

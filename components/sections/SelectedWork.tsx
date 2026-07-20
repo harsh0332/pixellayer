@@ -92,7 +92,7 @@ export function SelectedWork() {
           <SpotlightOverlay />
           <div className="relative grid lg:grid-cols-2">
             {/* La Vallée Farms — interactive masterplan */}
-            <div className="flex flex-col border-b border-hairline lg:border-r lg:border-b-0">
+            <div className="group/card flex flex-col border-b border-hairline lg:border-r lg:border-b-0">
               <a
                 href={FEATURED.masterplanUrl}
                 target="_blank"
@@ -108,7 +108,7 @@ export function SelectedWork() {
                   className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover/img:scale-[1.02]"
                 />
               </a>
-              <div className="flex flex-1 flex-col p-6 sm:p-7">
+              <div className="flex flex-1 flex-col p-6 transition-transform duration-300 ease-out-expo group-hover/card:-translate-y-[3px] sm:p-7">
                 <div className="flex flex-wrap items-center gap-3">
                   <span className="rounded-full bg-accent-fill px-3 py-1 text-micro uppercase tracking-[0.08em] text-on-accent">
                     Featured
@@ -131,7 +131,7 @@ export function SelectedWork() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-6">
+                <div className="mt-auto pt-6">
                   <Button
                     href={FEATURED.masterplanUrl}
                     target="_blank"
@@ -147,7 +147,7 @@ export function SelectedWork() {
 
             {/* The Sugar Story — live storefront */}
             {SUGAR && (
-              <div className="flex flex-col">
+              <div className="group/card flex flex-col">
                 <a
                   href={SUGAR.url}
                   target="_blank"
@@ -163,7 +163,7 @@ export function SelectedWork() {
                     className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover/img:scale-[1.02]"
                   />
                 </a>
-                <div className="flex flex-1 flex-col p-6 sm:p-7">
+                <div className="flex flex-1 flex-col p-6 transition-transform duration-300 ease-out-expo group-hover/card:-translate-y-[3px] sm:p-7">
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="rounded-full border border-hairline bg-deep/85 px-3 py-1 text-micro uppercase tracking-[0.08em] text-text">
                       Live store

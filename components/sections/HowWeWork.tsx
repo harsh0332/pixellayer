@@ -29,7 +29,7 @@ const PRINCIPLES = [
 export function HowWeWork() {
   return (
     <section id="process" aria-label="How we work">
-      <div className="container-site section-y">
+      <div className="container-site section-y-compact">
         <AnimatedEyebrow index="06" label="How we work" />
         <div className="mt-4 max-w-2xl">
           <SectionHeadingMotion
@@ -38,7 +38,7 @@ export function HowWeWork() {
           />
         </div>
 
-        <div className="mt-14">
+        <div className="mt-10">
           <ProcessGridMotion items={PRINCIPLES} />
         </div>
       </div>
