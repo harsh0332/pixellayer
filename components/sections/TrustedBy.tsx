@@ -27,12 +27,11 @@ export function TrustedBy() {
       <div className="container-site section-y-compact">
         <AnimatedEyebrow index="02" label="Trusted by" />
 
-        <div className="mt-8">
-          <LogoMarqueeMotion items={NAMES} />
-        </div>
-
-        <div className="mt-12">
-          <StatCounterMotion stats={STATS} numberSize={44} />
+        <div className="mt-8 grid grid-cols-1 items-center gap-x-14 gap-y-8 lg:grid-cols-[1fr_auto]">
+          <div className="min-w-0">
+            <LogoMarqueeMotion items={NAMES} />
+          </div>
+          <StatCounterMotion stats={STATS} numberSize={36} />
         </div>
       </div>
     </section>

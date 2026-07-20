@@ -49,8 +49,8 @@
   /* ---- Layout rhythm ---- */
   --container-max: 1240px;
   --container-px: clamp(1.5rem, 5vw, 4rem);
-  --section-y: clamp(6rem, 12vw, 10rem); /* 96–160px */
-  --section-y-compact: clamp(4rem, 8vw, 6rem); /* 64–96px */
+  --section-y: clamp(4.5rem, 12vw, 10rem); /* 72px mobile – 160px desktop */
+  --section-y-compact: clamp(3rem, 8vw, 6rem); /* 48px mobile – 96px desktop */
 
   /* ---- Radii ---- */
   --radius-sm: 0.5rem;

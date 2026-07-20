@@ -299,6 +299,12 @@ export function PixelLayerrOS() {
         lastFps = now;
       }
 
+      // Handoff: the stage fades to the dark frame over the final stretch so
+      // the pin releases INTO the hero's assemble entrance (one opening).
+      const stage = q<HTMLElement>("[data-stage-pin]");
+      if (stage)
+        stage.style.opacity = clamp(1 - (cam - 4.45) / 0.3, 0, 1).toFixed(3);
+
       const si =
         cam < 0.6 ? 0 : cam < 1.8 ? 1 : cam < 3.0 ? 2 : cam < 4.2 ? 3 : 4;
       if (si !== sectorIdx) {
@@ -550,9 +556,9 @@ export function PixelLayerrOS() {
   return (
     <section
       ref={rootRef}
-      id="hero"
-      aria-labelledby="os-heading"
-      className="relative bg-deep max-md:!h-auto"
+      id="os-intro"
+      aria-label="PixelLayerr OS intro"
+      className="os-intro relative hidden bg-deep md:block"
       style={{ height: reducedMotion ? "auto" : "650vh" }}
     >
       <div
@@ -608,8 +614,7 @@ export function PixelLayerrOS() {
               >
                 PXL/OS 1.0 · STUDIO RUNTIME
               </p>
-              <h1
-                id="os-heading"
+              <div
                 className="os-line font-display text-text"
                 style={{
                   fontSize: "clamp(56px, 9vw, 120px)",
@@ -620,7 +625,7 @@ export function PixelLayerrOS() {
                 }}
               >
                 PixelLayerr
-              </h1>
+              </div>
               <p className="os-rise max-w-[540px] text-body-lg text-muted [text-wrap:balance]">
                 We don&rsquo;t decorate websites. We <em>engineer</em>{" "}
                 digital systems — and you&rsquo;re standing inside ours.

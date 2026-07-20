@@ -5,7 +5,10 @@ import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
+import { useSyncExternalStore } from "react";
+
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
+import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
 import { useReveal } from "@/components/motion/useReveal";
 import { AnimatedEyebrow, SectionHeadingMotion } from "@/components/motion/v2";
 import { Button } from "@/components/ui/Button";
@@ -38,6 +41,14 @@ const FAN_ITEMS = [
   })),
 ];
 
+/* Fan cards drop to 280px under 480px viewports (touch-safe sizing). */
+const SMALL_QUERY = "(max-width: 479px)";
+function subscribeSmall(onChange: () => void) {
+  const m = window.matchMedia(SMALL_QUERY);
+  m.addEventListener("change", onChange);
+  return () => m.removeEventListener("change", onChange);
+}
+
 function CategoryChip({ label }: { label: string }) {
   return (
     <span className="rounded-full border border-hairline bg-deep/85 px-3 py-1 text-micro uppercase tracking-[0.08em] text-text">
@@ -49,6 +60,11 @@ function CategoryChip({ label }: { label: string }) {
 export function SelectedWork() {
   const reducedMotion = useReducedMotion();
   const reveal = useReveal();
+  const small = useSyncExternalStore(
+    subscribeSmall,
+    () => window.matchMedia(SMALL_QUERY).matches,
+    () => false,
+  );
 
   return (
     <section id="work" aria-label="Selected work" className="bg-elevated">
@@ -57,7 +73,7 @@ export function SelectedWork() {
         <div className="mt-4 max-w-2xl">
           <SectionHeadingMotion
             text="Real products, *live* in production."
-            fontSize={42}
+            fontSize="clamp(28px, 6.5vw, 42px)"
           />
         </div>
         <p className="mt-6 max-w-xl text-body-lg text-muted">
@@ -67,9 +83,11 @@ export function SelectedWork() {
         {/* ---- Featured case: La Vallée Farms masterplan ---- */}
         <motion.div
           {...reveal(0)}
-          className="mt-16 overflow-hidden rounded-xl border border-hairline bg-surface"
+          onMouseMove={spotlightMove}
+          className="group relative mt-12 overflow-hidden rounded-xl border border-hairline bg-surface transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong"
         >
-          <div className="grid lg:grid-cols-12">
+          <SpotlightOverlay />
+          <div className="relative grid lg:grid-cols-12">
             <a
               href={FEATURED.url}
               target="_blank"
@@ -85,7 +103,7 @@ export function SelectedWork() {
                 className="object-cover object-top transition-transform duration-500 ease-out-expo group-hover:scale-[1.02]"
               />
             </a>
-            <div className="flex flex-col p-8 sm:p-12 lg:col-span-5">
+            <div className="flex flex-col p-7 sm:p-8 lg:col-span-5">
               <div className="flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-accent-fill px-3 py-1 text-micro uppercase tracking-[0.08em] text-on-accent">
                   Featured
@@ -97,10 +115,10 @@ export function SelectedWork() {
               </h3>
               <p className="mt-3 text-body text-muted">{FEATURED.line}</p>
 
-              <p className="mt-8 text-micro uppercase tracking-[0.08em] text-muted">
+              <p className="mt-6 text-micro uppercase tracking-[0.08em] text-muted">
                 The interactive masterplan
               </p>
-              <ul className="mt-4 flex flex-col gap-2.5">
+              <ul className="mt-3 flex flex-col gap-2">
                 {FEATURED.masterplan.map((item) => (
                   <li
                     key={item}
@@ -115,7 +133,7 @@ export function SelectedWork() {
                 ))}
               </ul>
 
-              <div className="mt-10">
+              <div className="mt-8">
                 <Button
                   href={FEATURED.url}
                   target="_blank"
@@ -136,8 +154,9 @@ export function SelectedWork() {
         items={FAN_ITEMS}
         accentColor="#c6ff5a"
         secondaryColor="#87c2ff"
-        cardWidth={320}
-        cardHeight={400}
+        cardWidth={small ? 280 : 320}
+        cardHeight={small ? 360 : 400}
+        vhPerCard={45}
         reducedMotion={reducedMotion || undefined}
       />
     </section>

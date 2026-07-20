@@ -238,7 +238,7 @@ export function ContactCta() {
             <div className="mt-4">
               <SectionHeadingMotion
                 text="Tell us what you're *building*."
-                fontSize={40}
+                fontSize="clamp(27px, 6.5vw, 40px)"
               />
             </div>
             <p className="mt-6 max-w-md text-body-lg text-muted">

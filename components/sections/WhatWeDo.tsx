@@ -8,6 +8,7 @@ import {
   SectionReveal,
   ServiceCardMotion,
 } from "@/components/motion/v2";
+import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
 import { Button } from "@/components/ui/Button";
 
 const BOOKING_URL =
@@ -110,22 +111,26 @@ export function WhatWeDo() {
         <div className="mt-4 max-w-2xl">
           <SectionHeadingMotion
             text="Every *layer* of a digital product."
-            fontSize={42}
+            fontSize="clamp(28px, 6.5vw, 42px)"
           />
         </div>
 
         {/* ---- Featured offering: E-commerce & Shopify (Part B) ---- */}
         <SectionReveal>
-          <div className="mt-14 overflow-hidden rounded-2xl border border-hairline bg-surface">
-            <div className="grid lg:grid-cols-12">
-              <div className="flex flex-col p-8 sm:p-10 lg:col-span-7">
+          <div
+            onMouseMove={spotlightMove}
+            className="group relative mt-10 overflow-hidden rounded-2xl border border-hairline bg-surface transition-[border-color] duration-200 ease-out-expo hover:border-hairline-strong"
+          >
+            <SpotlightOverlay />
+            <div className="relative grid lg:grid-cols-12">
+              <div className="flex flex-col p-6 sm:p-8 lg:col-span-7">
                 <span className="w-fit rounded-full bg-accent-fill px-3 py-1 font-mono text-micro uppercase tracking-[0.08em] text-on-accent">
                   Featured · E-commerce &amp; Shopify
                 </span>
-                <h3 className="mt-6 font-display text-heading text-text">
+                <h3 className="mt-5 font-display text-heading text-text">
                   Stores that turn products into <em>sales</em>.
                 </h3>
-                <ul className="mt-8 flex flex-col gap-6">
+                <ul className="mt-6 flex flex-col gap-4">
                   {ECOM_PILLARS.map((pillar) => (
                     <li key={pillar.title} className="flex items-baseline gap-4">
                       <span
@@ -143,7 +148,7 @@ export function WhatWeDo() {
                     </li>
                   ))}
                 </ul>
-                <div className="mt-10 flex flex-wrap items-center gap-6">
+                <div className="mt-8 flex flex-wrap items-center gap-6">
                   <Button
                     href={BOOKING_URL}
                     target="_blank"

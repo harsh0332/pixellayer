@@ -6,15 +6,20 @@ import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 
 import "@/styles/globals.css";
 
+/* display: "optional" keeps text-LCP off the webfont critical path: the
+   preloaded font is used when it arrives inside the block window (warm
+   cache / normal connections); metric-adjusted fallbacks otherwise. */
 const sans = DM_Sans({
   variable: "--font-sans-face",
   subsets: ["latin"],
+  display: "optional",
 });
 
 const mono = DM_Mono({
   variable: "--font-mono-face",
   weight: ["400", "500"],
   subsets: ["latin"],
+  display: "optional",
 });
 
 const serif = Instrument_Serif({
@@ -22,6 +27,7 @@ const serif = Instrument_Serif({
   weight: "400",
   style: ["normal", "italic"],
   subsets: ["latin"],
+  display: "optional",
 });
 
 /* Set NEXT_PUBLIC_SITE_URL (see .env.example) — never hardcoded. */

@@ -33,7 +33,7 @@ function usePlxShInView(once) {
 }
 
 function SectionHeadingMotion({ text = "Every *layer* of a digital product.", accentColor = "#c6ff5a", textColor = "#f4f2eb", fontSize = 42, fontWeight = 600, delay = 0, once = true, as = "h2", style }) {
-  fontSize = +fontSize || 42; delay = +delay || 0;
+  fontSize = typeof fontSize === "string" ? fontSize : +fontSize || 42; delay = +delay || 0;
   const [reduced, setReduced] = React.useState(false);
   React.useEffect(() => {
     const m = window.matchMedia("(prefers-reduced-motion: reduce)");

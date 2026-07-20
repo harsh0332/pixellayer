@@ -34,7 +34,7 @@ export function HowWeWork() {
         <div className="mt-4 max-w-2xl">
           <SectionHeadingMotion
             text="A process built for *certainty*."
-            fontSize={42}
+            fontSize="clamp(28px, 6.5vw, 42px)"
           />
         </div>
 

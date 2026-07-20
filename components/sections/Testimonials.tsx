@@ -52,7 +52,7 @@ export function Testimonials() {
       <div className="container-site section-y">
         <AnimatedEyebrow index="07" label="Testimonials" />
         <div className="mt-4 max-w-2xl">
-          <SectionHeadingMotion text="In their *words*." fontSize={42} />
+          <SectionHeadingMotion text="In their *words*." fontSize="clamp(28px, 6.5vw, 42px)" />
         </div>
 
         <div className="mx-auto mt-14 max-w-3xl">

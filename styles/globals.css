@@ -216,7 +216,37 @@ h2 em {
   }
 }
 
+/* Hero entrance is view-gated: paused until the section scrolls into view
+   (the OS intro hands off into it), then plays. On mobile the hero IS the
+   opening, so it's in view — and runs — immediately. */
+.hero-entrance .os-line,
+.hero-entrance .os-rise {
+  animation-play-state: paused;
+}
+.hero-entrance.is-in .os-line,
+.hero-entrance.is-in .os-rise {
+  animation-play-state: running;
+}
+/* Mobile: the OS intro is hidden, so the hero opens the page. The headline
+   must be visible at first paint (it IS the LCP element — clip-path reveals
+   don't register LCP candidates), and the smaller pieces run from first
+   paint without waiting for hydration. */
+@media (max-width: 767px) {
+  .hero-entrance .os-line {
+    animation: none;
+  }
+  .hero-entrance .os-rise {
+    animation-play-state: running;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  /* Reduced motion skips the scroll intro entirely — the page opens on the
+     static hero. */
+  .os-intro {
+    display: none;
+  }
+
   .os-line,
   .os-rise,
   .os-boot-line,

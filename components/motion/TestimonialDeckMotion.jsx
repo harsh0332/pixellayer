@@ -89,7 +89,7 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
   const css = `
 @keyframes ${cls}-sheen{from{background-position:210% 0}to{background-position:-110% 0}}
 @keyframes ${cls}-qin{from{clip-path:inset(0 100% 0 0);filter:blur(6px);transform:translateY(6px)}to{clip-path:inset(-20% -10% -20% -10%);filter:blur(0px);transform:none}}
-.${cls}-dot{border:none;padding:0;cursor:pointer;height:6px;border-radius:99px;transition:width .4s ${PLX_TD_EASE},background .3s}
+.${cls}-dot{box-sizing:border-box;border:none;cursor:pointer;height:44px;padding:19px 10px;background-clip:content-box;border-radius:99px;transition:width .4s ${PLX_TD_EASE},background .3s}
 .${cls}-dot:focus-visible{outline:2px solid ${accentColor};outline-offset:3px}
 @media (prefers-reduced-motion:reduce){.${cls} *,.${cls}{animation:none!important;transition:none!important}}`;
   const entrance = reduced ? {} : {
@@ -151,7 +151,7 @@ function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#
       <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 26 }}>
         {testimonials.map((_, i) => (
           <button key={i} className={`${cls}-dot`} aria-label={`Testimonial ${i + 1}`} onClick={() => setActive(i)}
-            style={{ width: i === active ? 22 : 6, background: i === active ? accentColor : "rgba(255,255,255,0.22)", boxShadow: i === active ? `0 0 10px color-mix(in oklab, ${accentColor} 40%, transparent)` : "none" }} />
+            style={{ width: i === active ? 42 : 26, backgroundColor: i === active ? accentColor : "rgba(255,255,255,0.22)", boxShadow: i === active ? `0 0 10px color-mix(in oklab, ${accentColor} 40%, transparent)` : "none" }} />
         ))}
       </div>
     </div>

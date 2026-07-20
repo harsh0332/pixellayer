@@ -1,5 +1,6 @@
 import { NoiseOverlay } from "@/components/motion/NoiseOverlay";
 import { ContactCta } from "@/components/sections/ContactCta";
+import { Hero } from "@/components/sections/Hero";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { Industries } from "@/components/sections/Industries";
 import { PixelLayerrOS } from "@/components/sections/PixelLayerrOS";
@@ -17,6 +18,7 @@ export default function Home() {
       <SiteNav />
       <main id="content">
         <PixelLayerrOS />
+        <Hero />
         <TrustedBy />
         <WhatWeDo />
         <SelectedWork />
