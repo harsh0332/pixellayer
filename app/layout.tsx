@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
+import Script from "next/script";
 
 import { ReducedMotionProvider } from "@/components/motion/ReducedMotionProvider";
 import { FEATURED, PROJECTS } from "@/lib/work";
@@ -34,6 +35,11 @@ const serif = Instrument_Serif({
 /* Set NEXT_PUBLIC_SITE_URL (see .env.example) — never hardcoded. */
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+/* Analytics + Search Console are env-gated: nothing renders until the real
+   IDs are set (see .env.example) — no placeholder IDs, no hardcoded keys. */
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
+const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
+
 const DESCRIPTION =
   "PixelLayerr is a digital product engineering studio in Indore, India. We build sales systems that convert — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
 
@@ -53,6 +59,9 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
   },
+  ...(GSC_VERIFICATION
+    ? { verification: { google: GSC_VERIFICATION } }
+    : {}),
   twitter: {
     card: "summary_large_image",
     title: "PixelLayerr — Digital Product Engineering Studio",
@@ -183,6 +192,20 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+            </Script>
+          </>
+        )}
         <a
           href="#content"
           className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-100 focus:rounded-sm focus:bg-accent-fill focus:px-4 focus:py-2 focus:text-small focus:text-on-accent"

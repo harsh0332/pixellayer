@@ -185,6 +185,22 @@ export function ContactCta() {
     setStep((s) => Math.min(s + 1, 3));
   };
 
+  /* The brief as a prefilled WhatsApp message — the always-available
+     delivery path (real studio number, no keys needed). */
+  const whatsappBriefHref = () => {
+    const lines = [
+      "New project brief — pixellayerr.com",
+      `Need: ${fields.need}`,
+      `Budget: ${fields.budget} · Timeline: ${fields.timeline}`,
+      `Details: ${fields.details.trim()}`,
+      fields.link.trim() && `Reference: ${fields.link.trim()}`,
+      `From: ${fields.name.trim()} · ${fields.email.trim()}`,
+      fields.phone.trim() && `Phone: ${fields.phone.trim()}`,
+      fields.company.trim() && `Company: ${fields.company.trim()}`,
+    ].filter(Boolean);
+    return `https://wa.me/${(WHATSAPP || "917024332332").replace(/\D/g, "")}?text=${encodeURIComponent(lines.join("\n"))}`;
+  };
+
   const submit = async () => {
     const stepErrors = validateStep(3, fields);
     setErrors(stepErrors);
@@ -612,17 +628,41 @@ export function ContactCta() {
                   {/* Submission status */}
                   <div aria-live="polite">
                     {status === "unconfigured" && (
-                      <p className="mt-6 rounded-md border border-warn/30 bg-warn/5 px-4 py-3 text-small text-warn">
-                        Direct submission isn’t configured yet
-                        (NEXT_PUBLIC_FORM_WEBHOOK is unset) — please reach us
-                        via the contact links on this page instead.
-                      </p>
+                      <div className="mt-6 rounded-md border border-accent/30 bg-accent-glow/15 px-4 py-4">
+                        <p className="text-small text-text">
+                          Your brief is ready — send it to us on WhatsApp
+                          (opens with everything pre-filled).
+                        </p>
+                        <div className="mt-3">
+                          <Button
+                            href={whatsappBriefHref()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            Send brief on WhatsApp
+                            <span aria-hidden>↗</span>
+                          </Button>
+                        </div>
+                      </div>
                     )}
                     {status === "error" && (
-                      <p className="mt-6 rounded-md border border-warn/30 bg-warn/5 px-4 py-3 text-small text-warn">
-                        Something went wrong sending your brief — please try
-                        again.
-                      </p>
+                      <div className="mt-6 rounded-md border border-warn/30 bg-warn/5 px-4 py-4">
+                        <p className="text-small text-warn">
+                          Something went wrong sending your brief — try again,
+                          or send it straight to our WhatsApp instead:
+                        </p>
+                        <div className="mt-3">
+                          <Button
+                            href={whatsappBriefHref()}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            variant="secondary"
+                          >
+                            Send brief on WhatsApp
+                            <span aria-hidden>↗</span>
+                          </Button>
+                        </div>
+                      </div>
                     )}
                   </div>
 
