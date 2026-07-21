@@ -14,6 +14,9 @@ import React from "react";
  * labelled region, ArrowUp/ArrowDown move between headers.
  * Props: items[{title,desc,deliverables[]}] | accentColor | borderColor |
  *        textColor | mutedColor
+ * `sequential` prop: as the page scrolls, each header crossing the viewport
+ * focus band auto-expands its service (01, then 02, …) — the previous one
+ * collapses to its numbered title. Clicking still overrides at any time.
  * Reduced motion → all expanded, static, instant.
  */
 
@@ -25,6 +28,7 @@ function ServiceAccordionMotion({
   borderColor = "rgba(255,255,255,0.13)",
   textColor = "#f4f2eb",
   mutedColor = "#969ba5",
+  sequential = false,
 }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxsa${uid}`;
@@ -61,6 +65,25 @@ function ServiceAccordionMotion({
       io && io.disconnect();
     };
   }, []);
+
+  /* Sequential mode: a header entering the viewport's focus band opens its
+     service — scroll drives the 01 → 06 sequence, no pinning, no trap. */
+  React.useEffect(() => {
+    if (!sequential || reduced || typeof IntersectionObserver === "undefined")
+      return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (!e.isIntersecting) continue;
+          const i = btnRefs.current.indexOf(e.target);
+          if (i >= 0) setOpen(i);
+        }
+      },
+      { rootMargin: "-32% 0px -52% 0px", threshold: 0 },
+    );
+    btnRefs.current.forEach((b) => b && io.observe(b));
+    return () => io.disconnect();
+  }, [sequential, reduced, items.length]);
 
   const on = shown || reduced;
 

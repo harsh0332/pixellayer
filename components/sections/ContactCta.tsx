@@ -253,7 +253,7 @@ export function ContactCta() {
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           {/* ---- Left rail ---- */}
           <div className="lg:col-span-5">
-            <AnimatedEyebrow index="08" label="Contact" />
+            <AnimatedEyebrow index="09" label="Contact" />
             <div className="mt-4">
               <SectionHeadingMotion
                 text="Tell us what you're *building*."

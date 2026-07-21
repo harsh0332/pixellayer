@@ -183,7 +183,11 @@ export function WhatWeDo() {
         </SectionReveal>
 
         <div className="mt-10">
-          <ServiceAccordionMotion items={SERVICES} accentColor="#c6ff5a" />
+          <ServiceAccordionMotion
+            items={SERVICES}
+            accentColor="#c6ff5a"
+            sequential
+          />
         </div>
       </div>
     </section>

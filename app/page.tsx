@@ -1,5 +1,6 @@
 import { NoiseOverlay } from "@/components/motion/NoiseOverlay";
 import { ContactCta } from "@/components/sections/ContactCta";
+import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
 import { HowWeWork } from "@/components/sections/HowWeWork";
 import { Industries } from "@/components/sections/Industries";
@@ -25,6 +26,7 @@ export default function Home() {
         <Industries />
         <HowWeWork />
         <Testimonials />
+        <Faq />
         <ContactCta />
       </main>
       <SiteFooter />

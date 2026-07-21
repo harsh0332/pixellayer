@@ -99,6 +99,7 @@ function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#
 .${cls} [role=tabpanel]:hover .${cls}-thumb{transform:translateY(-52%) rotate(0.6deg)}
 .${cls}-thumb img{width:100%;height:100%;object-fit:cover;object-position:top}
 @media (max-width:1023px){.${cls}-thumb{display:none}}
+@media (max-width:767px){.${cls}{grid-template-columns:1fr!important;gap:20px!important}.${cls} [role=tabpanel]{padding:22px 20px!important}}
 @media (prefers-reduced-motion:reduce){.${cls} *{animation:none!important;transition:none!important}}`;
   return (
     <div ref={rootRef} className={cls} onKeyDown={onKey} style={{ display: "grid", gridTemplateColumns: "minmax(180px, 240px) 1fr", gap: 40, fontFamily: "'DM Sans', system-ui, sans-serif", color: textColor }}>
