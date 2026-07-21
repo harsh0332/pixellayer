@@ -4,7 +4,6 @@ import dynamic from "next/dynamic";
 import type { ComponentType } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useSyncExternalStore } from "react";
 
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
 import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
@@ -15,25 +14,18 @@ import { FEATURED, PROJECTS } from "@/lib/work";
 
 import type { LooseProps } from "@/components/motion/animkit";
 
-const ScrollFanPortfolio = dynamic(
+/* One-card-at-a-time scroll reel (replaced the radial fan). */
+const ScrollStoryPortfolio = dynamic(
   () =>
-    import("@/components/motion/animkit/ScrollFanPortfolio").then(
+    import("@/components/motion/animkit/ScrollStoryPortfolio").then(
       (m) => m.default as unknown as ComponentType<LooseProps>,
     ),
   { ssr: false },
 );
 
-/* Wheel cards drop to 280px under 480px viewports (touch-safe sizing). */
-const SMALL_QUERY = "(max-width: 479px)";
-function subscribeSmall(onChange: () => void) {
-  const m = window.matchMedia(SMALL_QUERY);
-  m.addEventListener("change", onChange);
-  return () => m.removeEventListener("change", onChange);
-}
-
-/* All real projects → fan items: real names, real categories, real
+/* All real projects → reel items: real names, real categories, real
    screenshots, live URLs. No placeholder cards ever render. */
-const FAN_ITEMS = [
+const REEL_ITEMS = [
   {
     title: FEATURED.name,
     tag: FEATURED.category.toUpperCase(),
@@ -62,11 +54,6 @@ function CategoryChip({ label }: { label: string }) {
 export function SelectedWork() {
   const reducedMotion = useReducedMotion();
   const reveal = useReveal();
-  const small = useSyncExternalStore(
-    subscribeSmall,
-    () => window.matchMedia(SMALL_QUERY).matches,
-    () => false,
-  );
 
   return (
     <section id="work" aria-label="Selected work" className="bg-elevated">
@@ -189,18 +176,11 @@ export function SelectedWork() {
         </motion.div>
       </div>
 
-      {/* ---- All projects: scroll-driven wheel. stepAngle > each card's
-           ~31° angular width so neighbors are clearly SEPARATED, never
-           stacked (the old overlap bug was stepAngle 15). ---- */}
-      <ScrollFanPortfolio
-        items={FAN_ITEMS}
+      {/* ---- All projects: clean scroll-driven, one-card-at-a-time reel
+           (upright focal card, soft edge-peek, title always visible). ---- */}
+      <ScrollStoryPortfolio
+        items={REEL_ITEMS}
         accentColor="#c6ff5a"
-        secondaryColor="#87c2ff"
-        cardWidth={small ? 280 : 320}
-        cardHeight={small ? 360 : 400}
-        vhPerCard={40}
-        leadIn={0.85}
-        stepAngle={small ? 30 : 34}
         reducedMotion={reducedMotion || undefined}
       />
     </section>
