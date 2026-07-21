@@ -81,11 +81,22 @@ function ScrollStoryPortfolio({
         }
         el.style.visibility = "visible";
         const focus = clamp(1 - ad, 0, 1);
+        const adc = Math.min(ad, 1.5);
+        /* Angled/tilted look with 3D depth (coverflow): the focal card sits at
+           a gentle back-lean so it never reads flat; neighbours turn in 3D
+           (rotateY), fan slightly in-plane (rotateZ), and recede (translateZ)
+           — premium, never a cramped pile. */
         el.style.transform =
           "translate(-50%,-50%) translateX(" +
           (d * step).toFixed(1) +
-          "px) scale(" +
-          (1 - Math.min(ad, 1) * 0.18).toFixed(3) +
+          "px) translateZ(" +
+          (-adc * 72).toFixed(0) +
+          "px) rotateX(4deg) rotateY(" +
+          (d * -13).toFixed(1) +
+          "deg) rotateZ(" +
+          (d * 3.5).toFixed(1) +
+          "deg) scale(" +
+          (1 - Math.min(ad, 1) * 0.16).toFixed(3) +
           ")";
         el.style.opacity = clamp(1 - ad * 0.62, 0, 1).toFixed(3);
         el.style.zIndex = String(100 - Math.round(ad * 12));
@@ -258,7 +269,7 @@ function ScrollStoryPortfolio({
         </div>
 
         {/* Card stage. */}
-        <div style={{ position: "relative", width: "100%", height: cardH, flex: "none" }}>
+        <div style={{ position: "relative", width: "100%", height: cardH, flex: "none", perspective: "1600px" }}>
           {data.map((it, i) => (
             <article
               key={i}
@@ -274,7 +285,7 @@ function ScrollStoryPortfolio({
                 border: "1px solid rgba(255,255,255,0.12)",
                 background: "linear-gradient(170deg,#12141B,#0C0E13)",
                 overflow: "hidden",
-                transform: "translate(-50%,-50%)",
+                transform: "translate(-50%,-50%) rotateX(4deg)",
                 willChange: "transform, opacity",
               }}
             >
