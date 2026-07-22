@@ -33,7 +33,7 @@ const ECOM_PILLARS = [
   },
 ];
 
-/* The six services, numbered — real copy from the spec, nothing invented. */
+/* The services, numbered — real copy from the spec, nothing invented. */
 const SERVICES = [
   {
     title: "Web Development & Design",
@@ -44,6 +44,46 @@ const SERVICES = [
       "SaaS & web-app development",
       "Performance & Core Web Vitals",
       "SEO/GEO/AEO",
+    ],
+  },
+  {
+    title: "Website Redesign & SEO-Safe Migration",
+    desc: "Rebuild an underperforming site — without losing your Google rankings.",
+    deliverables: [
+      "Full redesign & rebuild on a modern stack",
+      "SEO-safe migration (URL structure, redirects, no ranking loss)",
+      "UX + conversion fixes",
+      "Zero-downtime launch",
+    ],
+  },
+  {
+    title: "Landing Pages",
+    desc: "High-converting pages for launches, products & campaigns.",
+    deliverables: [
+      "Product / launch / campaign landing pages",
+      "Conversion-first structure",
+      "Fast, mobile-first build",
+      "A/B-ready",
+    ],
+  },
+  {
+    title: "Conversion Rate Optimization (CRO)",
+    desc: "Get more customers from the traffic you already have.",
+    deliverables: [
+      "Conversion & funnel audit",
+      "UX and checkout/flow fixes",
+      "A/B-ready page structure",
+      "Analytics & heatmap setup",
+    ],
+  },
+  {
+    title: "Website Care & Maintenance",
+    desc: "We keep your site fast, secure, and up to date.",
+    deliverables: [
+      "Updates & backups",
+      "Security monitoring",
+      "Bug fixes & small edits",
+      "Priority support",
     ],
   },
   {
@@ -93,6 +133,7 @@ const SERVICES = [
       "Conversion-first Shopify stores",
       "Abandoned-cart recovery",
       "Omnichannel automation (call/email/WhatsApp)",
+      "Speed & Core Web Vitals optimization (LCP / INP / CLS)",
       "Security & cloud deploy",
     ],
   },
