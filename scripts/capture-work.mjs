@@ -8,7 +8,7 @@ import puppeteer from "puppeteer";
 
 const PROJECTS = [
   { slug: "the-sugar-story", url: "https://thesugarstory.co.in" },
-  { slug: "baby-steps", url: "https://drclinicbhopal-three.vercel.app" },
+  { slug: "baby-steps", url: "https://babystepsnewbornclinic.com" },
   { slug: "aranyaani", url: "https://aranyaani-brown.vercel.app" },
   { slug: "la-vallee-farms", url: "https://lavalleefarms.vercel.app" },
   {
@@ -33,7 +33,7 @@ const PROJECTS = [
   },
   { slug: "apna-dental", url: "https://aapnadentalclinic.lovable.app" },
   { slug: "dpm-entertainment", url: "https://register.dpmentertainment.com" },
-  { slug: "ai-buddies", url: "https://aibuddies-nu.vercel.app" },
+  { slug: "ai-buddies", url: "https://aibuddiess.com" },
   { slug: "harsh-traders", url: "https://harshtraders.lovable.app" },
   { slug: "8flowlabs", url: "https://8flowlabsai.netlify.app" },
   { slug: "kliqcraft", url: "https://kliqcraft.netlify.app" },

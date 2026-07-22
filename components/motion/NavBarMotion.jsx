@@ -102,6 +102,8 @@ function NavBarMotion({ links = PLX_NB_LINKS, activeIndex = -1, ctaLabel = "Book
         </nav>
         {item(80 + links.length * 70, <div style={{ flex: "none", display: "flex" }}>
           <a ref={ctaRef} href={ctaHref}
+            target={/^https?:/.test(ctaHref || "") ? "_blank" : undefined}
+            rel={/^https?:/.test(ctaHref || "") ? "noopener noreferrer" : undefined}
             onMouseEnter={() => hoverOk && setCtaHover(true)} onMouseMove={onCtaMove} onMouseLeave={onCtaLeave}
             onMouseDown={() => setCtaDown(true)} onMouseUp={() => setCtaDown(false)}
             style={{ display: "inline-flex", alignItems: "center", padding: "11px 22px", borderRadius: 999, textDecoration: "none",

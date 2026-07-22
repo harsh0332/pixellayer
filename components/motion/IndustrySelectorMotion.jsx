@@ -127,11 +127,17 @@ function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#
           <div style={{ ...item(3), marginTop: 10 }}>
             <div style={{ fontFamily: "'DM Mono', ui-monospace, monospace", fontSize: 10, letterSpacing: "0.18em", color: mutedColor, marginBottom: 10 }}>FROM THE PORTFOLIO</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 22 }}>
-              {(d.links || []).map((l, k) => (
-                <a key={k} className={`${cls}-link`} href={l.href || "#work"} style={{ fontSize: 15, paddingBottom: 3 }}>
-                  {l.label} <span className={`${cls}-arr`} aria-hidden="true">↗</span>
-                </a>
-              ))}
+              {(d.links || []).map((l, k) => {
+                const ext = !!l.href && /^https?:/.test(l.href);
+                return (
+                  <a key={k} className={`${cls}-link`} href={l.href || "#work"}
+                    target={ext ? "_blank" : undefined}
+                    rel={ext ? "noopener noreferrer" : undefined}
+                    style={{ fontSize: 15, paddingBottom: 3 }}>
+                    {l.label} <span className={`${cls}-arr`} aria-hidden="true">↗</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
