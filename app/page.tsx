@@ -1,4 +1,5 @@
 import { NoiseOverlay } from "@/components/motion/NoiseOverlay";
+import { AuditOffer } from "@/components/sections/AuditOffer";
 import { ContactCta } from "@/components/sections/ContactCta";
 import { Faq } from "@/components/sections/Faq";
 import { Hero } from "@/components/sections/Hero";
@@ -27,6 +28,7 @@ export default function Home() {
         <HowWeWork />
         <Testimonials />
         <Faq />
+        <AuditOffer />
         <ContactCta />
       </main>
       <SiteFooter />
