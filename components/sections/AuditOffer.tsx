@@ -22,7 +22,7 @@ export function AuditOffer() {
               className="pointer-events-none absolute -top-1/3 left-1/2 h-[60vh] w-[46rem] max-w-full -translate-x-1/2 rounded-full opacity-70"
               style={{
                 background:
-                  "radial-gradient(closest-side, rgba(198,255,90,0.12), rgba(135,194,255,0.05) 55%, transparent 78%)",
+                  "radial-gradient(closest-side, rgba(174,186,255,0.12), rgba(135,194,255,0.05) 55%, transparent 78%)",
               }}
             />
             <div className="relative mx-auto max-w-2xl text-center">

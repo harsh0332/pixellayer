@@ -14,7 +14,7 @@ import React from "react";
 
 const PLX_LM_DEFAULT = ["La Vallée Farms", "Baby Steps", "AI Buddies", "Aranyaani Healing Forest", "DPM Entertainment", "KliqCraft", "Apna Dental Clinic", "8FlowLabs AI", "Shoolin Chemicals", "Harsh Traders", "Ivy Estate"];
 
-function LogoMarqueeMotion({ items = PLX_LM_DEFAULT, speed = 24, accentColor = "#c6ff5a", textColor = "#f4f2eb", mutedColor = "#969ba5", fontSize = 15, gap = 44 }) {
+function LogoMarqueeMotion({ items = PLX_LM_DEFAULT, speed = 24, accentColor = "#eef0ff", textColor = "#eef0ff", mutedColor = "#8b90b5", fontSize = 15, gap = 44 }) {
   speed = +speed || 24; fontSize = +fontSize || 15; gap = +gap || 44;
   if (typeof items === "string") items = items.split(",").map((s) => s.trim()).filter(Boolean);
   const [reduced, setReduced] = React.useState(false);

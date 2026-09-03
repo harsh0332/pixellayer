@@ -131,12 +131,12 @@ function ScrollFanPortfolio({
           transform: "translateX(-50%)", borderRadius: "50%", filter: "blur(50px)", opacity: 0.5,
           background: "radial-gradient(closest-side, color-mix(in srgb, " + accentColor + " 14%, transparent), transparent 70%)",
         }} />
-        <div style={{ position: "absolute", left: 0, right: 0, top: 24, textAlign: "center", fontFamily: mono, fontSize: 11, letterSpacing: "0.24em", color: "#9BA1AD", zIndex: 300 }}>SELECTED WORK</div>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 24, textAlign: "center", fontFamily: mono, fontSize: 11, letterSpacing: "0.24em", color: "#8B90B5", zIndex: 300 }}>SELECTED WORK</div>
         <div ref={headRef} style={{ position: "absolute", left: 0, right: 0, top: 52, display: "grid", gap: 8, justifyItems: "center", opacity: 0, pointerEvents: "none", zIndex: 300, textShadow: "0 2px 24px rgba(10,11,14,0.9)" }}>
-          <div ref={titleRef} style={{ fontSize: "clamp(26px, 5vh, 46px)", fontWeight: 600, letterSpacing: "-0.025em", color: "#E7E9EE" }}>&#160;</div>
+          <div ref={titleRef} style={{ fontSize: "clamp(26px, 5vh, 46px)", fontWeight: 600, letterSpacing: "-0.025em", color: "#EEF0FF" }}>&#160;</div>
           <div style={{ display: "flex", gap: 18, alignItems: "baseline" }}>
             <span ref={tagRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: accentColor }}>&#160;</span>
-            <span ref={counterRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#8A909C" }}>&#160;</span>
+            <span ref={counterRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#8B90B5" }}>&#160;</span>
           </div>
         </div>
         {data.map((it, i) => (
@@ -180,7 +180,7 @@ function ScrollFanPortfolio({
             </div>
             <div style={{ padding: "18px 20px", display: "grid", gap: 9 }}>
               <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: "0.18em", color: accentColor }}>{it.tag}</div>
-              <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em", color: "#E7E9EE" }}>{it.title}</div>
+              <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: "-0.01em", color: "#EEF0FF" }}>{it.title}</div>
               <div style={{ fontFamily: mono, fontSize: 10.5, letterSpacing: "0.14em", color: "#7A808C", marginTop: 6 }}>{it.href ? "VIEW LIVE ↗" : "VIEW CASE →"}</div>
             </div>
             {it.href && (
@@ -192,7 +192,7 @@ function ScrollFanPortfolio({
         ))}
         <div ref={hintRef} style={{
           position: "absolute", left: 0, right: 0, bottom: 26, textAlign: "center",
-          fontFamily: mono, fontSize: 10, letterSpacing: "0.24em", color: "#8A909C",
+          fontFamily: mono, fontSize: 10, letterSpacing: "0.24em", color: "#8B90B5",
         }}>SCROLL ↓</div>
         <div style={{ position: "absolute", left: "20%", right: "20%", bottom: 14, height: 2, borderRadius: 99, background: "rgba(255,255,255,0.07)" }}>
           <div ref={progRef} style={{ height: "100%", width: "0%", borderRadius: 99, background: "linear-gradient(90deg, " + accentColor + ", " + secondaryColor + ")" }} />

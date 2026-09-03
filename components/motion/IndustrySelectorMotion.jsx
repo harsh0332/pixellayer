@@ -23,7 +23,7 @@ const PLX_IND_DEFAULT = [
   { label: "Hospitality", title: "Atmosphere, online", copy: "Booking-first sites for hotels and restaurants that carry the in-person mood onto the screen.", links: [{ label: "Hotel Meridian" }, { label: "Osteria Nove" }] },
 ];
 
-function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5" }) {
+function IndustrySelectorMotion({ industries = PLX_IND_DEFAULT, accentColor = "#eef0ff", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#eef0ff", mutedColor = "#8b90b5" }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxind${uid}`;
   const rootRef = React.useRef(null);

@@ -15,7 +15,7 @@ import React from "react";
  * Reduced motion → static grid, no drift/sparks. Touch → drift only, no pointer parallax.
  */
 
-function HeroBackdropMotion({ accentColor = "#c6ff5a", backgroundColor = "#07090e", dotOpacity = 0.16, parallax = 12, sparks = true, speed = 1, style }) {
+function HeroBackdropMotion({ accentColor = "#eef0ff", backgroundColor = "#07090e", dotOpacity = 0.16, parallax = 12, sparks = true, speed = 1, style }) {
   dotOpacity = +dotOpacity || 0.16; parallax = +parallax || 12; speed = +speed || 1;
   sparks = sparks !== false && sparks !== "false";
   const [reduced, setReduced] = React.useState(false);

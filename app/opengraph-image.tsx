@@ -19,7 +19,7 @@ export default function OpengraphImage() {
           padding: 72,
           backgroundColor: "#07090E",
           backgroundImage:
-            "radial-gradient(800px 500px at 20% -10%, rgba(198,255,90,0.16), transparent 65%), radial-gradient(600px 400px at 75% 0%, rgba(135,194,255,0.10), transparent 65%)",
+            "radial-gradient(800px 500px at 20% -10%, rgba(174,186,255,0.16), transparent 65%), radial-gradient(600px 400px at 75% 0%, rgba(135,194,255,0.10), transparent 65%)",
           color: "#F4F2EB",
           fontFamily: "sans-serif",
         }}

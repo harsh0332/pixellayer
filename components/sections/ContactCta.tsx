@@ -315,7 +315,7 @@ export function ContactCta() {
               className="pointer-events-none absolute -inset-10 rounded-[2rem] opacity-70"
               style={{
                 background:
-                  "radial-gradient(60% 55% at 60% 20%, rgba(198,255,90,0.06), rgba(135,194,255,0.04) 55%, transparent 75%)",
+                  "radial-gradient(60% 55% at 60% 20%, rgba(174,186,255,0.06), rgba(135,194,255,0.04) 55%, transparent 75%)",
               }}
             />
             <motion.div

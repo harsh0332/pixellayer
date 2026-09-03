@@ -23,28 +23,42 @@
     0 2px 8px rgba(0, 0, 0, 0.24),
     0 12px 32px rgba(0, 0, 0, 0.32);
 
-  /* ---- Text: warm off-white ---- */
-  --text: #f4f2eb;
-  --text-muted: #969ba5;
+  /* ---- Text: cool blue-white (never pure #FFF for body) ---- */
+  --text: #eef0ff;
+  --text-muted: #8b90b5;
 
-  /* ---- Accent: lime — the signature. Light enough to be fill AND text,
-     so the indigo-era role split collapses onto one hue. ---- */
-  --accent: #c6ff5a;
-  --accent-fill: #c6ff5a;
-  --accent-fill-hover: #d3ff77;
-  --accent-text: #c6ff5a;
-  --accent-glow: rgba(198, 255, 90, 0.25);
-  --text-on-accent: #10130b;
+  /* ---- Accent: cool blue-white — the signature. Light enough to be fill
+     AND text, so one hue carries CTAs, focus and meaning. Colour comes from
+     the blue-violet tint, not a saturated pop. ---- */
+  --accent: #eef0ff;
+  --accent-fill: #f6f5f2;
+  --accent-fill-hover: #ffffff;
+  --accent-text: #eef0ff;
+  --accent-glow: rgba(174, 186, 255, 0.26);
+  --text-on-accent: #07090e;
 
   /* accent-2 lives ONLY inside ambient gradients/glows, never flat fills */
-  --accent-2: #87c2ff;
+  --accent-2: #9ba5ff;
+
+  /* accent-3: soft violet, gradients/glows only — keeps headings from
+     reading as flat monochrome */
+  --accent-3: #b9aaff;
+
+  /* Display gradient for headings: white → blue-white → violet → periwinkle */
+  --grad-heading: linear-gradient(
+    100deg,
+    #ffffff 0%,
+    #eef0ff 28%,
+    #b9aaff 62%,
+    #8b90b5 100%
+  );
 
   /* ---- Feedback (AA ≥ 9.9 on all surfaces) ---- */
   --success: #7ee2a8;
   --warn: #e2b457;
 
   /* ---- Focus ring ---- */
-  --focus: #c6ff5a;
+  --focus: #eef0ff;
 
   /* ---- Layout rhythm ---- */
   --container-max: 1240px;

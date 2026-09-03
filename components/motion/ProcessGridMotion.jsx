@@ -23,7 +23,7 @@ const PLX_PG_DEFAULT = [
   { title: "Full ownership", copy: "Your code, your data, your infrastructure." },
 ];
 
-function ProcessGridMotion({ items = PLX_PG_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", minColumnWidth = 200 }) {
+function ProcessGridMotion({ items = PLX_PG_DEFAULT, accentColor = "#eef0ff", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#eef0ff", mutedColor = "#8b90b5", minColumnWidth = 200 }) {
   minColumnWidth = +minColumnWidth || 200;
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxpg${uid}`;

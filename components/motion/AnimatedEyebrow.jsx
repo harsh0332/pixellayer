@@ -12,7 +12,7 @@ import React from "react";
 
 const PLX_EB_EASE = "cubic-bezier(.16,.66,.2,1)";
 
-function AnimatedEyebrow({ index = "01", label = "SECTION", accentColor = "#c6ff5a", color = "#969ba5", fontSize = 12, delay = 0 }) {
+function AnimatedEyebrow({ index = "01", label = "SECTION", accentColor = "#eef0ff", color = "#8b90b5", fontSize = 12, delay = 0 }) {
   fontSize = +fontSize || 12; delay = +delay || 0;
   const ref = React.useRef(null);
   const [reduced, setReduced] = React.useState(false);

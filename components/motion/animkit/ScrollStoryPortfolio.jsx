@@ -21,7 +21,7 @@ const clamp = (v, a, b) => (v < a ? a : v > b ? b : v);
 
 function ScrollStoryPortfolio({
   items = [],
-  accentColor = "#c6ff5a",
+  accentColor = "#eef0ff",
   reducedMotion,
   vhPerCard = 46,
 }) {
@@ -176,7 +176,7 @@ function ScrollStoryPortfolio({
             aria-label={"Visit live site: " + p.title + " (opens in new tab)"}
             style={{
               display: "block",
-              color: "#f4f2eb",
+              color: "#eef0ff",
               textDecoration: "none",
               border: "1px solid rgba(255,255,255,0.12)",
               borderRadius: 14,
@@ -193,7 +193,7 @@ function ScrollStoryPortfolio({
             />
             <div style={{ padding: "14px 16px" }}>
               <div style={{ fontWeight: 600 }}>{p.title}</div>
-              <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: "0.16em", color: "#969ba5", marginTop: 4 }}>
+              <div style={{ fontFamily: mono, fontSize: 10, letterSpacing: "0.16em", color: "#8b90b5", marginTop: 4 }}>
                 {p.tag} · VIEW LIVE ↗
               </div>
             </div>
@@ -234,7 +234,7 @@ function ScrollStoryPortfolio({
             padding: "0 24px",
           }}
         >
-          <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.24em", color: "#9BA1AD" }}>
+          <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.24em", color: "#8B90B5" }}>
             SELECTED WORK
           </span>
           <h3
@@ -245,7 +245,7 @@ function ScrollStoryPortfolio({
               fontWeight: 600,
               fontSize: "clamp(24px, 4.5vw, 42px)",
               letterSpacing: "-0.02em",
-              color: "#E7E9EE",
+              color: "#EEF0FF",
             }}
           >
             &#160;
@@ -254,7 +254,7 @@ function ScrollStoryPortfolio({
             <span ref={tagRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: accentColor }}>
               &#160;
             </span>
-            <span ref={posRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#8A909C" }}>
+            <span ref={posRef} style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.16em", color: "#8B90B5" }}>
               &#160;
             </span>
             <a

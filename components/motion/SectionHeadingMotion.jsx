@@ -32,7 +32,7 @@ function usePlxShInView(once) {
   return [ref, inView];
 }
 
-function SectionHeadingMotion({ text = "Every *layer* of a digital product.", accentColor = "#c6ff5a", textColor = "#f4f2eb", fontSize = 42, fontWeight = 600, delay = 0, once = true, as = "h2", style }) {
+function SectionHeadingMotion({ text = "Every *layer* of a digital product.", accentColor = "#eef0ff", textColor = "#eef0ff", fontSize = 42, fontWeight = 600, delay = 0, once = true, as = "h2", style }) {
   fontSize = typeof fontSize === "string" ? fontSize : +fontSize || 42; delay = +delay || 0;
   const [reduced, setReduced] = React.useState(false);
   React.useEffect(() => {
@@ -61,6 +61,11 @@ function SectionHeadingMotion({ text = "Every *layer* of a digital product.", ac
           fontStyle: t.serif ? "italic" : undefined,
           fontWeight: t.serif ? 400 : undefined,
           fontSize: t.serif ? "1.06em" : undefined,
+          // Accent word carries the display gradient (see --grad-heading).
+          backgroundImage: t.serif ? "var(--grad-heading)" : undefined,
+          WebkitBackgroundClip: t.serif ? "text" : undefined,
+          backgroundClip: t.serif ? "text" : undefined,
+          color: t.serif ? "transparent" : undefined,
           transform: shown ? "translateY(0)" : "translateY(0.4em)",
           filter: shown ? "blur(0px)" : "blur(8px)",
           opacity: shown ? 1 : 0.001,

@@ -180,7 +180,7 @@ export function SelectedWork() {
            (upright focal card, soft edge-peek, title always visible). ---- */}
       <ScrollStoryPortfolio
         items={REEL_ITEMS}
-        accentColor="#c6ff5a"
+        accentColor="#eef0ff"
         reducedMotion={reducedMotion || undefined}
       />
     </section>

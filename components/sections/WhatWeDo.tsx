@@ -226,7 +226,7 @@ export function WhatWeDo() {
         <div className="mt-10">
           <ServiceAccordionMotion
             items={SERVICES}
-            accentColor="#c6ff5a"
+            accentColor="#eef0ff"
             sequential
           />
         </div>

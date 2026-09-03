@@ -23,7 +23,7 @@ const PLX_TD_DEFAULT = [
 
 const plxIsSlot = (s) => typeof s === "string" && /^\{\{.*\}\}$/.test(s);
 
-function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5", height = 380, maxWidth = 760, activeIndex, onActiveChange }) {
+function TestimonialDeckMotion({ testimonials = PLX_TD_DEFAULT, accentColor = "#eef0ff", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#eef0ff", mutedColor = "#8b90b5", height = 380, maxWidth = 760, activeIndex, onActiveChange }) {
   height = +height || 380; maxWidth = +maxWidth || 760;
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxtd${uid}`;

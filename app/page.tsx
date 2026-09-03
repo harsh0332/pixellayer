@@ -1,4 +1,5 @@
 import { NoiseOverlay } from "@/components/motion/NoiseOverlay";
+import { Starfield } from "@/components/motion/Starfield";
 import { AuditOffer } from "@/components/sections/AuditOffer";
 import { ContactCta } from "@/components/sections/ContactCta";
 import { Faq } from "@/components/sections/Faq";
@@ -16,9 +17,10 @@ import { WhatWeDo } from "@/components/sections/WhatWeDo";
 export default function Home() {
   return (
     <>
+      <Starfield />
       <NoiseOverlay />
       <SiteNav />
-      <main id="content">
+      <main id="content" className="relative z-10">
         <PixelLayerrOS />
         <Hero />
         <TrustedBy />
@@ -31,7 +33,9 @@ export default function Home() {
         <AuditOffer />
         <ContactCta />
       </main>
-      <SiteFooter />
+      <div className="relative z-10">
+        <SiteFooter />
+      </div>
     </>
   );
 }

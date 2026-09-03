@@ -18,7 +18,7 @@ import React from "react";
 function ProcessPipeline({
   accentColor = "#5B72F2",
   secondaryColor = "#22D3EE",
-  liveColor = "#C6FF5A",
+  liveColor = "#EEF0FF",
   deliveryNote = "AVG. DELIVERY · 4–6 WEEKS",
   reducedMotion,
   style,
@@ -231,9 +231,9 @@ function ProcessPipeline({
                 }}>
                   <div style={{ display: "flex", alignItems: "baseline", gap: 12 }}>
                     <span style={{ fontFamily: mono, fontSize: 11, letterSpacing: "0.14em", color: accentColor }}>{"0" + (i + 1)}</span>
-                    <span style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em", color: "#E7E9EE" }}>{st.title}</span>
+                    <span style={{ fontSize: 17, fontWeight: 600, letterSpacing: "-0.01em", color: "#EEF0FF" }}>{st.title}</span>
                   </div>
-                  <div style={{ color: "#9BA1AD", fontSize: 13.5, lineHeight: 1.55, textWrap: "pretty" }}>{st.desc}</div>
+                  <div style={{ color: "#8B90B5", fontSize: 13.5, lineHeight: 1.55, textWrap: "pretty" }}>{st.desc}</div>
                   <div style={{ marginTop: 4 }}>{st.visual}</div>
                 </div>
               </div>

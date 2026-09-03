@@ -24,10 +24,10 @@ const PLX_SA_EASE = "cubic-bezier(.16,1,.3,1)";
 
 function ServiceAccordionMotion({
   items = [],
-  accentColor = "#c6ff5a",
+  accentColor = "#eef0ff",
   borderColor = "rgba(255,255,255,0.13)",
-  textColor = "#f4f2eb",
-  mutedColor = "#969ba5",
+  textColor = "#eef0ff",
+  mutedColor = "#8b90b5",
   sequential = false,
 }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");

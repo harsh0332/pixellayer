@@ -21,7 +21,7 @@ import React from "react";
 const PLX_NB_EASE = "cubic-bezier(.16,.66,.2,1)";
 const PLX_NB_LINKS = [{ label: "Work", href: "#work" }, { label: "Services", href: "#services" }, { label: "Process", href: "#process" }, { label: "Contact", href: "#contact" }];
 
-function NavBarMotion({ links = PLX_NB_LINKS, activeIndex = -1, ctaLabel = "Book a call", ctaHref = "#contact", logo = null, accentColor = "#c6ff5a", textColor = "#f4f2eb", mutedColor = "#969ba5", backgroundColor = "#07090e", maxWidth = 1200, children }) {
+function NavBarMotion({ links = PLX_NB_LINKS, activeIndex = -1, ctaLabel = "Book a call", ctaHref = "#contact", logo = null, accentColor = "#eef0ff", textColor = "#eef0ff", mutedColor = "#8b90b5", backgroundColor = "#07090e", maxWidth = 1200, children }) {
   activeIndex = +activeIndex; maxWidth = +maxWidth || 1200;
   const [reduced, setReduced] = React.useState(false);
   const [hoverOk, setHoverOk] = React.useState(false);

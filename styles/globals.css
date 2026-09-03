@@ -28,6 +28,7 @@
   --color-accent-text: var(--accent-text);
   --color-accent-glow: var(--accent-glow);
   --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
 
   /* Feedback + focus */
   --color-success: var(--success);
@@ -129,13 +130,28 @@ h2 {
   text-wrap: balance;
 }
 
-/* pixel-layer-studio signature: serif-italic accent words in display type */
+/* pixel-layer-studio signature: serif-italic accent words in display type.
+   They carry the display gradient (white → blue-white → violet → periwinkle)
+   so headings never read as flat monochrome. */
 h1 em,
-h2 em {
+h2 em,
+h3 em {
   font-family: var(--font-serif-face), Georgia, serif;
   font-style: italic;
   font-weight: 400;
   letter-spacing: -0.04em;
+  background-image: var(--grad-heading);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Opt-in display gradient for any headline that wants it. */
+.text-gradient {
+  background-image: var(--grad-heading);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 /* ── PixelLayerr OS intro ─────────────────────────────────────────────
@@ -209,10 +225,10 @@ h2 em {
 @keyframes os-glow {
   0%,
   100% {
-    box-shadow: 0 0 0 -6px rgba(198, 255, 90, 0);
+    box-shadow: 0 0 0 -6px rgba(174, 186, 255, 0);
   }
   50% {
-    box-shadow: 0 0 30px -6px rgba(198, 255, 90, 0.55);
+    box-shadow: 0 0 30px -6px rgba(174, 186, 255, 0.55);
   }
 }
 

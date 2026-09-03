@@ -26,7 +26,7 @@ const PLX_SVC_DEFAULT = [
   { icon: "motion", title: "Motion & Interaction", desc: "Restrained, premium motion systems that make interfaces feel alive.", items: ["Interaction design", "Micro-animation systems", "Design systems"], cta: "Discuss your build" },
 ];
 
-function ServiceCardMotion({ cards = PLX_SVC_DEFAULT, accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5" , bento = false }) {
+function ServiceCardMotion({ cards = PLX_SVC_DEFAULT, accentColor = "#eef0ff", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#eef0ff", mutedColor = "#8b90b5" , bento = false }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const rootRef = React.useRef(null);
   const rafs = React.useRef({});

@@ -43,7 +43,7 @@ const SECTORS = [
   "03 · PROCESS",
   "04 · HANDOVER",
 ];
-const HUES = ["#5B72F2", "#5B72F2", "#B45CFF", "#22D3EE", "#C6FF5A"];
+const HUES = ["#5B72F2", "#5B72F2", "#B45CFF", "#22D3EE", "#EEF0FF"];
 
 /* Real clients pulled from the portfolio — replaces the reference's invented
    "HALIDE LABS / MERIDIAN / …" row. */
@@ -390,7 +390,7 @@ export function PixelLayerrOS() {
           const label = p <= 0 ? "QUEUED" : p < 1 ? "RUNNING" : "DONE";
           if (st.textContent !== label) {
             st.textContent = label;
-            st.style.color = p <= 0 ? "#565B66" : p < 1 ? "#22D3EE" : "#C6FF5A";
+            st.style.color = p <= 0 ? "#565B66" : p < 1 ? "#22D3EE" : "#EEF0FF";
           }
         }
       });
@@ -841,7 +841,7 @@ export function PixelLayerrOS() {
                         className="absolute top-[6%] right-[4%] left-[4%] h-0.5 rounded-full opacity-0"
                         style={{
                           background:
-                            "linear-gradient(90deg,transparent,#C6FF5A,transparent)",
+                            "linear-gradient(90deg,transparent,#EEF0FF,transparent)",
                         }}
                       />
                     </div>
@@ -1001,7 +1001,7 @@ export function PixelLayerrOS() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border px-[30px] py-3.5 text-[12px] tracking-[0.18em] text-accent opacity-0 transition-[opacity,box-shadow] duration-700 focus-visible:opacity-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus max-md:!opacity-100"
-                style={{ fontFamily: MONO, borderColor: "rgba(198,255,90,0.45)" }}
+                style={{ fontFamily: MONO, borderColor: "rgba(174,186,255,0.45)" }}
               >
                 START A BUILD →
               </a>
@@ -1020,7 +1020,7 @@ export function PixelLayerrOS() {
           <div className="flex items-center gap-2.5">
             <span
               className="inline-block h-[7px] w-[7px] rounded-full bg-accent"
-              style={{ boxShadow: "0 0 10px 2px rgba(198,255,90,0.4)" }}
+              style={{ boxShadow: "0 0 10px 2px rgba(174,186,255,0.4)" }}
             />
             PXL/OS 1.0
           </div>
@@ -1041,7 +1041,7 @@ export function PixelLayerrOS() {
               rel="noopener noreferrer"
               tabIndex={-1}
               className="pointer-events-auto rounded-full border px-3.5 py-1.5 text-[10px] tracking-[0.16em] text-accent"
-              style={{ borderColor: "rgba(198,255,90,0.4)" }}
+              style={{ borderColor: "rgba(174,186,255,0.4)" }}
             >
               START A BUILD
             </a>
@@ -1057,7 +1057,7 @@ export function PixelLayerrOS() {
             data-rail
             className="h-full w-0"
             style={{
-              background: "linear-gradient(90deg,#5B72F2,#B45CFF,#22D3EE,#C6FF5A)",
+              background: "linear-gradient(90deg,#5B72F2,#B45CFF,#22D3EE,#EEF0FF)",
             }}
           />
         </div>

@@ -19,8 +19,8 @@ export function NotFoundScene() {
   return (
     <div aria-hidden className="pointer-events-none absolute inset-0 opacity-40">
       <ExplodedInterfaceHero
-        accentColor="#c6ff5a"
-        signalColor="#c6ff5a"
+        accentColor="#eef0ff"
+        signalColor="#eef0ff"
         secondaryColor="#87c2ff"
         backgroundColor="#07090e"
       />

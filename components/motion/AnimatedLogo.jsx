@@ -146,7 +146,7 @@ function PlxWordmark({ accentColor, textColor, size, animate, speed, reduced, ho
   );
 }
 
-function AnimatedLogo({ accentColor = "#c6ff5a", textColor = "#f4f2eb", size = 44, variant = "wordmark", animate = true, speed = 1, text = "PixelLayerr" }) {
+function AnimatedLogo({ accentColor = "#eef0ff", textColor = "#eef0ff", size = 44, variant = "wordmark", animate = true, speed = 1, text = "PixelLayerr" }) {
   size = +size || 44; speed = +speed || 1;
   animate = animate !== false && animate !== "false";
   const { reduced, hover } = usePlxLogoMedia();

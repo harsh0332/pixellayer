@@ -24,7 +24,7 @@ const PLX_CS_STEPS = [
 ];
 const PLX_CS_CONTACT = [["PHONE", "{{+00 000 000 0000}}"], ["ADDRESS", "{{Street · City}}"], ["WHATSAPP", "{{Chat with us ↗}}"]];
 
-function ContactStepperMotion({ steps = PLX_CS_STEPS, contact = PLX_CS_CONTACT, heading = "Tell us what", headingAccent = "you're building.", accentColor = "#c6ff5a", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#f4f2eb", mutedColor = "#969ba5" }) {
+function ContactStepperMotion({ steps = PLX_CS_STEPS, contact = PLX_CS_CONTACT, heading = "Tell us what", headingAccent = "you're building.", accentColor = "#eef0ff", surfaceColor = "#0e121b", borderColor = "rgba(255,255,255,0.13)", textColor = "#eef0ff", mutedColor = "#8b90b5" }) {
   const uid = React.useId().replace(/[^a-zA-Z0-9]/g, "");
   const cls = `plxcs${uid}`;
   const rootRef = React.useRef(null);

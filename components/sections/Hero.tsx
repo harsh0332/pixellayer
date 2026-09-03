@@ -69,7 +69,7 @@ export function Hero() {
         className="pointer-events-none absolute top-1/2 left-[8%] h-[70vh] w-[52rem] max-w-full -translate-y-1/2 rounded-full opacity-60"
         style={{
           background:
-            "radial-gradient(closest-side, rgba(198,255,90,0.10), rgba(135,194,255,0.05) 55%, transparent 75%)",
+            "radial-gradient(closest-side, rgba(174,186,255,0.10), rgba(135,194,255,0.05) 55%, transparent 75%)",
         }}
       />
       <div className="container-site section-y relative z-10 w-full pt-28 pb-20">

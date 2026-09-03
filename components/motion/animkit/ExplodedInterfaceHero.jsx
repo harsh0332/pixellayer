@@ -37,7 +37,7 @@ function ExplodedInterfaceHero({
   accentColor = "#5B72F2",
   secondaryColor = "#22D3EE",
   tertiaryColor = "#B45CFF",
-  signalColor = "#C6FF5A",
+  signalColor = "#EEF0FF",
   backgroundColor = "#0A0B0E",
   explodeDepth = 1,
   driftSpeed = 1,
@@ -280,7 +280,7 @@ function ExplodedInterfaceHero({
         if (fine) for (let i = 0; i < pts.length; i++) {
           const d = Math.hypot(pts[i][0] - pxy.x, pts[i][1] - pxy.y);
           if (d < 160) {
-            ctx.strokeStyle = "rgba(198,255,90," + (0.2 * (1 - d / 160)).toFixed(3) + ")";
+            ctx.strokeStyle = "rgba(174,186,255," + (0.2 * (1 - d / 160)).toFixed(3) + ")";
             ctx.beginPath(); ctx.moveTo(pts[i][0], pts[i][1]); ctx.lineTo(pxy.x, pxy.y); ctx.stroke();
           }
         }

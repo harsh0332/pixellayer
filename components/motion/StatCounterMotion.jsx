@@ -15,7 +15,7 @@ import React from "react";
 const PLX_SC_EASE = "cubic-bezier(.16,.66,.2,1)";
 const PLX_SC_DEFAULT = [{ value: 11, label: "Products live" }, { value: 6, label: "Industries served" }];
 
-function StatCounterMotion({ stats = PLX_SC_DEFAULT, accentColor = "#c6ff5a", textColor = "#f4f2eb", mutedColor = "#969ba5", numberSize = 58, duration = 1400, delay = 0 }) {
+function StatCounterMotion({ stats = PLX_SC_DEFAULT, accentColor = "#eef0ff", textColor = "#eef0ff", mutedColor = "#8b90b5", numberSize = 58, duration = 1400, delay = 0 }) {
   numberSize = +numberSize || 58; duration = +duration || 1400; delay = +delay || 0;
   const [reduced, setReduced] = React.useState(false);
   const [started, setStarted] = React.useState(false);
