@@ -44,8 +44,8 @@ const INDUSTRIES = [
     label: "Architecture & Interiors",
     title: "Portfolios with atmosphere",
     copy: "Cinematic studio sites where the work breathes — imagery-led, editorial type, quiet motion.",
-    links: [link("hued", "HUED")],
-    image: "/work/hued.webp",
+    links: [link("lodhi-interiors", "Lodhi Interiors")],
+    image: "/work/lodhi-interiors.webp",
   },
   {
     index: "04",

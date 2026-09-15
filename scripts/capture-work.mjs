@@ -39,7 +39,7 @@ const PROJECTS = [
   { slug: "kliqcraft", url: "https://kliqcraft.netlify.app" },
   { slug: "shoolin-chemicals", url: "https://www.shoolinchemicals.com" },
   { slug: "ivy-estate", url: "https://ivyestatebhopal.netlify.app" },
-  { slug: "hued", url: "https://hued-tau.vercel.app" },
+  { slug: "lodhi-interiors", url: "https://lodhiinteriors.com" },
   { slug: "tfhq", url: "https://thefitnessheadquator.vercel.app" },
   { slug: "unofficial-studios", url: "https://unofficialhimanshuu.vercel.app" },
 ];

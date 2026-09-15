@@ -114,12 +114,12 @@ export const PROJECTS: WorkProject[] = [
     alt: "Homepage of Harsh Traders cement and building materials, Binaganj",
   },
   {
-    name: "HUED",
-    slug: "hued",
+    name: "Lodhi Interiors",
+    slug: "lodhi-interiors",
     category: "Architecture & Interiors",
-    url: "https://hued-tau.vercel.app",
-    line: "Cinematic site for a multidisciplinary architecture and interior design studio in Indore — emotion, materiality, timeless craft.",
-    alt: "Homepage of HUED design and architecture studio with a serif headline over a modern residence",
+    url: "https://lodhiinteriors.com",
+    line: "Site for a Bhopal interior design and turnkey execution studio — luxury residential and commercial interiors, from concept to final handover.",
+    alt: "Homepage of Lodhi Interiors, an interior design and turnkey execution studio in Bhopal, with a serif headline over a concrete-and-water interior",
   },
   {
     name: "The Fitness Headquarters",

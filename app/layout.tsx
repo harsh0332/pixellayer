@@ -32,8 +32,28 @@ const serif = Instrument_Serif({
   display: "optional",
 });
 
-/* Set NEXT_PUBLIC_SITE_URL (see .env.example) — never hardcoded. */
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+/* Canonical origin for metadataBase, og:image and JSON-LD. Resolution order:
+   NEXT_PUBLIC_SITE_URL (explicit, see .env.example) → Vercel's auto-injected
+   production domain → preview deployment URL → localhost. Social crawlers
+   need an ABSOLUTE og:image; if this ever fell back to localhost they would
+   ignore it and pull a random image off the page instead. */
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000");
+
+/* Social share image: a real 1200×630 capture of the site's own hero
+   (public/og.jpg), so link previews always show PixelLayerr — never a
+   client screenshot scraped from the portfolio. */
+const OG_IMAGE = {
+  url: "/og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "PixelLayerr — Digital products, designed and engineered as one.",
+};
 
 /* Analytics + Search Console are env-gated: nothing renders until the real
    IDs are set (see .env.example) — no placeholder IDs, no hardcoded keys. */
@@ -58,6 +78,7 @@ export const metadata: Metadata = {
     siteName: "PixelLayerr",
     type: "website",
     url: "/",
+    images: [OG_IMAGE],
   },
   ...(GSC_VERIFICATION
     ? { verification: { google: GSC_VERIFICATION } }
@@ -67,6 +88,7 @@ export const metadata: Metadata = {
     title: "PixelLayerr — Digital Product Engineering Studio",
     description:
       "We engineer systems that sell — websites, web apps, SaaS, Shopify e-commerce, AI automation, and business systems.",
+    images: [OG_IMAGE],
   },
 };
 

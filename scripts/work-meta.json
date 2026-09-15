@@ -242,19 +242,6 @@
       "Follow Us on Instagram"
     ]
   },
-  "hued": {
-    "url": "https://hued-tau.vercel.app",
-    "prepared": true,
-    "title": "HUED — Multidisciplinary Design & Architecture Studio",
-    "description": "HUED is a multidisciplinary design studio in Indore, India, founded by Ar. Kritika Khandelwal. Operating at the intersection of emotion, materiality, and timeless craft.",
-    "h1": [
-      "Designing Meaningful Spaces."
-    ],
-    "headings": [
-      "Step Into a Sanctuary of Absolute Silence.",
-      "Let's Create Something Timeless."
-    ]
-  },
   "tfhq": {
     "url": "https://thefitnessheadquator.vercel.app",
     "prepared": true,
@@ -290,6 +277,24 @@
       "Led by a creator who understands what India watches.",
       "WHAT THEY SAY",
       "SMART INQUIRY HUB"
+    ]
+  },
+  "lodhi-interiors": {
+    "url": "https://lodhiinteriors.com",
+    "prepared": true,
+    "title": "Lodhi Interiors — Interior Design and Turnkey Execution Studio in Bhopal",
+    "description": "Bhopal studio shaping complete luxury residential and commercial interiors from concept to turnkey execution. Founded by Soumya Lodhi, 8+ years in practice.",
+    "h1": [
+      "Interiors, designed anddelivered."
+    ],
+    "headings": [
+      "Selected Work",
+      "Areas of Practice",
+      "Design and execution belong under one hand.",
+      "The Turnkey Sequence",
+      "Accountability in Practice",
+      "Insights on Craft & Climate",
+      "Tell us about your space."
     ]
   }
 }
