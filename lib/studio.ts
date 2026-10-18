@@ -8,12 +8,14 @@ export const ALL_PROJECTS = [
   ...PROJECTS,
 ];
 export const SITE_ORIGIN = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
   (process.env.VERCEL_PROJECT_PRODUCTION_URL
     ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
     : process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3001")
+      : process.env.NODE_ENV === "production"
+        ? "https://pixellayerss.com"
+        : "http://localhost:3001")
 ).replace(/\/$/, "");
 export const BOOKING_URL =
   process.env.NEXT_PUBLIC_BOOKING_URL ??

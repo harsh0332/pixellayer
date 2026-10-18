@@ -45,7 +45,7 @@ const serif = Instrument_Serif({
 
 /* Canonical origin for metadataBase, og:image and JSON-LD. Resolution order:
    NEXT_PUBLIC_SITE_URL (explicit, see .env.example) → Vercel's auto-injected
-   production domain → preview deployment URL → localhost. Social crawlers
+   production domain → preview deployment URL → production domain (localhost in dev). Social crawlers
    need an ABSOLUTE og:image; if this ever fell back to localhost they would
    ignore it and pull a random image off the page instead. */
 const SITE_URL = SITE_ORIGIN;
