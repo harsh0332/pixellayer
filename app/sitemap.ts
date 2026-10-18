@@ -1,14 +1,21 @@
 import type { MetadataRoute } from "next";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-
+import { STUDIO_SERVICES } from "@/lib/services";
+import { ALL_PROJECTS, SITE_ORIGIN } from "@/lib/studio";
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: SITE_URL,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 1,
-    },
+  const pages = [
+    "",
+    "/services",
+    "/work",
+    "/approach",
+    "/studio",
+    "/contact",
+    "/website-audit",
+    ...STUDIO_SERVICES.map((s) => `/services/${s.slug}`),
+    ...ALL_PROJECTS.map((p) => `/work/${p.slug}`),
   ];
+  return pages.map((path) => ({
+    url: `${SITE_ORIGIN}${path}`,
+    changeFrequency: "monthly",
+    priority: path === "" ? 1 : path.split("/").length > 2 ? 0.7 : 0.8,
+  }));
 }

@@ -4,9 +4,20 @@ import Script from "next/script";
 
 import { ReducedMotionProvider } from "@/components/motion/ReducedMotionProvider";
 import { FEATURED, PROJECTS } from "@/lib/work";
+import { SITE_ORIGIN } from "@/lib/studio";
+import { STUDIO_SERVICES } from "@/lib/services";
 import { SmoothScrollProvider } from "@/components/motion/SmoothScrollProvider";
 
+// Keep these as explicit layout dependencies so preview and production
+// both load the studio rules alongside the base stylesheet.
 import "@/styles/globals.css";
+import "@/styles/ecosystem.css";
+import "@/styles/studio.css";
+import "@/styles/portfolio-orbit.css";
+import "@/styles/studio-craft.css";
+import "@/styles/studio-refinement.css";
+import "@/styles/studio-choreography.css";
+import "@/styles/resolution-hero.css";
 
 /* display: "optional" keeps text-LCP off the webfont critical path: the
    preloaded font is used when it arrives inside the block window (warm
@@ -37,22 +48,14 @@ const serif = Instrument_Serif({
    production domain → preview deployment URL → localhost. Social crawlers
    need an ABSOLUTE og:image; if this ever fell back to localhost they would
    ignore it and pull a random image off the page instead. */
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-    : process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000");
+const SITE_URL = SITE_ORIGIN;
 
-/* Social share image: a real 1200×630 capture of the site's own hero
-   (public/og.jpg), so link previews always show PixelLayerr — never a
-   client screenshot scraped from the portfolio. */
+/* Shared image follows the Pixelcliq ecosystem palette and studio message. */
 const OG_IMAGE = {
-  url: "/og.jpg",
+  url: "/brand-image",
   width: 1200,
   height: 630,
-  alt: "PixelLayerr — Digital products, designed and engineered as one.",
+  alt: "PixelLayerr — Good ideas. Built into great websites. A Pixelcliq Media studio.",
 };
 
 /* Analytics + Search Console are env-gated: nothing renders until the real
@@ -61,7 +64,7 @@ const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 const GSC_VERIFICATION = process.env.NEXT_PUBLIC_GSC_VERIFICATION;
 
 const DESCRIPTION =
-  "PixelLayerr is a digital product engineering studio in Indore, India. We engineer systems that sell — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
+  "PixelLayerr is the design and engineering studio in the Pixelcliq Media ecosystem, based in Indore, India. We engineer systems that sell — premium websites, web apps, SaaS, AI agents and automation, Shopify stores with AI cart recovery, and business systems.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -80,9 +83,7 @@ export const metadata: Metadata = {
     url: "/",
     images: [OG_IMAGE],
   },
-  ...(GSC_VERIFICATION
-    ? { verification: { google: GSC_VERIFICATION } }
-    : {}),
+  ...(GSC_VERIFICATION ? { verification: { google: GSC_VERIFICATION } } : {}),
   twitter: {
     card: "summary_large_image",
     title: "PixelLayerr — Digital Product Engineering Studio",
@@ -91,16 +92,6 @@ export const metadata: Metadata = {
     images: [OG_IMAGE],
   },
 };
-
-/* Real data only: the studio, its site, and its actual services. */
-const SERVICES = [
-  "Websites & Web Apps",
-  "SaaS & Product Engineering",
-  "AI Agents, Chatbots & Automation",
-  "E-commerce & Shopify — AI cart recovery, omnichannel automation",
-  "Business Systems — CRM, ERP & Dashboards",
-  "Growth & Platform",
-];
 
 /* Real client words only — no invented ratings, so no AggregateRating. */
 const REVIEWS = [
@@ -154,33 +145,28 @@ const jsonLd = {
       })),
     },
     {
-      "@type": "BreadcrumbList",
-      itemListElement: [
-        {
-          "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: SITE_URL,
-        },
-      ],
-    },
-    {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
       name: "PixelLayerr",
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
-    ...SERVICES.map((name) => ({
+    ...STUDIO_SERVICES.map((service) => ({
       "@type": "Service",
-      name,
-      serviceType: name,
+      name: service.title,
+      serviceType: service.title,
+      url: `${SITE_URL}/services/${service.slug}`,
       areaServed: "Worldwide",
       provider: { "@id": `${SITE_URL}/#organization` },
     })),
     /* Every portfolio item is a real, live product. */
     ...[
-      { name: FEATURED.name, url: FEATURED.url, line: FEATURED.line, slug: FEATURED.slug },
+      {
+        name: FEATURED.name,
+        url: FEATURED.url,
+        line: FEATURED.line,
+        slug: FEATURED.slug,
+      },
       ...PROJECTS.map((project) => ({
         name: project.name,
         url: project.url,

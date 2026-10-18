@@ -1,0 +1,10 @@
+export function ProcessDiagram({ stage, playing }: { stage: number; playing: boolean }) {
+  return <div className="process-demo" data-stage={stage} data-playing={playing} aria-hidden="true">
+    <div className="process-demo-top"><span>THE MAKING OF A WEBSITE</span><b>0{stage + 1} / 04</b></div>
+    {stage === 0 && <div className="process-discover"><span className="process-note note-one">Your audience<small>Who are we building for?</small></span><span className="process-note note-two">Your ambition<small>What needs to happen?</small></span><svg viewBox="0 0 400 200"><path d="M100 30V90Q100 110 120 110H280Q300 110 300 90V30M200 110V170" /></svg><strong>A clear direction <i>↗</i></strong></div>}
+    {stage === 1 && <div className="process-design"><div className="process-mini-nav"><b>your brand.</b><span>Discover ↗</span></div><div className="process-mini-hero"><div><span>Make it</span><em>feel right.</em><i /></div><div className="process-design-art">Aa</div></div><div className="process-swatches"><i /><i /><i /><span>TYPE / COLOUR / INTERACTION</span></div><b className="process-design-cursor">↖ <span>Refining the details</span></b></div>}
+    {stage === 2 && <div className="process-develop"><div className="process-build-module">Interface<span>Pages & components</span></div><div className="process-build-line"><i /></div><div className="process-build-module">Connections<span>Forms, data & integrations</span></div><div className="process-build-line"><i /></div><div className="process-build-check">✓ <span>Ready for device & flow checks</span></div></div>}
+    {stage === 3 && <div className="process-launch"><div className="process-launch-mark">↗</div><strong>Your next chapter.</strong><div><span>✓ Launch review</span><span>✓ Code & ownership</span><span>✓ A plan for what’s next</span></div></div>}
+    <span className="process-demo-bottom">{["QUESTIONS → DIRECTION", "STRUCTURE → EXPERIENCE", "COMPONENTS → WORKING PRODUCT", "READY → OUT IN THE WORLD"][stage]}</span>
+  </div>;
+}

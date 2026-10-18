@@ -1,41 +1,5 @@
-import { NoiseOverlay } from "@/components/motion/NoiseOverlay";
-import { Starfield } from "@/components/motion/Starfield";
-import { AuditOffer } from "@/components/sections/AuditOffer";
-import { ContactCta } from "@/components/sections/ContactCta";
-import { Faq } from "@/components/sections/Faq";
-import { Hero } from "@/components/sections/Hero";
-import { HowWeWork } from "@/components/sections/HowWeWork";
-import { Industries } from "@/components/sections/Industries";
-import { PixelLayerrOS } from "@/components/sections/PixelLayerrOS";
-import { SelectedWork } from "@/components/sections/SelectedWork";
-import { SiteFooter } from "@/components/sections/SiteFooter";
-import { SiteNav } from "@/components/sections/SiteNav";
-import { Testimonials } from "@/components/sections/Testimonials";
-import { TrustedBy } from "@/components/sections/TrustedBy";
-import { WhatWeDo } from "@/components/sections/WhatWeDo";
+import { EcosystemHome } from "@/components/sections/EcosystemHome";
 
 export default function Home() {
-  return (
-    <>
-      <Starfield />
-      <NoiseOverlay />
-      <SiteNav />
-      <main id="content" className="relative z-10">
-        <PixelLayerrOS />
-        <Hero />
-        <TrustedBy />
-        <WhatWeDo />
-        <SelectedWork />
-        <Industries />
-        <HowWeWork />
-        <Testimonials />
-        <Faq />
-        <AuditOffer />
-        <ContactCta />
-      </main>
-      <div className="relative z-10">
-        <SiteFooter />
-      </div>
-    </>
-  );
+  return <EcosystemHome />;
 }

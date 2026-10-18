@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-import { AmbientGlow } from "@/components/motion/AmbientGlow";
 import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
 import { SpotlightOverlay, spotlightMove } from "@/components/motion/spotlight";
 import { useReveal } from "@/components/motion/useReveal";
@@ -24,6 +23,12 @@ const ADDRESS = "Indore, Madhya Pradesh, India";
 
 const NEEDS = [
   "Website",
+  "E-commerce / Shopify",
+  "Landing page",
+  "Website redesign",
+  "Conversion optimization",
+  "Website care",
+  "AI chatbot",
   "Web app",
   "SaaS product",
   "AI agents & automation",
@@ -152,15 +157,15 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-export function ContactCta() {
+export function ContactCta({ initialNeed = "" }: { initialNeed?: string }) {
   const reducedMotion = useReducedMotion();
   const reveal = useReveal();
   const [step, setStep] = useState(0);
-  const [fields, setFields] = useState<Fields>(EMPTY);
+  const [fields, setFields] = useState<Fields>(() => ({ ...EMPTY, need: NEEDS.includes(initialNeed) ? initialNeed : "" }));
   const [errors, setErrors] = useState<Partial<Fields>>({});
   const [status, setStatus] = useState<Status>("idle");
   const stepRef = useRef<HTMLFieldSetElement>(null);
-  const visited = useRef(false);
+  const previousStep = useRef(step);
 
   const set = (key: keyof Fields) => (value: string) => {
     setFields((f) => ({ ...f, [key]: value }));
@@ -169,10 +174,8 @@ export function ContactCta() {
 
   /* Move focus to the new step's first field (not on initial mount). */
   useEffect(() => {
-    if (!visited.current) {
-      visited.current = true;
-      return;
-    }
+    if (previousStep.current === step) return;
+    previousStep.current = step;
     stepRef.current
       ?.querySelector<HTMLElement>("input, textarea")
       ?.focus();
@@ -248,15 +251,16 @@ export function ContactCta() {
       aria-label="Contact"
       className="relative overflow-hidden"
     >
-      <AmbientGlow intensity={0.6} />
       <div className="container-site section-y relative">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
           {/* ---- Left rail ---- */}
           <div className="lg:col-span-5">
-            <AnimatedEyebrow index="09" label="Contact" />
+            <AnimatedEyebrow index="07" label="Contact" color="#486157" accentColor="#082f57" />
             <div className="mt-4">
               <SectionHeadingMotion
                 text="Tell us what you're *building*."
+                textColor="#082f57"
+                accentColor="#082f57"
                 fontSize="clamp(27px, 6.5vw, 40px)"
               />
             </div>
@@ -395,6 +399,7 @@ export function ContactCta() {
                     else submit();
                   }}
                 >
+                  <p className="studio-form-instructions">Fields are required unless marked optional. Your brief helps us prepare a useful reply.</p>
                   {/* Progress */}
                   <div className="flex items-center justify-between">
                     <p className="text-micro uppercase tracking-[0.08em] text-muted">
@@ -495,6 +500,7 @@ export function ContactCta() {
                               </label>
                               <textarea
                                 id="contact-details"
+                                required
                                 rows={5}
                                 value={fields.details}
                                 onChange={(e) => set("details")(e.target.value)}
@@ -546,6 +552,7 @@ export function ContactCta() {
                               </label>
                               <input
                                 id="contact-name"
+                                required
                                 type="text"
                                 autoComplete="name"
                                 value={fields.name}
@@ -567,6 +574,7 @@ export function ContactCta() {
                               </label>
                               <input
                                 id="contact-email"
+                                required
                                 type="email"
                                 autoComplete="email"
                                 value={fields.email}

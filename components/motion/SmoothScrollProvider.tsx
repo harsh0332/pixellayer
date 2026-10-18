@@ -20,7 +20,8 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (reducedMotion) return;
 
-    const lenis = new Lenis();
+    // Keep long-section skip links reliable even while scroll inertia is active.
+    const lenis = new Lenis({ anchors: { duration: 0.8 } });
     lenis.on("scroll", ScrollTrigger.update);
 
     const tick = (time: number) => lenis.raf(time * 1000);
