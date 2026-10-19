@@ -69,12 +69,12 @@ const scope = {
   },
   IntersectionObserver: class {
     constructor(callback) {
-      this.callback = callback;
-      observer = this;
+      observer = { callback, disconnected: false };
+      this.state = observer;
     }
     observe() {}
     disconnect() {
-      this.disconnected = true;
+      this.state.disconnected = true;
     }
   },
   setInterval(callback) {
