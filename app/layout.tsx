@@ -18,6 +18,10 @@ import "@/styles/studio-craft.css";
 import "@/styles/studio-refinement.css";
 import "@/styles/studio-choreography.css";
 import "@/styles/resolution-hero.css";
+import "@/styles/service-experiences.css";
+import "@/styles/studio-audit.css";
+import "@/styles/process-journey.css";
+import "@/styles/funnel-pages.css";
 
 /* display: "optional" keeps text-LCP off the webfont critical path: the
    preloaded font is used when it arrives inside the block window (warm
@@ -93,34 +97,6 @@ export const metadata: Metadata = {
   },
 };
 
-/* Real client words only — no invented ratings, so no AggregateRating. */
-const REVIEWS = [
-  {
-    author: "La Vallée Farms",
-    body: "The interactive masterplan does the selling — buyers explore plots themselves and reach out already convinced. The site feels premium and actually drives enquiries.",
-  },
-  {
-    author: "Dr. Sudarshan Arya, Baby Steps Pediatric Clinic",
-    body: "The animated site genuinely stands out — parents notice it, and we've had more appointment enquiries since it went live. It finally feels as modern as the care we give.",
-  },
-  {
-    author: "Sanjeev Saxena, Aranyaani Healing Forest",
-    body: "The animations do more than look good — they help visitors actually understand what Aranyaani is about. People stay longer and get the vision immediately.",
-  },
-  {
-    author: "DPM Entertainment",
-    body: "Since the new site, our registrations and conversions have clearly improved. It's fast, clean, and does the selling for us.",
-  },
-  {
-    author: "Prince, Apna Dental Clinic",
-    body: "Really impressed with how it turned out — polished, professional, and easy for patients to book. Exactly what we wanted.",
-  },
-  {
-    author: "Sandeep, Shoolin Chemicals",
-    body: "They built us a genuinely premium website — it makes our business look as serious as it is. Great work start to finish.",
-  },
-];
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
@@ -137,12 +113,6 @@ const jsonLd = {
         addressRegion: "Madhya Pradesh",
         addressCountry: "IN",
       },
-      review: REVIEWS.map((review) => ({
-        "@type": "Review",
-        reviewBody: review.body,
-        author: { "@type": "Organization", name: review.author },
-        itemReviewed: { "@id": `${SITE_URL}/#organization` },
-      })),
     },
     {
       "@type": "WebSite",

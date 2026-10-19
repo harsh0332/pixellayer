@@ -2,7 +2,7 @@ import Link from "next/link";
 import { PageFrame, PageIntro } from "@/components/studio/StudioPages";
 import { ContactCta } from "@/components/sections/ContactCta";
 import { getService } from "@/lib/services";
-import { pageMetadata, BOOKING_URL } from "@/lib/studio";
+import { pageMetadata, BOOKING_URL, ALL_PROJECTS } from "@/lib/studio";
 export const metadata = pageMetadata(
   "Start a project",
   "Tell PixelLayerr what you want to build. Book a discovery call, share a project brief or start with a website audit.",
@@ -11,11 +11,15 @@ export const metadata = pageMetadata(
 export default async function Contact({
   searchParams,
 }: {
-  searchParams: Promise<{ service?: string }>;
+  searchParams: Promise<{ service?: string; project?: string }>;
 }) {
   const params = await searchParams;
   const service =
     typeof params.service === "string" ? getService(params.service) : undefined;
+  const project =
+    typeof params.project === "string"
+      ? ALL_PROJECTS.find((p) => p.slug === params.project)
+      : undefined;
   return (
     <PageFrame>
       <PageIntro
@@ -41,6 +45,26 @@ export default async function Contact({
           <p>A useful starting point when you already have a site.</p>
         </Link>
       </section>
+      <section
+        className="contact-next-steps eco-container"
+        aria-label="What happens next"
+      >
+        <span>WHAT HAPPENS NEXT</span>
+        <ol>
+          <li>
+            <b>01</b> We understand your goal.
+          </li>
+          <li>
+            <b>02</b> We clarify the scope and constraints.
+          </li>
+          <li>
+            <b>03</b> You decide on the next step.
+          </li>
+        </ol>
+        <p>
+          No polished brief needed. Start with the problem you want to solve.
+        </p>
+      </section>
       <div className="eco-contact-wrap">
         {service && (
           <p className="studio-contact-selection eco-container">
@@ -48,9 +72,16 @@ export default async function Contact({
             <Link href="/contact">Clear selection ×</Link>
           </p>
         )}
+        {project && (
+          <p className="studio-contact-selection eco-container">
+            YOUR REFERENCE <strong>{project.name}</strong>
+            <span>We’ve added this website to your brief.</span>
+          </p>
+        )}
         <ContactCta
-          key={service?.slug ?? "general"}
+          key={`${service?.slug ?? "general"}-${project?.slug ?? "none"}`}
           initialNeed={service?.need}
+          initialReference={project?.url}
         />
       </div>
     </PageFrame>

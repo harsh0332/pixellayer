@@ -55,7 +55,7 @@ export function ResolutionHero() {
             <span className="pl-line" data-pl-avoid><span className="pl-line__in">Built to perform<span className="pl-pixel" aria-hidden="true" /><span className="pl-sr">.</span></span></span>
           </h1>
           <div className="pl-lede-box" data-pl-avoid>
-            <p className="pl-lede pl-in">We design and develop distinctive websites that turn attention into action.</p>
+            <p className="pl-lede pl-in">Distinctive websites, thoughtful storefronts and useful digital products. Designed around your brand—and your customer’s next step.</p>
           </div>
           <div className="pl-actions" data-pl-avoid>
             <a className="pl-cta" href="#contact">

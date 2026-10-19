@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
 import type { ServiceMode } from "@/lib/services";
+import { useSequence } from "./StudioMotion";
 const LABELS: Record<ServiceMode, [string, string]> = {
   design: ["Wireframe", "Visual design"],
   store: ["Discover", "Product detail"],
@@ -13,15 +13,132 @@ const LABELS: Record<ServiceMode, [string, string]> = {
   experiment: ["More friction", "Clearer next step"],
   care: ["Review", "Care checklist"],
 };
+const STORY: Record<
+  ServiceMode,
+  { name: string; steps: string[]; notes: [string, string] }
+> = {
+  design: {
+    name: "Website design",
+    steps: ["Structure", "Visual system", "Clear action"],
+    notes: [
+      "First, make the information easy to follow. Give every page one clear job.",
+      "Then bring the brand to life, with visual hierarchy that leads to the next step.",
+    ],
+  },
+  store: {
+    name: "E-commerce",
+    steps: ["Discover", "Understand", "Buy"],
+    notes: [
+      "Help the customer find the right product through useful collections and navigation.",
+      "Answer buying questions at the product page, then make the next action easy to find.",
+    ],
+  },
+  product: {
+    name: "Product design",
+    steps: ["Priorities", "Useful flows", "Working product"],
+    notes: [
+      "Start with the tasks people need to complete, not an endless list of features.",
+      "Keep context, progress and the next action together inside the product.",
+    ],
+  },
+  workflow: {
+    name: "AI automation",
+    steps: ["Trigger", "Route", "Human handoff"],
+    notes: [
+      "Find the repeated handoffs that leave your team copying data between tools.",
+      "Connect the agreed steps, preserve context and keep people in control of decisions.",
+    ],
+  },
+  chat: {
+    name: "AI assistants",
+    steps: ["Understand", "Help", "Hand over"],
+    notes: [
+      "Understand the question and retrieve the relevant approved information.",
+      "Offer a useful next step and a clear route to a person when the conversation needs one.",
+    ],
+  },
+  system: {
+    name: "Business systems",
+    steps: ["Shared data", "Clear roles", "One view"],
+    notes: [
+      "Map the tools, permissions and information your team relies on every day.",
+      "Bring the relevant work into one view, with ownership and handoffs made visible.",
+    ],
+  },
+  campaign: {
+    name: "Landing pages",
+    steps: ["Promise", "Proof", "Action"],
+    notes: [
+      "Start with the specific promise your visitor saw before clicking.",
+      "Continue that same story with relevant proof, useful details and one clear action.",
+    ],
+  },
+  redesign: {
+    name: "Website redesign",
+    steps: ["Audit", "Rebuild", "Migrate"],
+    notes: [
+      "Understand what the current site needs to keep and where the journey breaks down.",
+      "Build a stronger direction around the content and customer paths that matter.",
+    ],
+  },
+  experiment: {
+    name: "Conversion improvement",
+    steps: ["Observe", "Hypothesize", "Validate"],
+    notes: [
+      "Review the decisions, questions and unnecessary fields in a real customer journey.",
+      "Try a simpler path, then validate whether it helps with real behavior and evidence.",
+    ],
+  },
+  care: {
+    name: "Website care",
+    steps: ["Review", "Maintain", "Verify"],
+    notes: [
+      "Regularly review the platform, content and paths your customers depend on.",
+      "Apply agreed changes, check the important journeys and document what was done.",
+    ],
+  },
+};
 export function ServiceScene({ mode }: { mode: ServiceMode }) {
-  const [view, setView] = useState(1);
+  const {
+    active: view,
+    playing,
+    ref,
+    choose,
+    resume,
+    manual,
+    setHover,
+    setFocused,
+  } = useSequence(2, 6200);
+  const story = STORY[mode];
   return (
     <div
-      className={`service-scene service-scene-${mode} ${view ? "scene-refined" : "scene-raw"}`}
+      ref={ref}
+      className={`service-scene service-scene-live service-scene-${mode} ${view ? "scene-refined" : "scene-raw"}`}
+      data-scene-playing={playing}
+      role="group"
+      aria-label={`${story.name} illustrated walkthrough`}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      onFocusCapture={() => setFocused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget))
+          setFocused(false);
+      }}
     >
       <div className="service-scene-top">
-        <span>PIXELLAYERR / {mode.toUpperCase()}</span>
-        <span>INTERACTIVE CONCEPT</span>
+        <span>THE EXPERIENCE / IN MOTION</span>
+        <span className="service-scene-status">
+          <i aria-hidden="true" />
+          {playing ? "PLAYING" : "EXPLORE AT YOUR PACE"}
+        </span>
+      </div>
+      <div className="service-story-track" aria-label="The customer journey">
+        {story.steps.map((step, index) => (
+          <span key={step}>
+            <i aria-hidden="true">0{index + 1}</i>
+            {step}
+          </span>
+        ))}
       </div>
       <div className="service-scene-stage" key={view}>
         {(mode === "design" || mode === "redesign") && (
@@ -274,6 +391,7 @@ export function ServiceScene({ mode }: { mode: ServiceMode }) {
       </div>
       <div
         className="service-scene-controls"
+        role="group"
         aria-label="Explore the service illustration"
       >
         {LABELS[mode].map((label, i) => (
@@ -281,12 +399,24 @@ export function ServiceScene({ mode }: { mode: ServiceMode }) {
             type="button"
             key={label}
             aria-pressed={view === i}
-            onClick={() => setView(i)}
+            onClick={() => choose(i)}
           >
             {label}
           </button>
         ))}
+        <button
+          className="service-scene-play"
+          type="button"
+          onClick={manual ? resume : () => choose(view)}
+          aria-label={
+            manual ? "Play service walkthrough" : "Pause service walkthrough"
+          }
+          title={manual ? "Play walkthrough" : "Pause walkthrough"}
+        >
+          {manual ? "▷" : "Ⅱ"}
+        </button>
       </div>
+      <p className="service-scene-explainer">{story.notes[view]}</p>
       <p className="service-scene-note">
         ILLUSTRATIVE DEMO · NOT A LIVE CUSTOMER SYSTEM
       </p>

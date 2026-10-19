@@ -84,13 +84,21 @@ export function MotionToggle() {
       className="studio-motion-toggle"
       type="button"
       aria-pressed={paused || reduced}
-      aria-label={reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}
-      title={reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}
+      aria-label={
+        reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"
+      }
+      title={
+        reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"
+      }
       disabled={reduced}
       onClick={() => setPaused(!paused)}
     >
-      <span className="studio-motion-icon" aria-hidden="true">{paused || reduced ? "▷" : "Ⅱ"}</span>
-      <span className="studio-motion-label">{reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}</span>
+      <span className="studio-motion-icon" aria-hidden="true">
+        {paused || reduced ? "▷" : "Ⅱ"}
+      </span>
+      <span className="studio-motion-label">
+        {reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}
+      </span>
     </button>
   );
 }
@@ -100,6 +108,7 @@ export function useSequence(count: number, delay = 4500, initialStage = 0) {
     [manual, setManual] = useState(false),
     [visible, setVisible] = useState(false),
     [hover, setHover] = useState(false),
+    [focused, setFocused] = useState(false),
     [documentVisible, setDocumentVisible] = useState(true);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -117,7 +126,7 @@ export function useSequence(count: number, delay = 4500, initialStage = 0) {
     };
   }, []);
   const motionAllowed = !paused && !reduced && visible && documentVisible;
-  const playing = motionAllowed && !manual && !hover;
+  const playing = motionAllowed && !manual && !hover && !focused;
   useEffect(() => {
     if (!playing) return;
     const timer = setInterval(() => setActive((i) => (i + 1) % count), delay);
@@ -135,5 +144,6 @@ export function useSequence(count: number, delay = 4500, initialStage = 0) {
     },
     resume: () => setManual(false),
     setHover,
+    setFocused,
   };
 }

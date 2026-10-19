@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { ContactCta } from "@/components/sections/ContactCta";
-import { MotionShell } from "@/components/studio/StudioMotion";
+import { MotionShell, MotionToggle } from "@/components/studio/StudioMotion";
 import {
   StudioNav,
   StudioFooter,
@@ -12,6 +12,8 @@ import {
 import { ScrollPortfolio } from "@/components/studio/ScrollPortfolio";
 import { SpecialtyShowcase } from "@/components/studio/SpecialtyShowcase";
 import { ResolutionHero } from "@/components/studio/ResolutionHero";
+import { ServiceDirectory } from "@/components/studio/ServiceDirectory";
+import { ConversionJourney } from "@/components/studio/ConversionJourney";
 import {
   LogoMarquee,
   ProcessExplorer,
@@ -21,69 +23,6 @@ import {
 const BOOKING =
   process.env.NEXT_PUBLIC_BOOKING_URL ??
   "https://calendly.com/harshhchouksey/30min";
-const SERVICES = [
-  {
-    title: "Websites & digital experiences",
-    slug: "websites",
-    text: "Your brand, translated into a website people remember. Strategy, design and development, built around what your visitors need to do next.",
-    tags: [
-      "Custom websites",
-      "Landing pages",
-      "Motion & interaction",
-      "Web apps",
-    ],
-  },
-  {
-    title: "E-commerce & Shopify",
-    slug: "ecommerce-shopify",
-    text: "Beautiful storefronts with a clear path to purchase. Thoughtful product pages, smooth checkout and recovery flows that keep the conversation going.",
-    tags: [
-      "Shopify development",
-      "Product pages",
-      "Cart recovery",
-      "WhatsApp flows",
-    ],
-  },
-  {
-    title: "SaaS & product engineering",
-    slug: "web-apps-saas",
-    text: "Turn the idea in your head into a product people can use. From the first prototype to authentication, billing and a platform ready to grow.",
-    tags: [
-      "MVP development",
-      "Product design",
-      "APIs & integrations",
-      "Auth & billing",
-    ],
-  },
-  {
-    title: "AI agents & automation",
-    slug: "ai-automation",
-    text: "Give your team time back. Connect lead capture, conversations and daily operations with useful AI and workflows designed for your business.",
-    tags: [
-      "AI chatbots",
-      "Voice & WhatsApp agents",
-      "Lead qualification",
-      "Workflow automation",
-    ],
-  },
-  {
-    title: "Business systems",
-    slug: "business-systems",
-    text: "Bring scattered operations into one clear view. Custom software that fits how your team actually works, with your data and ownership built in.",
-    tags: ["CRM & ERP", "Internal tools", "Dashboards", "Reporting"],
-  },
-  {
-    title: "Redesign, optimization & care",
-    slug: "website-redesign",
-    text: "Make the website you already have work harder. Refresh the experience, plan an SEO-conscious migration, improve conversions and keep everything maintained.",
-    tags: [
-      "Website redesign",
-      "SEO & migration",
-      "Conversion optimization",
-      "Maintenance",
-    ],
-  },
-];
 const FAQS = [
   [
     "How are PixelLayerr and Pixelcliq Media connected?",
@@ -145,26 +84,6 @@ export function EcosystemHome() {
   );
 }
 function HomeContent() {
-  const [service, setService] = useState(0);
-  const [quote, setQuote] = useState(0);
-  const quotes = [
-    {
-      text: "The interactive masterplan does the selling — buyers explore plots themselves and reach out already convinced. The site feels premium and actually drives enquiries.",
-      name: "La Vallée Farms",
-      category: "Real estate · Website & interactive masterplan",
-    },
-    {
-      text: "The animated site genuinely stands out — parents notice it, and we've had more appointment enquiries since it went live. It finally feels as modern as the care we give.",
-      name: "Dr. Sudarshan Arya",
-      category: "Baby Steps · Pediatric Clinic",
-    },
-    {
-      text: "The animations do more than look good — they help visitors actually understand what Aranyaani is about. People stay longer and get the vision immediately.",
-      name: "Sanjeev Saxena",
-      category: "Aranyaani Healing Forest",
-    },
-  ];
-
   return (
     <div className="studio-home studio-resolution-home">
       <StudioNav home />
@@ -188,69 +107,35 @@ function HomeContent() {
 
         <SpecialtyShowcase />
 
-        <section id="services" className="eco-section eco-services">
-          <div className="eco-container eco-services-layout">
-            <div className="eco-services-intro" data-reveal>
-              <Label number="02">What we do</Label>
-              <h2>
-                Every layer.
-                <br />
-                <em>One studio.</em>
-              </h2>
-              <p>
-                From the first “what if” to the thing that works. Design,
-                engineering and intelligence, connected from day one.
-              </p>
-              <div className="eco-layer-graphic" aria-hidden="true">
-                <span>STRATEGY</span>
-                <span>DESIGN</span>
-                <span>ENGINEERING</span>
-                <span>GROWTH ↗</span>
+        <section id="services" className="eco-section home-service-experiences">
+          <div className="eco-container">
+            <div className="eco-section-heading" data-reveal>
+              <div>
+                <Label number="02">What we do</Label>
+                <h2>
+                  Different challenges.
+                  <br />
+                  <em>One connected studio.</em>
+                </h2>
               </div>
-              <Link className="eco-text-link" href="/services">
+              <p>
+                A distinctive website. A useful product. A smoother operation.
+                Start with what your business needs next.
+              </p>
+            </div>
+            <ServiceDirectory home />
+            <div className="home-services-foot">
+              <MotionToggle />
+              <span>
+                Need a landing page, chatbot, conversion review or ongoing care?
+              </span>
+              <Link href="/services">
                 Explore all 10 services <Arrow diagonal />
               </Link>
             </div>
-            <div className="eco-service-list">
-              {SERVICES.map((item, i) => (
-                <div
-                  className={`eco-service ${service === i ? "is-open" : ""}`}
-                  key={item.title}
-                >
-                  <h3>
-                    <button
-                      type="button"
-                      aria-expanded={service === i}
-                      aria-controls={`service-panel-${i}`}
-                      id={`service-button-${i}`}
-                      onClick={() => setService(service === i ? -1 : i)}
-                    >
-                      <span>0{i + 1}</span>
-                      {item.title}
-                      <b>{service === i ? "−" : "+"}</b>
-                    </button>
-                  </h3>
-                  <div
-                    id={`service-panel-${i}`}
-                    role="region"
-                    aria-labelledby={`service-button-${i}`}
-                    hidden={service !== i}
-                  >
-                    <p>{item.text}</p>
-                    <div className="eco-service-tags">
-                      {item.tags.map((tag) => (
-                        <span key={tag}>{tag}</span>
-                      ))}
-                    </div>
-                    <Link href={`/services/${item.slug}`}>
-                      Explore this service <Arrow diagonal />
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </section>
+        <ConversionJourney />
 
         <section id="ecosystem" className="eco-section eco-connected">
           <div className="eco-container">
@@ -360,43 +245,53 @@ function HomeContent() {
           </div>
         </section>
 
-        <section className="eco-testimonial" aria-label="Client testimonials">
-          <div className="eco-container eco-quote-layout">
-            <div>
-              <Label number="05">In good company</Label>
-              <span className="eco-quote-mark" aria-hidden="true">
-                “
-              </span>
-            </div>
-            <div>
-              <div aria-live="polite">
-                <blockquote key={quote}>{quotes[quote].text}</blockquote>
-                <div className="eco-quote-person">
-                  <span>{quotes[quote].name.slice(0, 1)}</span>
-                  <p>
-                    <strong>{quotes[quote].name}</strong>
-                    <small>{quotes[quote].category}</small>
-                  </p>
-                </div>
+        <section className="home-handover eco-section">
+          <div className="eco-container">
+            <div className="eco-section-heading">
+              <div>
+                <Label number="05">Built to be yours</Label>
+                <h2>
+                  The launch is a milestone.
+                  <br />
+                  <em>Ownership is the standard.</em>
+                </h2>
               </div>
-              <div className="eco-quote-controls">
-                <span>0{quote + 1} / 03</span>
-                <button
-                  type="button"
-                  aria-label="Previous testimonial"
-                  onClick={() => setQuote((quote + 2) % 3)}
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next testimonial"
-                  onClick={() => setQuote((quote + 1) % 3)}
-                >
-                  →
-                </button>
-              </div>
+              <p>
+                We agree the handover before the build begins, so you know what
+                you’re getting and how to run it.
+              </p>
             </div>
+            <div className="home-handover-grid">
+              {[
+                [
+                  "01",
+                  "Your foundation",
+                  "Code, content and account ownership, with the relevant access handed to your team.",
+                ],
+                [
+                  "02",
+                  "A clear handover",
+                  "A walkthrough of the agreed tools, content controls and important customer journeys.",
+                ],
+                [
+                  "03",
+                  "A practical next step",
+                  "A list of follow-up priorities, with maintenance and improvements scoped clearly.",
+                ],
+              ].map(([n, title, copy]) => (
+                <article key={n} data-reveal>
+                  <span>
+                    {n}
+                    <b>↗</b>
+                  </span>
+                  <h3>{title}</h3>
+                  <p>{copy}</p>
+                </article>
+              ))}
+            </div>
+            <Link className="eco-text-link" href="/approach">
+              See how we work together ↗
+            </Link>
           </div>
         </section>
 

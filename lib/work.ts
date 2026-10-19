@@ -38,8 +38,8 @@ export const PROJECTS: WorkProject[] = [
     slug: "the-sugar-story",
     category: "E-commerce",
     url: "https://thesugarstory.co.in",
-    line: "Online bakery storefront for a premium homemade dessert brand — cakes, brownies and cheesecakes ordered straight from the site.",
-    alt: "Homepage of The Sugar Story, a premium homemade bakery in Bhopal, with online ordering",
+    line: "A boutique bakery storefront with product choices, custom cakes and a build-your-own dessert hamper journey.",
+    alt: "The Sugar Story’s current cream-and-burgundy homepage with a Biscoff cheesecake, brownies and tiramisu",
   },
   {
     name: "Baby Steps",

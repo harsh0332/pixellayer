@@ -49,10 +49,19 @@ export default function Audit() {
               </div>
             </article>
           ))}
+          <div className="audit-review-output">
+            <span>THE USEFUL PART</span>
+            <h3>A prioritised starting point.</h3>
+            <p>
+              A review of the friction we find, why it matters and which
+              improvements to discuss first. This is a human website review, not
+              an automated score or a guarantee of results.
+            </p>
+          </div>
           <p className="studio-audit-boundary">
-            Share your main goal and the pages that matter most. We’ll use
-            that context to identify practical improvements and discuss
-            which ones to tackle first.
+            Share your main goal and the pages that matter most. We’ll use that
+            context to identify practical improvements and discuss which ones to
+            tackle first.
           </p>
         </div>
         <AuditRequest />

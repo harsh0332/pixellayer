@@ -269,7 +269,7 @@ const PROCESS = [
   },
 ];
 export function ProcessExplorer() {
-  const { active, ref, choose, playing, motionAllowed, manual, resume, setHover } =
+  const { active, ref, choose, playing, manual, resume, setHover, setFocused } =
     useSequence(PROCESS.length, 6500);
   const id = useId();
   const item = PROCESS[active];
@@ -277,13 +277,13 @@ export function ProcessExplorer() {
     <div
       className="studio-process-explorer"
       data-stage={active}
-      data-playing={motionAllowed}
+      data-playing={playing}
       ref={ref}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
-      onFocusCapture={() => setHover(true)}
+      onFocusCapture={() => setFocused(true)}
       onBlurCapture={(e) => {
-        if (!e.currentTarget.contains(e.relatedTarget)) setHover(false);
+        if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
       }}
     >
       <div
@@ -346,17 +346,11 @@ export function ProcessExplorer() {
             ))}
           </div>
         </div>
-        <ProcessDiagram key={active} stage={active} playing={motionAllowed} />
+        <ProcessDiagram key={active} stage={active} playing={playing} />
       </div>
       <div className="studio-process-foot">
         <span>Clear scope. Reviewable milestones. Full ownership.</span>
-        {manual ? (
-          <button type="button" onClick={resume}>
-            Play walkthrough ▷
-          </button>
-        ) : (
-          <span>SELECT A STAGE TO EXPLORE</span>
-        )}
+        <button type="button" onClick={manual ? resume : () => choose(active)}>{manual ? "Play walkthrough ▷" : "Pause walkthrough Ⅱ"}</button>
       </div>
     </div>
   );

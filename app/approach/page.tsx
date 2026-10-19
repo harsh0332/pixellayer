@@ -1,5 +1,6 @@
 import { PageFrame, PageIntro } from "@/components/studio/StudioPages";
 import { ProcessExplorer, PageCTA } from "@/components/studio/StudioSections";
+import { DeliveryJourney } from "@/components/studio/DeliveryJourney";
 import { pageMetadata } from "@/lib/studio";
 export const metadata = pageMetadata(
   "Our approach",
@@ -18,6 +19,7 @@ export default function Approach() {
       <section className="eco-section eco-container">
         <ProcessExplorer />
       </section>
+      <DeliveryJourney />
       <section className="eco-section studio-standards">
         <div className="eco-container">
           <p className="eco-label">WHAT YOU CAN EXPECT</p>

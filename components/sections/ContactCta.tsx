@@ -157,11 +157,11 @@ function FieldError({ id, message }: { id: string; message?: string }) {
   );
 }
 
-export function ContactCta({ initialNeed = "" }: { initialNeed?: string }) {
+export function ContactCta({ initialNeed = "", initialReference = "" }: { initialNeed?: string; initialReference?: string }) {
   const reducedMotion = useReducedMotion();
   const reveal = useReveal();
   const [step, setStep] = useState(0);
-  const [fields, setFields] = useState<Fields>(() => ({ ...EMPTY, need: NEEDS.includes(initialNeed) ? initialNeed : "" }));
+  const [fields, setFields] = useState<Fields>(() => ({ ...EMPTY, need: NEEDS.includes(initialNeed) ? initialNeed : "", link: initialReference }));
   const [errors, setErrors] = useState<Partial<Fields>>({});
   const [status, setStatus] = useState<Status>("idle");
   const stepRef = useRef<HTMLFieldSetElement>(null);
@@ -192,7 +192,7 @@ export function ContactCta({ initialNeed = "" }: { initialNeed?: string }) {
      delivery path (real studio number, no keys needed). */
   const whatsappBriefHref = () => {
     const lines = [
-      "New project brief — pixellayerr.com",
+      "New project brief — pixellayerss.com",
       `Need: ${fields.need}`,
       `Budget: ${fields.budget} · Timeline: ${fields.timeline}`,
       `Details: ${fields.details.trim()}`,
@@ -265,7 +265,7 @@ export function ContactCta({ initialNeed = "" }: { initialNeed?: string }) {
               />
             </div>
             <motion.p {...reveal(0.05)} className="mt-6 max-w-md text-body-lg text-muted">
-              Four short steps — we’ll reply with a clear next step.
+              Share the essentials in four short steps. Prefer a conversation? Book a call or chat on WhatsApp.
             </motion.p>
 
             <motion.div
@@ -524,7 +524,7 @@ export function ContactCta({ initialNeed = "" }: { initialNeed?: string }) {
                                 htmlFor="contact-link"
                                 className="mb-2 block text-small font-medium text-text"
                               >
-                                Current site or product{" "}
+                                Current website or project reference{" "}
                                 <span className="font-normal text-muted">
                                   (optional)
                                 </span>

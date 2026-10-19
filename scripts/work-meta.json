@@ -226,21 +226,19 @@
   "the-sugar-story": {
     "url": "https://thesugarstory.co.in",
     "prepared": true,
-    "title": "The Sugar Story | Best Online Bakery in Bhopal for Cakes & Desserts",
+    "title": "The Sugar Story | Boutique Cakes & Desserts in Bhopal",
     "description": "The Sugar Story - Premium homemade bakery in Bhopal. Order cakes, brownies, cheesecakes & desserts online.",
     "h1": [
-      "Premium HomemadeDesserts in Bhopal"
+      "Custom cakes & desserts in Bhopal."
     ],
     "headings": [
-      "🔥 Bestsellers",
-      "Complete Dessert Menu with Prices",
-      "Premium Cake Price List",
-      "Premium Cheesecakes in Bhopal",
-      "Special Offers",
-      "Custom Theme Cakes in Bhopal",
-      "Order Cakes & Desserts Online in Bhopal",
-      "Follow Us on Instagram"
-    ]
+      "Find your favourite.",
+      "From our kitchen.",
+      "Their favourites. Your thoughtful touch.",
+      "A cake with their name on it."
+    ],
+    "capturedAt": "2026-10-20",
+    "captureNote": "Live desktop browser capture, 1440px wide; logged-in toolbar and floating admin controls cropped out. Homepage layout verified in rendered DOM."
   },
   "tfhq": {
     "url": "https://thefitnessheadquator.vercel.app",

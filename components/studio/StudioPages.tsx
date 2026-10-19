@@ -1,13 +1,122 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type { StudioService } from "@/lib/services";
+import type { ServiceMode, StudioService } from "@/lib/services";
 import { STUDIO_SERVICES } from "@/lib/services";
 import { ALL_PROJECTS, PROJECT_DETAILS } from "@/lib/studio";
 import { StudioNav, StudioFooter } from "./StudioChrome";
 import { MotionShell } from "./StudioMotion";
 import { ServiceScene } from "./ServiceScene";
 import { PageCTA, RelatedWork } from "./StudioSections";
+
+const SERVICE_CHECKPOINTS: Record<
+  ServiceMode,
+  [string, string, string, string]
+> = {
+  design: [
+    "Audience & page map",
+    "A direction to approve",
+    "A working preview",
+    "Launch checklist & handover",
+  ],
+  store: [
+    "Catalog & store requirements",
+    "A complete buying journey",
+    "Connected store operations",
+    "Test orders & handover",
+  ],
+  product: [
+    "The essential first release",
+    "A testable product flow",
+    "Reviewable build milestones",
+    "A release & iteration plan",
+  ],
+  workflow: [
+    "One workflow worth improving",
+    "Triggers, rules & exceptions",
+    "A controlled test run",
+    "Ownership & monitoring",
+  ],
+  chat: [
+    "Questions & approved sources",
+    "Conversation & escalation rules",
+    "Test conversations",
+    "A handover to your team",
+  ],
+  system: [
+    "People, roles & data sources",
+    "A workspace prototype",
+    "Connected data & permissions",
+    "A team rollout plan",
+  ],
+  campaign: [
+    "One audience & one action",
+    "Message & page hierarchy",
+    "A working campaign page",
+    "Form & tracking checks",
+  ],
+  redesign: [
+    "What to keep & what to change",
+    "A revised visitor journey",
+    "A reviewable replacement",
+    "Redirect & launch checks",
+  ],
+  experiment: [
+    "A measurable question",
+    "A prioritized hypothesis",
+    "An agreed experiment",
+    "Evidence for the next decision",
+  ],
+  care: [
+    "Current stack & access",
+    "Coverage & responsibilities",
+    "An approved change log",
+    "The next improvement priorities",
+  ],
+};
+
+const SERVICE_DISCOVERY: Record<ServiceMode, [string, string]> = {
+  design: [
+    "Your offer, audience and existing content",
+    "The pages and enquiry path your first release needs",
+  ],
+  store: [
+    "Your catalog, fulfilment setup and current store",
+    "The storefront, checkout and integrations to scope",
+  ],
+  product: [
+    "The user problem and your must-have workflow",
+    "What belongs in the first release—and what can wait",
+  ],
+  workflow: [
+    "A repetitive task and the tools involved",
+    "The trigger, exceptions and human approval points",
+  ],
+  chat: [
+    "Recurring customer questions and approved answers",
+    "What the assistant can answer and when a person takes over",
+  ],
+  system: [
+    "A sample workflow and the people who use it",
+    "The roles, data and reporting views to design first",
+  ],
+  campaign: [
+    "Your offer, audience and traffic source",
+    "The message, proof and action the page should prioritize",
+  ],
+  redesign: [
+    "Your current URL and the friction you notice",
+    "What to preserve, improve and migrate safely",
+  ],
+  experiment: [
+    "Your main conversion goal and available analytics",
+    "Which friction to investigate and how to measure a change",
+  ],
+  care: [
+    "Your website URL, stack and recurring issues",
+    "The access review, maintenance scope and support boundaries",
+  ],
+};
 
 export function PageFrame({ children }: { children: ReactNode }) {
   return (
@@ -159,6 +268,10 @@ export function ServiceDetail({ service: s }: { service: StudioService }) {
                 <div>
                   <h3>{title}</h3>
                   <p>{text}</p>
+                  <small className="service-review-output">
+                    <i aria-hidden="true">✓</i> REVIEW POINT /{" "}
+                    {SERVICE_CHECKPOINTS[s.mode][i]}
+                  </small>
                 </div>
                 <b aria-hidden="true">↗</b>
               </li>
@@ -183,10 +296,32 @@ export function ServiceDetail({ service: s }: { service: StudioService }) {
             <p>
               {s.mode === "workflow" || s.mode === "chat"
                 ? "Public websites for businesses in this space. These previews demonstrate our web work, not evidence of undisclosed client automation systems."
-                : "Explore the project context and the original website. Every preview comes from our existing portfolio."}
+                : s.projects.length
+                  ? "Explore the project context and the original website. Every preview comes from our existing portfolio."
+                  : "A real example from your business helps us define the right scope, responsibilities and first milestone."}
             </p>
           </div>
-          <RelatedWork slugs={s.projects} />
+          {s.projects.length ? (
+            <RelatedWork slugs={s.projects} />
+          ) : (
+            <div className="service-first-conversation">
+              <article>
+                <span>BRING THE CONTEXT</span>
+                <h3>{SERVICE_DISCOVERY[s.mode][0]}</h3>
+                <p>
+                  No finished specification needed. A real example is a useful
+                  place to start.
+                </p>
+              </article>
+              <article>
+                <span>LEAVE WITH DIRECTION</span>
+                <h3>{SERVICE_DISCOVERY[s.mode][1]}</h3>
+                <Link href={`/contact?service=${s.slug}`}>
+                  Discuss this starting point ↗
+                </Link>
+              </article>
+            </div>
+          )}
         </div>
       </section>
       <section className="eco-section eco-faq">
@@ -262,7 +397,13 @@ export function ProjectDetail({ slug }: { slug: string }) {
               Visit the website <span>↗</span>
             </a>
           </div>
-          <div className="studio-project-cover">
+          <a
+            className="studio-project-cover"
+            href={p.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`Visit ${p.name} live website (opens in a new tab)`}
+          >
             <div>
               <span>● ● ●</span>
               <small>{new URL(p.url).hostname}</small>
@@ -284,7 +425,7 @@ export function ProjectDetail({ slug }: { slug: string }) {
                 preload
               />
             </div>
-          </div>
+          </a>
         </div>
       </section>
       <section className="eco-section studio-project-story">
@@ -323,6 +464,62 @@ export function ProjectDetail({ slug }: { slug: string }) {
           </div>
         </div>
       </section>
+      {slug === "the-sugar-story" && (
+        <section className="eco-section sugar-project-paths">
+          <div className="eco-container">
+            <div className="eco-section-heading">
+              <div>
+                <p className="eco-label">TWO WAYS TO FIND SOMETHING SWEET</p>
+                <h2>
+                  Ready to order.
+                  <br />
+                  <em>Or made for you.</em>
+                </h2>
+              </div>
+              <p>
+                Some customers know what they want. Others need something
+                personal. The storefront gives both a useful route.
+              </p>
+            </div>
+            <div className="sugar-path-grid">
+              <a
+                href="https://thesugarstory.co.in/shop/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>01 / EVERYDAY DISCOVERY</span>
+                <h3>
+                  Explore the menu.
+                  <br />
+                  <em>Choose your favourite.</em>
+                </h3>
+                <p>
+                  Product categories, sizes and basket actions bring the
+                  standard ordering journey together.
+                </p>
+                <b>Explore the shop ↗</b>
+              </a>
+              <a
+                href="https://thesugarstory.co.in/dessert-hampers-gifting-bhopal/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span>02 / SOMETHING PERSONAL</span>
+                <h3>
+                  Build a hamper.
+                  <br />
+                  <em>Make it their own.</em>
+                </h3>
+                <p>
+                  Choose treats and carry the selection into a WhatsApp enquiry
+                  for the kitchen to quote.
+                </p>
+                <b>Explore the hamper builder ↗</b>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
       {slug === "la-vallee-farms" && (
         <section className="eco-section studio-masterplan">
           <div className="eco-container">
@@ -377,10 +574,28 @@ export function ProjectDetail({ slug }: { slug: string }) {
           Back to the full portfolio ↗
         </Link>
       </section>
-      <PageCTA
-        title="Have a different challenge in mind?"
-        copy="Your business has its own audience, story and next step. Let’s build the right experience for it."
-      />
+      <section className="project-context-cta eco-section">
+        <div className="eco-container">
+          <div>
+            <p className="eco-label">A STARTING POINT FOR YOUR OWN PROJECT</p>
+            <h2>
+              Different business.
+              <br />
+              <em>The same attention to detail.</em>
+            </h2>
+            <p>
+              Tell us what caught your eye and what your customers need to do.
+              We’ll shape the right experience around your business.
+            </p>
+          </div>
+          <Link
+            className="eco-action"
+            href={`/contact?service=${slug === "the-sugar-story" ? "ecommerce-shopify" : "websites"}&project=${p.slug}`}
+          >
+            Discuss a project like this <span>↗</span>
+          </Link>
+        </div>
+      </section>
     </PageFrame>
   );
 }

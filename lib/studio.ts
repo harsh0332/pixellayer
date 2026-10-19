@@ -65,13 +65,13 @@ export const PROJECT_DETAILS: Record<
     journey: ["Discover the development", "Explore a plot", "Start an enquiry"],
   },
   "the-sugar-story": {
-    focus: "Give a homemade dessert brand a clear online shopping experience.",
+    focus: "Connect everyday treats, celebration cakes and personal gifts in one boutique storefront.",
     features: [
-      "Cakes, brownies and cheesecake catalog",
-      "Product discovery and online ordering",
-      "A distinct visual identity for a premium bakery",
+      "Category-led discovery, product sizes and online ordering",
+      "Build-your-own dessert hampers with a WhatsApp quote journey",
+      "Custom cake enquiries and delivery information for Bhopal",
     ],
-    journey: ["Explore the menu", "Choose a dessert", "Place an order"],
+    journey: ["Find an occasion or a craving", "Choose products or build a hamper", "Order online or request a quote"],
   },
   "baby-steps": {
     focus: "Help parents understand the practice and find the care they need.",

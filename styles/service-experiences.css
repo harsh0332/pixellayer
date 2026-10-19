@@ -1,0 +1,823 @@
+/* Service illustrations share a material system, but explain distinct jobs. */
+.service-visual-directory {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-top: 42px;
+}
+.service-visual-card {
+  min-width: 0;
+  border: 1px solid #082f5723;
+  border-radius: 16px;
+  background: #fafbf7;
+  overflow: hidden;
+  transition:
+    box-shadow 0.3s,
+    border-color 0.3s;
+}
+.service-visual-card:hover {
+  border-color: #396fc078;
+  box-shadow: 0 18px 40px #082f5712;
+}
+.service-visual-card > a {
+  display: block;
+  color: var(--ink);
+  height: 100%;
+}
+.service-visual-card > a:focus-visible {
+  outline-offset: -5px;
+  border-radius: 16px;
+}
+.service-visual-copy {
+  padding: 28px 30px;
+}
+.service-visual-number {
+  font:
+    10px var(--font-mono-face),
+    monospace;
+  letter-spacing: 0.09em;
+  color: #49647e;
+}
+.ecosystem .service-visual-copy h3 {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: clamp(23px, 2.1vw, 30px);
+  font-weight: 500;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+  margin: 13px 0;
+}
+.service-visual-copy h3 > span {
+  font-size: 24px;
+  transition: transform 0.3s;
+}
+.service-visual-card:hover h3 > span {
+  transform: translate(3px, -3px);
+}
+.ecosystem .service-visual-copy p {
+  color: #45617b;
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 38ch;
+}
+.service-visual-delivery {
+  display: flex;
+  gap: 9px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.service-visual-delivery small {
+  font-size: 10px;
+  border: 1px solid #082f5720;
+  padding: 7px 9px;
+  border-radius: 4px;
+  line-height: 1.5;
+}
+.service-visual-link {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #082f5720;
+  padding-top: 18px;
+  margin-top: 22px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.service-glyph {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  height: 280px;
+  padding: 30px;
+  overflow: hidden;
+  background: #e5edf6;
+  border-bottom: 1px solid #082f5715;
+  color: #082f57;
+}
+.glyph-grid {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image:
+    linear-gradient(#082f5707 1px, transparent 1px),
+    linear-gradient(90deg, #082f5707 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to top, #000, transparent);
+}
+.service-glyph em {
+  font-family: var(--font-serif-face), serif;
+  font-weight: 400;
+}
+.service-glyph small {
+  font:
+    8px var(--font-mono-face),
+    monospace;
+  letter-spacing: 0.06em;
+}
+.glyph-browser {
+  width: 85%;
+  max-width: 390px;
+  border: 1px solid #082f5730;
+  border-radius: 7px;
+  background: #fafbf7;
+  box-shadow: 10px 16px 0 #082f570b;
+  position: relative;
+  transform: rotate(-3deg);
+}
+.glyph-browser-bar {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-bottom: 1px solid #082f571a;
+  padding: 0 11px;
+}
+.glyph-browser-bar i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #a5b6c5;
+}
+.glyph-browser-bar span {
+  margin-left: auto;
+  font:
+    6px var(--font-mono-face),
+    monospace;
+}
+.glyph-website {
+  position: relative;
+  padding: 22px;
+  min-height: 156px;
+  overflow: hidden;
+}
+.glyph-type {
+  display: block;
+  font-size: 36px;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  font-weight: 600;
+}
+.glyph-type em {
+  display: block;
+  font-size: 23px;
+  letter-spacing: -0.8px;
+  margin-top: 6px;
+}
+.glyph-art {
+  position: absolute;
+  right: 20px;
+  top: 33px;
+  width: 65px;
+  height: 65px;
+}
+.glyph-art i {
+  position: absolute;
+  inset: 0;
+  border-radius: 11px;
+  background: #468be0;
+  transform: rotate(35deg);
+  animation: glyph-assemble 6s ease-in-out infinite;
+}
+.glyph-art i:nth-child(2) {
+  inset: 8px;
+  background: #082f57;
+  animation-delay: 0.3s;
+}
+.glyph-art i:nth-child(3) {
+  inset: 20px;
+  background: #d6f06e;
+  animation-delay: 0.6s;
+}
+.glyph-lines {
+  display: block;
+  width: 45%;
+  margin: 16px 0 10px;
+}
+.glyph-lines i {
+  display: block;
+  height: 3px;
+  background: #aec2d5;
+  margin-bottom: 4px;
+}
+.glyph-lines i:last-child {
+  width: 70%;
+}
+.glyph-website > b {
+  font-size: 8px;
+  background: #082f57;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 2px;
+}
+.glyph-cursor {
+  position: absolute;
+  left: 55%;
+  bottom: 20px;
+  font-size: 24px;
+  animation: glyph-cursor 6s ease-in-out infinite;
+}
+.glyph-badge {
+  position: absolute;
+  left: 12px;
+  bottom: -15px;
+  background: #d6f06e;
+  font:
+    6px var(--font-mono-face),
+    monospace;
+  padding: 7px 10px;
+  transform: rotate(3deg);
+}
+.glyph-redesign {
+  background: #d9e5f5;
+}
+.glyph-redesign .glyph-website::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, #c0d0df 0 3px, #e1e9ee 3px 28px);
+  clip-path: inset(0 60% 0 0);
+  animation: glyph-redraw 7s ease-in-out infinite;
+  opacity: 0.55;
+  pointer-events: none;
+}
+.glyph-shop {
+  width: 100%;
+  max-width: 400px;
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  gap: 15px;
+  align-items: center;
+  position: relative;
+}
+.glyph-bag {
+  height: 165px;
+  display: grid;
+  place-items: center;
+  background: #d4e0e4;
+  border-radius: 70px 70px 10px 10px;
+}
+.glyph-bag svg {
+  width: 100px;
+  height: 130px;
+  animation: glyph-float 6s ease-in-out infinite;
+}
+.glyph-shop strong {
+  display: block;
+  font-size: 27px;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  margin-top: 9px;
+}
+.glyph-swatches {
+  display: flex;
+  gap: 6px;
+  margin: 12px 0;
+}
+.glyph-swatches i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #082f57;
+}
+.glyph-swatches i:nth-child(2) {
+  background: #87a7cb;
+}
+.glyph-swatches i:nth-child(3) {
+  background: #d6f06e;
+}
+.glyph-shop b {
+  display: flex;
+  justify-content: space-between;
+  background: #082f57;
+  color: #fff;
+  padding: 10px;
+  font-size: 9px;
+}
+.glyph-toast {
+  position: absolute;
+  bottom: -24px;
+  left: 10px;
+  padding: 8px 11px;
+  border-radius: 4px;
+  background: #fafbf7;
+  box-shadow: 0 5px 20px #082f5710;
+  font-size: 8px;
+  animation: glyph-confirm 6s ease-in-out infinite;
+}
+.glyph-store {
+  background: #e9ede4;
+}
+.glyph-workspace {
+  display: grid;
+  grid-template-columns: 24% 1fr;
+  width: 100%;
+  max-width: 420px;
+  border: 1px solid #b1c4d6;
+  background: #fafbf7;
+  border-radius: 7px;
+  min-height: 190px;
+  box-shadow: 8px 10px 0 #082f570a;
+  transform: rotate(2deg);
+}
+.glyph-workspace > div {
+  background: #082f57;
+  color: #dbe6f2;
+  padding: 19px 10px;
+  border-radius: 6px 0 0 6px;
+}
+.glyph-workspace > div > b {
+  font-size: 12px;
+  letter-spacing: -0.7px;
+}
+.glyph-workspace > div > span {
+  display: block;
+  font-size: 7px;
+  margin-top: 18px;
+  opacity: 0.75;
+}
+.glyph-workspace section {
+  padding: 20px 15px;
+  min-width: 0;
+}
+.glyph-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 15px;
+}
+.glyph-board > div > b {
+  font-size: 7px;
+  font-weight: 500;
+}
+.glyph-board i {
+  display: block;
+  background: #cfdfef;
+  border: 1px solid #b8ccdf;
+  height: 27px;
+  border-radius: 3px;
+  margin-top: 7px;
+  animation: glyph-confirm 5s ease-in-out infinite;
+}
+.glyph-board > div:nth-child(2) i {
+  background: #b8d2eb;
+}
+.glyph-board > div:last-child i {
+  background: #dce9b8;
+}
+.glyph-sync {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  font-size: 6px;
+  margin-top: 18px;
+}
+.glyph-sync > i {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4e7656;
+}
+.glyph-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  isolation: isolate;
+}
+.glyph-flow > span {
+  grid-column: 1/-1;
+  font:
+    8px var(--font-mono-face),
+    monospace;
+  text-align: center;
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+.glyph-flow > div {
+  text-align: center;
+}
+.glyph-flow b {
+  display: grid;
+  place-items: center;
+  width: min(53px, 100%);
+  aspect-ratio: 1;
+  border: 1px solid #7f9cbb;
+  background: #fafbf7;
+  border-radius: 13px;
+  margin: auto auto 12px;
+  font-size: 24px;
+  animation: glyph-node 5s ease infinite;
+}
+.glyph-flow svg {
+  position: absolute;
+  inset: 65px 0 auto;
+  width: 100%;
+  height: 40px;
+  z-index: -1;
+}
+.glyph-flow path {
+  stroke: #719ecb;
+  stroke-width: 2;
+  stroke-dasharray: 5 7;
+  animation: glyph-flow 3s linear infinite;
+}
+.glyph-chat {
+  max-width: 380px;
+  width: 100%;
+  font-size: 10px;
+}
+.glyph-chat > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+}
+.glyph-chat > div > i {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  background: #082f57;
+  color: #d6f06e;
+  border-radius: 50%;
+  font-size: 19px;
+  font-style: normal;
+}
+.ecosystem .glyph-chat > p {
+  font-size: 11px;
+  padding: 13px 17px;
+  border-radius: 12px;
+  background: #f8fafc;
+  max-width: 90%;
+  margin: 10px 0;
+  box-shadow: 0 4px 10px #082f5709;
+}
+.ecosystem .glyph-chat > p:first-of-type {
+  margin-left: auto;
+  background: #082f57;
+  color: #fff;
+  border-bottom-right-radius: 2px;
+}
+.glyph-chat > p:last-of-type {
+  border-bottom-left-radius: 2px;
+  animation: glyph-confirm 6s ease infinite;
+}
+.glyph-chat p > span {
+  display: inline-block;
+  padding: 6px;
+  margin-top: 9px;
+  margin-right: 5px;
+  background: #e4edf4;
+  font-size: 8px;
+}
+.glyph-typing {
+  display: flex;
+  gap: 4px;
+  margin: 10px;
+}
+.glyph-typing i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #396fc0;
+  animation: glyph-confirm 1.5s infinite;
+}
+.glyph-typing i:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.glyph-typing i:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.glyph-campaign {
+  display: grid;
+  grid-template-columns: 1fr 25px 1.1fr;
+  gap: 12px;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+}
+.glyph-campaign > div {
+  padding: 18px;
+  background: #d5e7ab;
+  border: 1px solid #082f5720;
+  border-radius: 6px;
+  min-height: 170px;
+  transform: rotate(-4deg);
+}
+.glyph-campaign > div:last-child {
+  background: #fafbf7;
+  transform: rotate(3deg);
+}
+.glyph-campaign b {
+  display: block;
+  margin-top: 16px;
+  font-size: 23px;
+  line-height: 1;
+  letter-spacing: -0.6px;
+}
+.glyph-campaign i {
+  display: block;
+  width: 45px;
+  height: 30px;
+  border-radius: 30px 30px 0 0;
+  background: #082f57;
+  margin-top: 16px;
+}
+.glyph-campaign > span {
+  font-size: 26px;
+  animation: glyph-handoff 4s ease infinite;
+}
+.glyph-campaign div > span {
+  display: block;
+  font-size: 7px;
+  margin-top: 13px;
+}
+.glyph-experiment {
+  width: 85%;
+  max-width: 330px;
+  background: #fafbf7;
+  padding: 19px 24px;
+  border: 1px solid #b1c4d6;
+  border-radius: 7px;
+  box-shadow: 8px 10px 0 #082f570a;
+}
+.glyph-experiment > strong {
+  display: block;
+  font-size: 25px;
+  letter-spacing: -0.8px;
+  margin-top: 8px;
+}
+.glyph-experiment > div {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  margin-top: 12px;
+}
+.glyph-experiment > div > span {
+  font-size: 7px;
+  border-bottom: 1px solid #a7bace;
+  padding: 5px 0;
+  color: #4b647c;
+}
+.glyph-experiment .glyph-extra {
+  opacity: 0.35;
+  text-decoration: line-through;
+}
+.glyph-experiment b {
+  display: block;
+  background: #082f57;
+  color: #fff;
+  text-align: center;
+  font-size: 8px;
+  padding: 8px;
+  margin-top: 12px;
+}
+.glyph-experiment em {
+  display: block;
+  font-family: var(--font-mono-face), monospace;
+  font-size: 6px;
+  font-style: normal;
+  margin-top: 8px;
+  color: #49647e;
+}
+.glyph-care {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 20px;
+  align-items: center;
+  width: 100%;
+  max-width: 380px;
+}
+.glyph-care > div {
+  position: relative;
+}
+.glyph-care svg {
+  width: 100%;
+  transform: rotate(-90deg);
+  fill: none;
+  stroke-width: 3;
+}
+.glyph-care circle {
+  stroke: #b3c8d9;
+}
+.glyph-care circle:last-child {
+  stroke: #396fc0;
+  stroke-dasharray: 308;
+  stroke-dashoffset: 85;
+  animation: glyph-ring 6s ease-in-out infinite;
+}
+.glyph-care > div > span {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 35px;
+}
+.glyph-care strong {
+  font-size: 25px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.8px;
+}
+.glyph-care section > span {
+  display: block;
+  font-size: 9px;
+  margin-top: 14px;
+  animation: glyph-confirm 6s ease infinite;
+}
+.glyph-care section i {
+  font-style: normal;
+  background: #d6f06e;
+  padding: 2px 4px;
+  margin-right: 9px;
+}
+.service-glyph[data-in-view="false"] *,
+[data-motion-paused="true"] .service-glyph * {
+  animation-play-state: paused !important;
+}
+.service-scene-live .service-scene-top {
+  align-items: center;
+}
+.service-scene-status {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.service-scene-status i {
+  width: 5px;
+  height: 5px;
+  background: #4c795e;
+  border-radius: 50%;
+}
+.service-story-track {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 22px 0 6px;
+}
+.service-story-track > span {
+  font-size: 10px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.service-story-track i {
+  font:
+    8px var(--font-mono-face),
+    monospace;
+  font-style: normal;
+  color: #50718d;
+}
+.service-scene-live .service-scene-stage {
+  min-height: 280px;
+}
+.service-scene-live[data-scene-playing="false"] * {
+  animation-play-state: paused !important;
+}
+.ecosystem .service-scene-live .service-scene-explainer {
+  font-size: 12px !important;
+  line-height: 1.7;
+  min-height: 4em;
+  margin: 16px 0 0;
+  color: #345574;
+  max-width: none;
+}
+.service-scene-controls .service-scene-play {
+  margin-left: auto;
+  min-width: 38px;
+}
+.service-scene-live .service-scene-note {
+  font-size: 8px !important;
+  margin-top: 14px;
+}
+.service-scene-live.scene-raw .service-mini-browser {
+  filter: grayscale(1);
+}
+@keyframes glyph-assemble {
+  0%,
+  100% {
+    transform: translateY(0) rotate(35deg);
+  }
+  45% {
+    transform: translateY(-9px) rotate(55deg);
+  }
+}
+@keyframes glyph-cursor {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  45% {
+    transform: translate(-60px, -8px);
+  }
+}
+@keyframes glyph-redraw {
+  0%,
+  100% {
+    clip-path: inset(0 80% 0 0);
+  }
+  50% {
+    clip-path: inset(0 15% 0 0);
+  }
+}
+@keyframes glyph-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(5deg);
+  }
+}
+@keyframes glyph-confirm {
+  0%,
+  100% {
+    opacity: 0.65;
+    transform: translateY(3px);
+  }
+  40%,
+  70% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes glyph-node {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 #468be000;
+  }
+  35% {
+    box-shadow: 0 0 0 6px #468be026;
+    background: #d6f06e;
+  }
+}
+@keyframes glyph-flow {
+  to {
+    stroke-dashoffset: -48;
+  }
+}
+@keyframes glyph-handoff {
+  50% {
+    transform: translateX(5px);
+  }
+}
+@keyframes glyph-ring {
+  50% {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 700px) {
+  .service-visual-directory {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .service-glyph {
+    height: 250px;
+    padding: 25px;
+  }
+  .service-visual-copy {
+    padding: 24px;
+  }
+  .service-visual-copy h3 {
+    font-size: 25px;
+  }
+  .service-story-track {
+    gap: 6px;
+  }
+  .service-story-track > span {
+    font-size: 9px;
+    gap: 4px;
+  }
+  .service-scene-live .service-scene-top {
+    font-size: 7px;
+  }
+  .service-scene-live .service-scene-stage {
+    min-height: 270px;
+  }
+  .service-scene-controls {
+    flex-wrap: wrap;
+  }
+  .glyph-art {
+    right: 15px;
+    width: 52px;
+    height: 52px;
+  }
+  .glyph-browser {
+    width: 92%;
+  }
+  .glyph-type em {
+    font-size: 20px;
+  }
+  .glyph-website {
+    padding: 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .service-glyph *,
+  .service-scene-live * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

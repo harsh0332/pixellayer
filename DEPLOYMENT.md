@@ -21,10 +21,12 @@ npm ci
 npm run lint
 npm run build
 node scripts/check-resolution-hero.mjs
+node scripts/check-studio-sequence.mjs
 npm audit --omit=dev
 npm start -- -p 3015
 # In another terminal:
 node scripts/audit-preview.mjs http://localhost:3015
+node scripts/audit-journeys.mjs http://localhost:3015
 ```
 
 After pushing `main`, verify the new commit reaches **Completed / Current** in Hostinger Deployments. Hostinger scans dependencies again after redeployment; a cached scan of an older deployment does not verify the new lockfile. Confirm the live homepage has the Resolution hero, and check `/brand-image`, `/sitemap.xml` and a service/project detail page.
