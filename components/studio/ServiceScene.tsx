@@ -104,8 +104,6 @@ export function ServiceScene({ mode }: { mode: ServiceMode }) {
     playing,
     ref,
     choose,
-    resume,
-    manual,
     setHover,
     setFocused,
   } = useSequence(2, 6200);
@@ -404,17 +402,6 @@ export function ServiceScene({ mode }: { mode: ServiceMode }) {
             {label}
           </button>
         ))}
-        <button
-          className="service-scene-play"
-          type="button"
-          onClick={manual ? resume : () => choose(view)}
-          aria-label={
-            manual ? "Play service walkthrough" : "Pause service walkthrough"
-          }
-          title={manual ? "Play walkthrough" : "Pause walkthrough"}
-        >
-          {manual ? "▷" : "Ⅱ"}
-        </button>
       </div>
       <p className="service-scene-explainer">{story.notes[view]}</p>
       <p className="service-scene-note">

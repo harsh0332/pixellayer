@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { mountResolutionHero } from "@/lib/resolution-hero";
-import { MotionToggle, useStudioMotion } from "./StudioMotion";
+import { useStudioMotion } from "./StudioMotion";
 
 function Arrow({ down = false }: { down?: boolean }) {
   return (
@@ -70,7 +70,6 @@ export function ResolutionHero() {
           </div>
         </div>
       </div>
-      <div className="pl-motion-control"><MotionToggle /></div>
     </section>
   );
 }

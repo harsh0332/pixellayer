@@ -125,9 +125,11 @@ assert.equal(timers.size, 1);
 hook.choose(3);
 hook = render();
 assert.equal(hook.active, 3);
-assert.equal(timers.size, 0, "Manual selection pauses");
-hook.resume();
-hook = render();
+assert.equal(
+  timers.size,
+  1,
+  "Selection does not permanently stop automatic progression",
+);
 timers.values().next().value();
 hook = render();
 assert.equal(hook.active, 0, "Sequence wraps around");

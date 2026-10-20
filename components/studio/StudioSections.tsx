@@ -38,7 +38,6 @@ export function WorkRibbon() {
 }
 
 export function LogoMarquee() {
-  const [paused, setPaused] = useState(false);
   return (
     <section
       className="eco-trusted eco-container studio-client-row"
@@ -50,18 +49,9 @@ export function LogoMarquee() {
           <br />
           <strong>GREAT COLLABORATIONS.</strong>
         </p>
-        <button
-          className="studio-logo-pause"
-          type="button"
-          aria-pressed={paused}
-          onClick={() => setPaused(!paused)}
-        >
-          {paused ? "Play logos ▷" : "Pause logos Ⅱ"}
-        </button>
       </div>
       <div
         className="studio-marquee studio-logo-marquee studio-loop"
-        data-local-paused={paused}
       >
         <div className="studio-logo-track">
           {[0, 1].map((copy) => (
@@ -269,7 +259,7 @@ const PROCESS = [
   },
 ];
 export function ProcessExplorer() {
-  const { active, ref, choose, playing, manual, resume, setHover, setFocused } =
+  const { active, ref, choose, playing, setHover, setFocused } =
     useSequence(PROCESS.length, 6500);
   const id = useId();
   const item = PROCESS[active];
@@ -350,7 +340,6 @@ export function ProcessExplorer() {
       </div>
       <div className="studio-process-foot">
         <span>Clear scope. Reviewable milestones. Full ownership.</span>
-        <button type="button" onClick={manual ? resume : () => choose(active)}>{manual ? "Play walkthrough ▷" : "Pause walkthrough Ⅱ"}</button>
       </div>
     </div>
   );

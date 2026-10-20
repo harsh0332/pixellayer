@@ -24,7 +24,7 @@ const STEPS = [
   ],
 ];
 export function ConversionJourney() {
-  const { active, ref, playing, manual, choose, resume, setHover, setFocused } =
+  const { active, ref, playing, choose, setHover, setFocused } =
     useSequence(4, 6000);
   return (
     <section
@@ -88,12 +88,6 @@ export function ConversionJourney() {
               Where does your website lose people?{" "}
               <span>Get a free review ↗</span>
             </Link>
-            <button
-              type="button"
-              onClick={manual ? resume : () => choose(active)}
-            >
-              {manual ? "Play the journey ▷" : "Pause the journey Ⅱ"}
-            </button>
           </div>
         </div>
       </div>

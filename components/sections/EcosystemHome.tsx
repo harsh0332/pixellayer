@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { type ReactNode } from "react";
 import { ContactCta } from "@/components/sections/ContactCta";
-import { MotionShell, MotionToggle } from "@/components/studio/StudioMotion";
+import { MotionShell } from "@/components/studio/StudioMotion";
 import {
   StudioNav,
   StudioFooter,
@@ -78,7 +78,7 @@ function Label({ children, number }: { children: ReactNode; number: string }) {
 
 export function EcosystemHome() {
   return (
-    <MotionShell floating={false}>
+    <MotionShell>
       <HomeContent />
     </MotionShell>
   );
@@ -125,7 +125,6 @@ function HomeContent() {
             </div>
             <ServiceDirectory home />
             <div className="home-services-foot">
-              <MotionToggle />
               <span>
                 Need a landing page, chatbot, conversion review or ongoing care?
               </span>

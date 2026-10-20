@@ -47,7 +47,7 @@ function ExperienceCase({
   item: (typeof CASES)[number];
   index: number;
 }) {
-  const { active, ref, playing, manual, choose, resume, setHover, setFocused } =
+  const { active, ref, playing, choose, setHover, setFocused } =
     useSequence(3, 5200);
   return (
     <article
@@ -138,12 +138,6 @@ function ExperienceCase({
         </ol>
         <div className="experience-case-actions">
           <Link href={`/work/${item.slug}`}>Inside the build ↗</Link>
-          <button
-            type="button"
-            onClick={manual ? resume : () => choose(active)}
-          >
-            {manual ? "Play journey ▷" : "Pause journey Ⅱ"}
-          </button>
         </div>
         <Link
           className="experience-build-link"

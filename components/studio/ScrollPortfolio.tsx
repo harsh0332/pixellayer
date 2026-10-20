@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import { ALL_PROJECTS, PROJECT_DETAILS } from "@/lib/studio";
 import { revealPose, revealPosition } from "@/lib/portfolio-reveal";
-import { MotionToggle, useStudioMotion } from "./StudioMotion";
+import { useStudioMotion } from "./StudioMotion";
 
 /** All portfolio projects, in a dedicated scroll chapter below the hero. */
 export function ScrollPortfolio() {
@@ -95,7 +95,7 @@ export function ScrollPortfolio() {
         <div className="eco-container portfolio-reel-bottom">
           <div className="portfolio-chapters" aria-hidden="true">{ALL_PROJECTS.map((item, i) => <i key={item.slug} data-complete={i < active} data-current={i === active} />)}</div>
           <div className="portfolio-reel-progress" aria-hidden="true"><span /></div>
-          <div><span>{paused || reduced ? "MOTION PAUSED · EXPLORE ALL PROJECTS" : "SCROLL TO REVEAL THE NEXT WEBSITE"}</span><MotionToggle /><Link href="/work">Browse projects ↗</Link></div>
+          <div><span>{paused || reduced ? "MOTION PAUSED · EXPLORE ALL PROJECTS" : "SCROLL TO REVEAL THE NEXT WEBSITE"}</span><Link href="/work">Browse projects ↗</Link></div>
         </div>
       </div>
     </section>

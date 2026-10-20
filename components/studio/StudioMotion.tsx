@@ -11,22 +11,13 @@ import { useReducedMotion } from "@/components/motion/ReducedMotionProvider";
 
 const MotionContext = createContext<{
   paused: boolean;
-  setPaused: (value: boolean) => void;
   reduced: boolean;
 }>({
   paused: false,
-  setPaused: () => {},
   reduced: false,
 });
 export const useStudioMotion = () => useContext(MotionContext);
-export function MotionShell({
-  children,
-  floating = true,
-}: {
-  children: ReactNode;
-  floating?: boolean;
-}) {
-  const [paused, setPaused] = useState(false);
+export function MotionShell({ children }: { children: ReactNode }) {
   const reduced = useReducedMotion();
   const root = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -61,51 +52,20 @@ export function MotionShell({
     };
   }, [children]);
   return (
-    <MotionContext.Provider value={{ paused, setPaused, reduced }}>
+    <MotionContext.Provider value={{ paused: false, reduced }}>
       <div
         ref={root}
         className="ecosystem studio-enhanced"
-        data-motion-paused={paused || reduced}
+        data-motion-paused={reduced}
       >
         {children}
-        {floating && (
-          <div className="studio-motion-dock">
-            <MotionToggle />
-          </div>
-        )}
       </div>
     </MotionContext.Provider>
-  );
-}
-export function MotionToggle() {
-  const { paused, setPaused, reduced } = useStudioMotion();
-  return (
-    <button
-      className="studio-motion-toggle"
-      type="button"
-      aria-pressed={paused || reduced}
-      aria-label={
-        reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"
-      }
-      title={
-        reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"
-      }
-      disabled={reduced}
-      onClick={() => setPaused(!paused)}
-    >
-      <span className="studio-motion-icon" aria-hidden="true">
-        {paused || reduced ? "▷" : "Ⅱ"}
-      </span>
-      <span className="studio-motion-label">
-        {reduced ? "Reduced motion" : paused ? "Resume motion" : "Pause motion"}
-      </span>
-    </button>
   );
 }
 export function useSequence(count: number, delay = 4500, initialStage = 0) {
   const { paused, reduced } = useStudioMotion();
   const [active, setActive] = useState(initialStage),
-    [manual, setManual] = useState(false),
     [visible, setVisible] = useState(false),
     [hover, setHover] = useState(false),
     [focused, setFocused] = useState(false),
@@ -126,7 +86,7 @@ export function useSequence(count: number, delay = 4500, initialStage = 0) {
     };
   }, []);
   const motionAllowed = !paused && !reduced && visible && documentVisible;
-  const playing = motionAllowed && !manual && !hover && !focused;
+  const playing = motionAllowed && !hover && !focused;
   useEffect(() => {
     if (!playing) return;
     const timer = setInterval(() => setActive((i) => (i + 1) % count), delay);
@@ -137,12 +97,9 @@ export function useSequence(count: number, delay = 4500, initialStage = 0) {
     playing,
     motionAllowed,
     ref,
-    manual,
     choose: (index: number) => {
       setActive(index);
-      setManual(true);
     },
-    resume: () => setManual(false),
     setHover,
     setFocused,
   };

@@ -2,7 +2,6 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { STUDIO_SERVICES } from "@/lib/services";
-import { MotionToggle } from "./StudioMotion";
 
 export function StudioLogo() {
   return (
@@ -161,7 +160,6 @@ export function StudioNav({ home = false }: { home?: boolean }) {
           <Link className="eco-nav-cta" href="/contact">
             Let’s talk <span>↗</span>
           </Link>
-          {!home && <div className="studio-nav-motion"><MotionToggle /></div>}
           <button
             className="eco-menu-toggle"
             type="button"

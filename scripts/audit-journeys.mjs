@@ -21,6 +21,13 @@ async function page(path) {
   assert.equal(response.status, 200, `${path} loads`);
   const text = await response.text();
   assert.equal((text.match(/<h1\b/g) || []).length, 1, `${path} has one h1`);
+  for (const [button] of text.matchAll(/<button\b[^>]*>[\s\S]*?<\/button>/g)) {
+    assert.doesNotMatch(
+      button,
+      /(?:Pause|Resume|Play) (?:motion|logos|journey|the journey|walkthrough|service walkthrough)/i,
+      `${path}: no motion playback buttons`,
+    );
+  }
   return text;
 }
 const home = await page("/");
@@ -71,8 +78,8 @@ for (const slug of slugs) {
     `${slug}: review checkpoints`,
   );
   assert.ok(
-    html.includes("Pause service walkthrough"),
-    `${slug}: controllable motion`,
+    !html.includes("Pause service walkthrough"),
+    `${slug}: no visible pause control`,
   );
 }
 const sugar = await page("/work/the-sugar-story");
